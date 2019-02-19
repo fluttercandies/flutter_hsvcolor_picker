@@ -1,8 +1,8 @@
 name: flutter_color_picker
-description: A HSV color picker inspired by chrome devtools and a material color picker for your flutter app.
+description: A color picker inspired by chrome devtools and a material color picker for your flutter app.
 version: 0.0.1
 author: "ysdy44 <ysdy44@outlook.com>"
-homepage: https://github.com/ysdy44/flutter_color_picker
+homepage: https://github.com/fluttercandies/flutter_color_picker
 
 dependencies:
   flutter:
