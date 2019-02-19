@@ -4,37 +4,26 @@ A color picker for your flutter app.
 RGB HSV Wheel Hue Saturation Values.
 ![](https://github.com/ysdy44/flutter_color_picker/blob/master/screenshot/phone.png)
 
-## Getting Started
+## Getting Started(https://github.com/ysdy44/flutter_color_picker/blob/master/screenshot/logo.png)
+
 
 ### Installation
 
-Add this to your pubspec.yaml (or create it):
+Get [lib\flutter_color_picker.dart] file and put it in the [test\] folder.
 
+
+Add this to your pubspec.yaml (or create it):
 ```yaml
 dependencies:
   flutter_color_picker: any
 ```
-
-Then run the flutter tooling:
-
-```bash
-flutter packages get
-```
-
-Or upgrade the packages with:
-
-```bash
-flutter packages upgrade
-```
-
-
 
 ### Example
 
 ```dart
 
 
-import 'package:flutter_color_picker/flutter_color_picker.dart';
+import 'package:yourProjectName/flutter_color_picker.dart';
 
 
 new ColorPicker(
