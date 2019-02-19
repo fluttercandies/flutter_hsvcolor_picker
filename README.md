@@ -4,7 +4,8 @@ A color picker for your flutter app.
 RGB HSV Wheel Hue Saturation Values.
 ![](https://github.com/ysdy44/flutter_color_picker/blob/master/screenshot/phone.png)
 
-## Getting Started(https://github.com/ysdy44/flutter_color_picker/blob/master/screenshot/logo.png)
+## Getting Started
+  ![](https://github.com/ysdy44/flutter_color_picker/blob/master/screenshot/logo.png)
 
 
 ### Installation
@@ -33,6 +34,9 @@ new ColorPicker(
 
 
 ```
+
+
+
 
 ![](https://github.com/ysdy44/flutter_color_picker/blob/master/screenshot/design.png)
 Details in example/ folder.
