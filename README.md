@@ -10,7 +10,7 @@ RGB HSV Wheel Hue Saturation Values.
 
 ### Installation
 
-Get [lib\flutter_color_picker.dart] file and put it in the [test\] folder.
+Get [lib\flutter_color_picker.dart] file and put it in the [test\] folder of your project.
 
 
 Add this to your pubspec.yaml (or create it):
