@@ -29,7 +29,8 @@ class PaletteValuePickerPageState extends State<PaletteValuePickerPage> {
                   onPressed: (){},
                   backgroundColor: this.color.toColor(),
                 ),
-                             
+                new Divider(),
+
                 ///---------------------------------
                 new PaletteValuePicker(
                   color: this.color,

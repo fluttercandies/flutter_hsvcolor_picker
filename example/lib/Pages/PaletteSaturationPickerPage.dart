@@ -29,7 +29,8 @@ class PaletteSaturationPickerPageState extends State<PaletteSaturationPickerPage
                   onPressed: (){},
                   backgroundColor: this.color.toColor(),
                 ),
-                                           
+                new Divider(),
+
                 ///---------------------------------
                 new PaletteSaturationPicker(
                   color: this.color,

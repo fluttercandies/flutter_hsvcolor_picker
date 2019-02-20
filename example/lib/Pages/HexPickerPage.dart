@@ -29,6 +29,7 @@ class HexPickerPageState extends State<HexPickerPage> {
                   onPressed: (){},
                   backgroundColor: this.color,
                 ),
+                new Divider(),
 
                 ///---------------------------------
                 new HexPicker(     

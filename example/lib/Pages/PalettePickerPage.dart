@@ -37,6 +37,7 @@ class PalettePickerPageState extends State<PalettePickerPage> {
                   " )",
                   style: Theme.of(context).textTheme.display1,
                 ),
+                new Divider(),
                 new Expanded(
 
 

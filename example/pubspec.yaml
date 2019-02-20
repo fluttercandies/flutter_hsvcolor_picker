@@ -10,3 +10,5 @@ dependencies:
 flutter:
   uses-material-design: true
   
+  assets:
+   - packages/Avatar.jpg

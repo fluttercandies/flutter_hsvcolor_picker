@@ -4,6 +4,7 @@ import "Pages/SliderPickerPage.dart";
 import "Pages/PalettePickerPage.dart";
 import "Pages/HSVPickerPage.dart";
 import "Pages/RGBPickerPage.dart";
+import "Pages/WheelPickerPage.dart";
 import "Pages/PaletteHuePickerPage.dart";
 import "Pages/PaletteSaturationPickerPage.dart";
 import "Pages/PaletteValuePickerPage.dart";
@@ -22,7 +23,7 @@ class MainPageState extends State<MainPage> {
   
   GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
 
-  int index = 10;
+  int index = 11;
   Widget get page => this.items.firstWhere((item) => item==null? false: item.index==this.index).page;
   List<MainItem> items = [
     new MainItem(index: 0, icon: Icons.linear_scale, text: "Slider", page: new SliderPickerPage()),
@@ -30,16 +31,17 @@ class MainPageState extends State<MainPage> {
     null,
     new MainItem(index: 2, icon: Icons.tune, text: "RGB Picker", page: new RGBPickerPage()),
     new MainItem(index: 3, icon: Icons.tune, text: "HSV Picker", page: new HSVPickerPage()),
+    new MainItem(index: 4, icon: Icons.tune, text: "Wheel Picker", page: new WheelPickerPage()),
     null,
-    new MainItem(index: 4, icon: Icons.color_lens, text: "Palette Hue Picker", page: new PaletteHuePickerPage()),     
-    new MainItem(index: 5, icon: Icons.color_lens, text: "Palette Saturation Picker", page: new PaletteSaturationPickerPage()),
-    new MainItem(index: 6, icon: Icons.color_lens, text: "Palette Value Picker", page: new PaletteValuePickerPage()),
+    new MainItem(index: 5, icon: Icons.color_lens, text: "Palette Hue Picker", page: new PaletteHuePickerPage()),     
+    new MainItem(index: 6, icon: Icons.color_lens, text: "Palette Saturation Picker", page: new PaletteSaturationPickerPage()),
+    new MainItem(index: 7, icon: Icons.color_lens, text: "Palette Value Picker", page: new PaletteValuePickerPage()),
     null,
-    new MainItem(index: 7, icon: Icons.mode_edit, text: "Hex Picker", page: new HexPickerPage()),
-    new MainItem(index: 8, icon: Icons.mode_edit, text: "Alpha Picker", page: new AlphaPickerPage()),
-    new MainItem(index: 9, icon: Icons.mode_edit, text: "Swatches Picker", page: new SwatchesPickerPage()),
+    new MainItem(index: 8, icon: Icons.mode_edit, text: "Hex Picker", page: new HexPickerPage()),
+    new MainItem(index: 9, icon: Icons.mode_edit, text: "Alpha Picker", page: new AlphaPickerPage()),
+    new MainItem(index: 10, icon: Icons.mode_edit, text: "Swatches Picker", page: new SwatchesPickerPage()),
     null,
-    new MainItem(index: 10, icon: Icons.color_lens, text: "Color Picker", page: new ColorPickerPage()),
+    new MainItem(index: 11, icon: Icons.color_lens, text: "Color Picker", page: new ColorPickerPage()),
   ];  
    
   void iconButtonOnPressed() => this.scaffoldKey.currentState.openDrawer();

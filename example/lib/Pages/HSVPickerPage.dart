@@ -29,7 +29,8 @@ class HSVPickerPageState extends State<HSVPickerPage> {
                   onPressed: (){},
                   backgroundColor: this.color.toColor(),
                 ),
- 
+                new Divider(),
+
                 ///---------------------------------
                 new HSVPicker(
                   color: this.color,

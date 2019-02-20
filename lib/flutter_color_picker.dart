@@ -26,6 +26,7 @@ import "package:flutter/material.dart";
 import "package:flutter/painting.dart";
 import "package:flutter/rendering.dart";
 import "package:flutter/widgets.dart";
+import "dart:math" as Math;
 
 
 
@@ -693,6 +694,216 @@ class _HSVPickerState extends State<HSVPicker> {
 //
 //
 //---------------------------HSVPicker.dart-------------------------------
+
+
+
+
+
+
+
+
+
+
+//---------------------------WheelPicker.dart-------------------------------
+//
+//
+
+//import "package:flutter/material.dart";
+//import "package:flutter/cupertino.dart";
+//import "dart:math" as Math;
+
+
+class Wheel{
+  static double vectorToHue(Offset vector) => (((Math.atan2(vector.dy, vector.dx)) * 180.0 / Math.pi) + 360.0) % 360.0;
+  static double vectorToSaturation(double vectorX, double squareRadio) => vectorX * 0.5 / squareRadio + 0.5;
+  static double vectorToValue(double vectorY, double squareRadio) => 0.5 - vectorY * 0.5 / squareRadio;
+
+  static Offset hueToVector(double h, double radio, Offset center) => new Offset(Math.cos(h) * radio + center.dx, Math.sin(h) * radio + center.dy);
+  static double saturationToVector(double s, double squareRadio, double centerX) => (s - 0.5) * squareRadio / 0.5 + centerX;
+  static double valueToVector(double l, double squareRadio, double centerY) => (0.5 - l) * squareRadio / 0.5 + centerY;
+}
+
+class WheelPicker extends StatefulWidget {
+
+  final HSVColor color;
+  final ValueChanged<HSVColor> onChanged;
+
+  WheelPicker({
+    Key key,
+    @required this.color,
+    @required this.onChanged,
+  }) : assert(color != null),
+        super(key: key);
+
+  @override
+  _WheelPickerState createState() => new _WheelPickerState();
+}
+
+class _WheelPickerState extends State<WheelPicker> {
+
+  HSVColor get color=> super.widget.color;
+
+
+  final GlobalKey paletteKey = GlobalKey();
+  Offset getOffset(Offset ratio){
+    RenderBox renderBox = this.paletteKey.currentContext.findRenderObject();
+    Offset startPosition = renderBox.localToGlobal(Offset.zero);
+    return ratio-startPosition;
+  }
+  Size getSize(){
+    RenderBox renderBox = this.paletteKey.currentContext.findRenderObject();
+    return renderBox.size;
+  }
+
+
+
+  bool isWheel = false;
+  bool isPalette = false;
+  void onPanStart(Offset offset){
+    RenderBox renderBox = this.paletteKey.currentContext.findRenderObject();
+    Size size = renderBox.size;
+
+    double radio =_WheelPainter.radio(size);
+    double squareRadio =_WheelPainter.squareRadio(radio);
+
+    Offset startPosition = renderBox.localToGlobal(Offset.zero);
+    Offset center = Offset(size.width/2, size.height/2);
+    Offset vector = offset-startPosition-center;
+
+    this.isWheel = vector.distance + _WheelPainter.strokeWidth > radio && vector.distance - squareRadio < radio;
+    this.isPalette =vector.dx.abs() < squareRadio && vector.dy.abs() < squareRadio;
+
+    if (this.isWheel) super.widget.onChanged(this.color.withHue(Wheel.vectorToHue(vector)));
+    if (this.isPalette) super.widget.onChanged(HSVColor.fromAHSV(
+        this.color.alpha,
+        this.color.hue,
+        Wheel.vectorToSaturation(vector.dx, squareRadio).clamp(0.0, 1.0),
+        Wheel.vectorToValue(vector.dy, squareRadio).clamp(0.0, 1.0)
+    ));
+  }
+  void onPanUpdate(Offset offset){
+    RenderBox renderBox = this.paletteKey.currentContext.findRenderObject();
+    Size size = renderBox.size;
+
+    double radio =_WheelPainter.radio(size);
+    double squareRadio =_WheelPainter.squareRadio(radio);
+
+    Offset startPosition = renderBox.localToGlobal(Offset.zero);
+    Offset center = Offset(size.width/2, size.height/2);
+    Offset vector = offset-startPosition-center;
+
+    if (this.isWheel) super.widget.onChanged(this.color.withHue(Wheel.vectorToHue(vector)));
+    if (this.isPalette) super.widget.onChanged(HSVColor.fromAHSV(
+        this.color.alpha,
+        this.color.hue,
+        Wheel.vectorToSaturation(vector.dx, squareRadio).clamp(0.0, 1.0),
+        Wheel.vectorToValue(vector.dy, squareRadio).clamp(0.0, 1.0)
+    ));
+  }
+  void onPanDown(Offset offset)=> this.isWheel = this.isPalette = false;
+
+
+
+  @override
+  Widget build(BuildContext context) {
+    return new GestureDetector(
+        onPanStart: (details)=>this.onPanStart(details.globalPosition),
+        onPanUpdate: (details)=>this.onPanUpdate(details.globalPosition),
+        onPanDown: (details)=>this.onPanDown(details.globalPosition),
+        child: new Container(
+            key: this.paletteKey,
+            padding: const EdgeInsets.only(top: 12.0),
+            width: 240,
+            height: 240,
+            child: new CustomPaint(
+                painter: new _WheelPainter(color: this.color)
+            )
+        )
+    );
+  }
+}
+
+
+class _WheelPainter extends CustomPainter{
+
+  static double strokeWidth = 8;
+  static double radio(Size size)=> Math.min(size.width, size.height).toDouble() / 2 - _WheelPainter.strokeWidth;
+  static double squareRadio(double radio) => (radio - _WheelPainter.strokeWidth)/ 1.414213562373095;
+
+  final HSVColor color;
+
+  _WheelPainter({
+    Key key,
+    this.color
+  }):super();
+
+  @override
+  void paint(Canvas canvas, Size size) {
+
+    Offset center = new Offset(size.width/2, size.height/2);
+    double radio =_WheelPainter.radio(size);
+    double squareRadio =_WheelPainter.squareRadio(radio);
+
+
+    //Wheel
+    canvas.drawCircle(center, radio, new Paint()..style=PaintingStyle.stroke..color=Colors.grey..strokeWidth=_WheelPainter.strokeWidth * 2);
+
+    double space = (2 * Math.pi) / (Math.pi * radio * 2 / _WheelPainter.strokeWidth).toInt();
+    for (double angle = 0; angle < 6.2831853071795862; angle += space){
+      Offset vector = Wheel.hueToVector(angle, radio, center);
+      Color color = HSVColor.fromAHSV(1.0, angle * 180.0 / Math.pi,1.0,1.0).toColor();
+      canvas.drawCircle(vector, _WheelPainter.strokeWidth, new Paint() ..style=PaintingStyle.fill..color=color..strokeWidth=_WheelPainter.strokeWidth * 2);
+    }
+
+    canvas.drawCircle(center, radio - _WheelPainter.strokeWidth, new Paint()..style=PaintingStyle.stroke ..color=Colors.grey);
+    canvas.drawCircle(center, radio + _WheelPainter.strokeWidth, new Paint()..style=PaintingStyle.stroke ..color=Colors.grey);
+
+
+    //Palette
+    Rect rect = Rect.fromLTWH(center.dx - squareRadio, center.dy - squareRadio, squareRadio * 2, squareRadio * 2);
+    RRect rRect = RRect.fromRectAndRadius(rect, Radius.circular(4));
+
+    canvas.drawRRect(rRect, new Paint()..style=PaintingStyle.fill..shader = new LinearGradient(
+      begin: Alignment.centerLeft,
+      end: Alignment.centerRight,
+      colors: [Colors.white, HSVColor.fromAHSV(1.0, this.color.hue, 1.0, 1.0).toColor()],
+    ).createShader(rect));
+
+    canvas.drawRRect(rRect, new Paint()..style=PaintingStyle.fill..shader = new LinearGradient(
+      begin: Alignment.topCenter,
+      end: Alignment.bottomCenter,
+      colors: [Colors.transparent, Colors.black],
+    ) .createShader(rect));
+
+    canvas.drawRRect(rRect, new Paint()..style=PaintingStyle.stroke..color = Colors.grey);
+
+
+    //Thumb
+    final Paint paintWhite = new Paint()..color=Colors.white..strokeWidth=4..style=PaintingStyle.stroke;
+    final Paint paintBlack = new Paint()..color=Colors.black..strokeWidth=6..style=PaintingStyle.stroke;
+    Offset wheel = Wheel.hueToVector(((this.color.hue + 360.0) * Math.pi / 180.0), radio, center);
+    canvas.drawCircle(wheel, 12, paintBlack);
+    canvas.drawCircle(wheel, 12, paintWhite);
+
+
+    //Thumb
+    double paletteX = Wheel.saturationToVector(this.color.saturation, squareRadio, center.dx);
+    double paletteY = Wheel.valueToVector(this.color.value, squareRadio, center.dy);
+    Offset paletteVector=new Offset(paletteX, paletteY);
+    canvas.drawCircle(paletteVector, 12, paintBlack);
+    canvas.drawCircle(paletteVector, 12, paintWhite);
+  }
+
+  @override
+  bool shouldRepaint(_WheelPainter other) => true;
+}
+
+
+
+
+//
+//
+//---------------------------WheelPicker.dart-------------------------------
 
 
 
@@ -1735,6 +1946,7 @@ List<Color> swatches = [
 //import "package:color_picker/Pickers/SwatchesPicker.dart";
 //import "package:color_picker/Pickers/RGBPicker.dart";
 //import "package:color_picker/Pickers/HSVPicker.dart";
+//import "package:color_picker/Pickers/WheelPicker.dart";
 //import "package:color_picker/Pickers/PaletteHuePicker.dart";
 //import "package:color_picker/Pickers/PaletteSaturationPicker.dart";
 //import "package:color_picker/Pickers/PaletteValuePicker.dart";
@@ -1742,10 +1954,12 @@ List<Color> swatches = [
 //import "package:color_picker/Pickers/AlphaPicker.dart";
 
 class _IPicker{
+  int index;
   String name;
   WidgetBuilder builder;
 
   _IPicker({
+    @required this.index,
     @required this.name,
     @required this.builder
   });
@@ -1806,7 +2020,7 @@ class ColorPickerState extends State<ColorPicker> {
 
 
   //pickers
-  int _index = 0;
+  int _index = 4;
   List<_IPicker> _pickers;
   void _pickerOnChanged(_IPicker value) => this._index=this._pickers.indexOf(value);
 
@@ -1820,6 +2034,7 @@ class ColorPickerState extends State<ColorPicker> {
 
       //SwatchesPicker
       new _IPicker(
+          index: 0,
           name: "Swatches",
           builder: (context)=>new SwatchesPicker(
             onChanged: (value)=>super.setState(()=>this._colorWithAlphaOnChanged(value)),
@@ -1828,6 +2043,7 @@ class ColorPickerState extends State<ColorPicker> {
 
       //RGBPicker
       new _IPicker(
+          index: 1,
           name: "RGB",
           builder: (context)=>new RGBPicker(
             color: this._color,
@@ -1837,6 +2053,7 @@ class ColorPickerState extends State<ColorPicker> {
 
       //HSVPicker
       new _IPicker(
+          index: 2,
           name: "HSV",
           builder: (context)=>new HSVPicker(
             color: this._hSVColor,
@@ -1844,8 +2061,19 @@ class ColorPickerState extends State<ColorPicker> {
           )
       ),
 
+      //WheelPicker
+      new _IPicker(
+          index: 3,
+          name: "Wheel",
+          builder: (context)=>new WheelPicker(
+            color: this._hSVColor,
+            onChanged: (value)=>super.setState(()=>this._hSVColorOnChanged(value)),
+          )
+      ),
+
       //PaletteHuePicker
       new _IPicker(
+          index: 4,
           name: "Palette Hue",
           builder: (context)=>new PaletteHuePicker(
             color: this._hSVColor,
@@ -1855,6 +2083,7 @@ class ColorPickerState extends State<ColorPicker> {
 
       //PaletteSaturationPicker
       new _IPicker(
+          index: 5,
           name: "Palette Saturation",
           builder: (context)=>new PaletteSaturationPicker(
             color: this._hSVColor,
@@ -1864,6 +2093,7 @@ class ColorPickerState extends State<ColorPicker> {
 
       //PaletteValuePicker
       new _IPicker(
+          index: 6,
           name: "Palette Value",
           builder: (context)=>new PaletteValuePicker(
             color: this._hSVColor,
@@ -1883,7 +2113,9 @@ class ColorPickerState extends State<ColorPicker> {
             padding: const EdgeInsets.fromLTRB(10.0,8.0,10.0,0.0),
             child: new Text(
               item.name,
-              style: Theme.of(context).textTheme.headline.copyWith(fontSize: 18),
+              style: this._index==item.index?
+                Theme.of(context).textTheme.headline.copyWith(fontSize: 18, color: Theme.of(context).accentColor):
+                Theme.of(context).textTheme.headline.copyWith(fontSize: 18),
             )
         )
     );

@@ -29,6 +29,7 @@ class RGBPickerPageState extends State<RGBPickerPage> {
                   onPressed: (){},
                   backgroundColor: this.color,
                 ),
+                new Divider(),
 
                 ///---------------------------------
                 new RGBPicker(

@@ -29,6 +29,7 @@ class AlphaPickerPageState extends State<AlphaPickerPage> {
                   this.value.toString(),
                   style: Theme.of(context).textTheme.display1,
                 ),
+                new Divider(),
 
                 ///---------------------------------
                 new AlphaPicker(     
