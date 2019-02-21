@@ -5,6 +5,7 @@
 /// 
 /// [RGBPicker] 
 /// [HSVPicker] 
+/// [WheelPicker] 
 /// 
 /// [PaletteHuePicker] 
 /// [PaletteSaturationPicker] 
@@ -770,8 +771,12 @@ class _WheelPickerState extends State<WheelPicker> {
     Offset center = Offset(size.width/2, size.height/2);
     Offset vector = offset-startPosition-center;
 
-    this.isWheel = vector.distance + _WheelPainter.strokeWidth > radio && vector.distance - squareRadio < radio;
-    this.isPalette =vector.dx.abs() < squareRadio && vector.dy.abs() < squareRadio;
+    bool isPalette=vector.dx.abs() < squareRadio && vector.dy.abs() < squareRadio;
+    this.isWheel = !isPalette;
+    this.isPalette = isPalette;
+
+    //this.isWheel = vector.distance + _WheelPainter.strokeWidth > radio && vector.distance - squareRadio < radio;
+    //this.isPalette =vector.dx.abs() < squareRadio && vector.dy.abs() < squareRadio;
 
     if (this.isWheel) super.widget.onChanged(this.color.withHue(Wheel.vectorToHue(vector)));
     if (this.isPalette) super.widget.onChanged(HSVColor.fromAHSV(
@@ -827,6 +832,7 @@ class _WheelPickerState extends State<WheelPicker> {
 class _WheelPainter extends CustomPainter{
 
   static double strokeWidth = 8;
+  static double doubleStrokeWidth = 16;
   static double radio(Size size)=> Math.min(size.width, size.height).toDouble() / 2 - _WheelPainter.strokeWidth;
   static double squareRadio(double radio) => (radio - _WheelPainter.strokeWidth)/ 1.414213562373095;
 
@@ -846,15 +852,15 @@ class _WheelPainter extends CustomPainter{
 
 
     //Wheel
-    canvas.drawCircle(center, radio, new Paint()..style=PaintingStyle.stroke..color=Colors.grey..strokeWidth=_WheelPainter.strokeWidth * 2);
-
-    double space = (2 * Math.pi) / (Math.pi * radio * 2 / _WheelPainter.strokeWidth).toInt();
-    for (double angle = 0; angle < 6.2831853071795862; angle += space){
-      Offset vector = Wheel.hueToVector(angle, radio, center);
-      Color color = HSVColor.fromAHSV(1.0, angle * 180.0 / Math.pi,1.0,1.0).toColor();
-      canvas.drawCircle(vector, _WheelPainter.strokeWidth, new Paint() ..style=PaintingStyle.fill..color=color..strokeWidth=_WheelPainter.strokeWidth * 2);
-    }
-
+    canvas.drawCircle(center, radio, new Paint()..style=PaintingStyle.stroke..strokeWidth = _WheelPainter.doubleStrokeWidth..shader=new SweepGradient(colors: const [
+      Color.fromARGB(255, 255, 0, 0),
+      Color.fromARGB(255, 255, 255, 0),
+      Color.fromARGB(255, 0, 255, 0),
+      Color.fromARGB(255, 0, 255, 255),
+      Color.fromARGB(255, 0, 0, 255),
+      Color.fromARGB(255, 255, 0, 255),
+      Color.fromARGB(255, 255, 0, 0),
+    ]).createShader(Rect.fromLTWH(0, 0, radio, radio)));
     canvas.drawCircle(center, radio - _WheelPainter.strokeWidth, new Paint()..style=PaintingStyle.stroke ..color=Colors.grey);
     canvas.drawCircle(center, radio + _WheelPainter.strokeWidth, new Paint()..style=PaintingStyle.stroke ..color=Colors.grey);
 
