@@ -1,4 +1,4 @@
-package com.example.fluttercolorpickerexample;
+package com.example.flutterhsvcolorpickerexample;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;

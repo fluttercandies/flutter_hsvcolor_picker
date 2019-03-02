@@ -1,5 +1,7 @@
 import "package:flutter/material.dart";
 import "package:flutter/cupertino.dart";
+import "package:flutter/material.dart";
+import "package:flutter/cupertino.dart";
 import "Pages/SliderPickerPage.dart";
 import "Pages/PalettePickerPage.dart";
 import "Pages/HSVPickerPage.dart";
@@ -65,7 +67,7 @@ class MainPageState extends State<MainPage> {
      
       //Center
       title: new Center(
-        child: new Text("Color Picker", textAlign: TextAlign.center, style: this.theme.textTheme.headline)
+        child: new Text("HSV Color", textAlign: TextAlign.center, style: this.theme.textTheme.headline)
       ),
         
       //Left
@@ -130,7 +132,7 @@ class MainPageState extends State<MainPage> {
                 new CircleAvatar(
                   radius : 34.0, 
                   backgroundColor: this.theme.cardColor,
-                  backgroundImage: new AssetImage("packages/Avatar.jpg")
+                  backgroundImage: new AssetImage("packages/avatar.jpg")
                 ),
                 new Container(height : 10.0),
                 new Text(
@@ -218,7 +220,7 @@ class MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
-      title: "Color Picker",
+      title: "HSV Color",
       theme: this.theme,
       home: new Scaffold(
         key: this.scaffoldKey,

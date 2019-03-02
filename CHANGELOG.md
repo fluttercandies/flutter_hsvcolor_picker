@@ -1,3 +1,3 @@
-## [0.0.1]
+## [0.0.1] - TODO: Add release date.
 
-* Initial Open Source release.
+* TODO: Describe initial release.

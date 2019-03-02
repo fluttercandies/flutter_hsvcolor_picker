@@ -1,5 +1,5 @@
 import "package:flutter/material.dart";
-import "package:flutter_color_picker/flutter_color_picker.dart";
+import 'package:flutter_hsvcolor_picker/flutter_hsvcolor_picker.dart';
 
 class PaletteHuePickerPage extends StatefulWidget {
      

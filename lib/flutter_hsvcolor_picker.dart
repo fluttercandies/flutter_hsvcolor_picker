@@ -1,24 +1,24 @@
 /// HSV color picker
 ///
-/// [SliderPicker] 
-/// [PalettePicker] 
-/// 
-/// [RGBPicker] 
-/// [HSVPicker] 
-/// [WheelPicker] 
-/// 
-/// [PaletteHuePicker] 
-/// [PaletteSaturationPicker] 
-/// [PaletteValuePicker] 
-/// 
-/// [HexPicker] 
-/// [AlphaPicker] 
-/// [SwatchesPicker] 
-/// 
-/// [ColorPicker] 
-/// 
+/// [SliderPicker]
+/// [PalettePicker]
+///
+/// [RGBPicker]
+/// [HSVPicker]
+/// [WheelPicker]
+///
+/// [PaletteHuePicker]
+/// [PaletteSaturationPicker]
+/// [PaletteValuePicker]
+///
+/// [HexPicker]
+/// [AlphaPicker]
+/// [SwatchesPicker]
+///
+/// [ColorPicker]
+///
 
-library flutter_color_picker;
+library flutter_hsvcolor_picker;
 
 import "package:flutter/cupertino.dart";
 import "package:flutter/foundation.dart";
@@ -1533,9 +1533,9 @@ class _SwatchesPickerState extends State<SwatchesPicker> with SingleTickerProvid
     super.initState();
 
     this.controller=new TabController(
-        initialIndex: 1,
-        length: swatches.length,
-        vsync: this
+      initialIndex: 1,
+      length: swatches.length,
+      vsync: this
     );
   }
 
@@ -1543,18 +1543,19 @@ class _SwatchesPickerState extends State<SwatchesPicker> with SingleTickerProvid
     if(item==null) return Divider(height: 60.0);
 
     return new Container(
-        width: 40.0,
-        height: 40.0,
-        margin: const EdgeInsets.all(8.0),
-        decoration: BoxDecoration(
-            color: item,
-            shape: BoxShape.circle,
-            border: new Border.all(color: Colors.grey, width: 1)
-        ),
-        child: new InkWell(
-          onTap: ()=>this.itemClick(item),
-          splashColor: item,
-        )
+      width: 40.0,
+      height: 40.0,
+      margin: const EdgeInsets.all(8.0),
+      decoration: BoxDecoration(
+        color: item,
+        shape: BoxShape.circle,
+        border: new Border.all(color: Colors.grey, width: 1)
+      ),
+      child: new InkWell(
+        borderRadius: new BorderRadius.all(new Radius.circular(20)),
+        onTap: ()=>this.itemClick(item),
+        splashColor: item
+      )
     );
   }
 
@@ -2120,8 +2121,8 @@ class ColorPickerState extends State<ColorPicker> {
             child: new Text(
               item.name,
               style: this._index==item.index?
-                Theme.of(context).textTheme.headline.copyWith(fontSize: 18, color: Theme.of(context).accentColor):
-                Theme.of(context).textTheme.headline.copyWith(fontSize: 18),
+              Theme.of(context).textTheme.headline.copyWith(fontSize: 18, color: Theme.of(context).accentColor):
+              Theme.of(context).textTheme.headline.copyWith(fontSize: 18),
             )
         )
     );
