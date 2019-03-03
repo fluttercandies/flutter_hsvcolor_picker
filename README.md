@@ -10,7 +10,28 @@ RGB HSV Wheel Hue Saturation Values.
 
 ### Installation
 
-Download [lib\flutter_hsvcolor_picker.dart] file.
+Download [lib\flutter_hsvcolor_picker.dart] file
+
+or
+
+Add this to your pubspec.yaml (or create it):
+
+```yaml
+dependencies:
+  flutter_hsvcolor_picker: any
+```
+
+Then run the flutter tooling:
+
+```bash
+flutter packages get
+```
+
+Or upgrade the packages with:
+
+```bash
+flutter packages upgrade
+```
 
 
 ### Example
@@ -18,7 +39,8 @@ Download [lib\flutter_hsvcolor_picker.dart] file.
 ```dart
 
 
-import 'package:yourProjectName/flutter_hsvcolor_picker.dart';
+import "package:flutter_hsvcolor_picker/flutter_hsvcolor_picker.dart";
+
 
 new ColorPicker(
   color: Colors.blue,
