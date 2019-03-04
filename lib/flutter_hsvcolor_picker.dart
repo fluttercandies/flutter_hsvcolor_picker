@@ -174,16 +174,16 @@ class _SliderLayout extends MultiChildLayoutDelegate {
   void performLayout(Size size) {
 
     //Track
-    layoutChild(track, BoxConstraints.tightFor(width: size.width, height: _ThumbPainter.doubleTrackWidth));
-    positionChild(track, Offset(0.0, size.height / 2 - _ThumbPainter.trackWidth));
+    super.layoutChild(track, BoxConstraints.tightFor(width: size.width, height: _ThumbPainter.doubleTrackWidth));
+    super.positionChild(track, Offset(0.0, size.height / 2 - _ThumbPainter.trackWidth));
 
     //Thumb
-    layoutChild(thumb, BoxConstraints.tightFor(width: 10.0, height: size.height / 2));
-    positionChild(thumb, Offset(0.0, size.height * 0.5));
+    super.layoutChild(thumb, BoxConstraints.tightFor(width: 10.0, height: size.height / 2));
+    super.positionChild(thumb, Offset(0.0, size.height * 0.5));
 
     //GestureContainer
-    layoutChild(gestureContainer, BoxConstraints.tightFor(width: size.width, height: size.height));
-    positionChild(gestureContainer, Offset.zero);
+    super.layoutChild(gestureContainer, BoxConstraints.tightFor(width: size.width, height: size.height));
+    super.positionChild(gestureContainer, Offset.zero);
   }
 
   @override
