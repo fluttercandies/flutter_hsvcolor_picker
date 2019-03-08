@@ -8,10 +8,12 @@ RGB HSV Wheel Hue Saturation Values.
   ![](https://github.com/fluttercandies/flutter_hsvcolor_picker/blob/master/screenshot/logo.png)
 
 
-### Installation
-
 pub: 
 https://pub.dartlang.org/packages/flutter_hsvcolor_picker
+
+### Installation
+
+
 Download [lib\flutter_hsvcolor_picker.dart] file
 
 or
