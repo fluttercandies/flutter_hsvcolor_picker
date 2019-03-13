@@ -852,7 +852,9 @@ class _WheelPainter extends CustomPainter{
 
 
     //Wheel
-    canvas.drawCircle(center, radio, new Paint()..style=PaintingStyle.stroke..strokeWidth = _WheelPainter.doubleStrokeWidth..shader=new SweepGradient(colors: const [
+    Shader sweepShader = const SweepGradient(
+      center: Alignment.bottomRight, 
+      colors: const [
       Color.fromARGB(255, 255, 0, 0),
       Color.fromARGB(255, 255, 255, 0),
       Color.fromARGB(255, 0, 255, 0),
@@ -860,29 +862,33 @@ class _WheelPainter extends CustomPainter{
       Color.fromARGB(255, 0, 0, 255),
       Color.fromARGB(255, 255, 0, 255),
       Color.fromARGB(255, 255, 0, 0),
-    ]).createShader(Rect.fromLTWH(0, 0, radio, radio)));
-    canvas.drawCircle(center, radio - _WheelPainter.strokeWidth, new Paint()..style=PaintingStyle.stroke ..color=Colors.grey);
-    canvas.drawCircle(center, radio + _WheelPainter.strokeWidth, new Paint()..style=PaintingStyle.stroke ..color=Colors.grey);
+    ]).createShader(Rect.fromLTWH(0, 0, radio, radio));
+    canvas.drawCircle(center, radio, new Paint()..style=PaintingStyle.stroke..strokeWidth = _WheelPainter.doubleStrokeWidth..shader=sweepShader);
+    
+    canvas.drawCircle(center, radio - _WheelPainter.strokeWidth, new Paint()..style=PaintingStyle.stroke..color=Colors.grey);
+    canvas.drawCircle(center, radio + _WheelPainter.strokeWidth, new Paint()..style=PaintingStyle.stroke..color=Colors.grey);
 
 
     //Palette
     Rect rect = Rect.fromLTWH(center.dx - squareRadio, center.dy - squareRadio, squareRadio * 2, squareRadio * 2);
     RRect rRect = RRect.fromRectAndRadius(rect, Radius.circular(4));
 
-    canvas.drawRRect(rRect, new Paint()..style=PaintingStyle.fill..shader = new LinearGradient(
+    Shader horizontal = new LinearGradient(
       begin: Alignment.centerLeft,
       end: Alignment.centerRight,
       colors: [Colors.white, HSVColor.fromAHSV(1.0, this.color.hue, 1.0, 1.0).toColor()],
-    ).createShader(rect));
-
-    canvas.drawRRect(rRect, new Paint()..style=PaintingStyle.fill..shader = new LinearGradient(
+    ).createShader(rect);
+    canvas.drawRRect(rRect, new Paint()..style=PaintingStyle.fill..shader = horizontal);
+    
+    Shader vertical = const LinearGradient(
       begin: Alignment.topCenter,
       end: Alignment.bottomCenter,
       colors: [Colors.transparent, Colors.black],
-    ) .createShader(rect));
+    ) .createShader(rect);
+    canvas.drawRRect(rRect, new Paint()..style=PaintingStyle.fill..shader = vertical);
 
     canvas.drawRRect(rRect, new Paint()..style=PaintingStyle.stroke..color = Colors.grey);
-
+ 
 
     //Thumb
     final Paint paintWhite = new Paint()..color=Colors.white..strokeWidth=4..style=PaintingStyle.stroke;
