@@ -2064,7 +2064,7 @@ class ColorPickerState extends State<ColorPicker> {
   //pickers
   int index;
   List<_IPicker> _pickers;
-  void _pickerOnChanged(_IPicker value) => this._index=this._pickers.indexOf(value);
+  void _pickerOnChanged(_IPicker value) => this.index=this._pickers.indexOf(value);
 
 
   @override
@@ -2218,7 +2218,7 @@ class ColorPickerState extends State<ColorPicker> {
                 isExpanded: true,
                 isDense: true,
                 style: Theme.of(context).textTheme.headline.copyWith(fontSize: 20),
-                value: this._pickers[this._index],
+                value: this._pickers[this.index],
                 onChanged: (value)=>super.setState(()=>this._pickerOnChanged(value)),
                 items: this._pickers.map(this._buildDropdownMenuItems).toList()
             )
@@ -2248,7 +2248,7 @@ class ColorPickerState extends State<ColorPicker> {
                 isExpanded: true,
                 isDense: true,
                 style: Theme.of(context).textTheme.headline.copyWith(fontSize: 20),
-                value: this._pickers[this._index],
+                value: this._pickers[this.index],
                 onChanged: (value)=>super.setState(()=>this._pickerOnChanged(value)),
                 items: this._pickers.map(this._buildDropdownMenuItems).toList()
             )
@@ -2259,7 +2259,7 @@ class ColorPickerState extends State<ColorPicker> {
 
   Widget _buildBody() {
     return new Container(
-        child: this._pickers[this._index].builder(context)
+        child: this._pickers[this.index].builder(context)
     );
   }
 
