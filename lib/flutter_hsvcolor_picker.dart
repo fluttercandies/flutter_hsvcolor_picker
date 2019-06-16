@@ -2006,11 +2006,12 @@ class ColorPickerState extends State<ColorPicker> {
   Color get color=>this.color;
   set color(Color value)=>this.color=value;
 
-  ColorPickerState({
-    Color color
-  }) : this._alpha=color.alpha,
-        this._color=color,
-        this._hSVColor=HSVColor.fromColor(color);
+  ColorPickerState({Color color}) {
+    this._alpha = color.alpha;
+    this._color = color;
+    this._index = widget.index;
+    this._hSVColor = HSVColor.fromColor(color);
+  }
 
   void _alphaOnChanged(int value) {
     this._alpha=value;
