@@ -1989,23 +1989,23 @@ class ColorPicker extends StatefulWidget {
       {Key key,
       this.color = Colors.blue,
       this.index = 4,
-      @required this.onChanged})
-      : assert(() {
-          if (index == null || index < 0 || index > 6) {
-            throw AssertionError(
-              "Widget cannot take index less than 0 and greater than 6, given index = $index\n"
-              "All indexes this widget can take :\n"
-              " 0 - Swatches\n"
-              " 1 - RGB\n"
-              " 2 - HSV\n"
-              " 3 - Wheel\n"
-              " 4 - Palette Hue\n"
-              " 5 - Palette Saturation\n"
-              " 6 - Palette Value\n",
-            );
-          }
-          return true;
-        }()),
+      @required this.onChanged}):
+//      : assert(() {
+//          if (index == null || index < 0 || index > 6) {
+//            throw AssertionError(
+//              "Widget cannot take index less than 0 and greater than 6, given index = $index\n"
+//              "All indexes this widget can take :\n"
+//              " 0 - Swatches\n"
+//              " 1 - RGB\n"
+//              " 2 - HSV\n"
+//              " 3 - Wheel\n"
+//              " 4 - Palette Hue\n"
+//              " 5 - Palette Saturation\n"
+//              " 6 - Palette Value\n",
+//            );
+//          }
+//          return true;
+//        }()),
         assert(index != null && index >= 0 && index <= 6),
         super(key: key);
 
@@ -2024,6 +2024,7 @@ class ColorPickerState extends State<ColorPicker> {
   set color(Color value)=>this.color=value;
 
   ColorPickerState({Color color}) {
+    print(widget.index);
     this._alpha = color.alpha;
     this._color = color;
     this._index = widget.index;
