@@ -1980,7 +1980,14 @@ class _IPicker{
 }
 
 class ColorPicker extends StatefulWidget {
-
+  /// This is the default index of Color Picker
+  /// 0 - Swatches
+  /// 1 - RGB
+  /// 2 - HSV
+  /// 3 - Wheel
+  /// 4 - Palette Hue
+  /// 5 - Palette Saturation
+  /// 6 - Palette Value
   final int index;
   final Color color;
   final ValueChanged<Color> onChanged;
@@ -1989,28 +1996,28 @@ class ColorPicker extends StatefulWidget {
       {Key key,
       this.color = Colors.blue,
       this.index = 4,
-      @required this.onChanged}):
-//      : assert(() {
-//          if (index == null || index < 0 || index > 6) {
-//            throw AssertionError(
-//              "Widget cannot take index less than 0 and greater than 6, given index = $index\n"
-//              "All indexes this widget can take :\n"
-//              " 0 - Swatches\n"
-//              " 1 - RGB\n"
-//              " 2 - HSV\n"
-//              " 3 - Wheel\n"
-//              " 4 - Palette Hue\n"
-//              " 5 - Palette Saturation\n"
-//              " 6 - Palette Value\n",
-//            );
-//          }
-//          return true;
-//        }()),
-        assert(index != null && index >= 0 && index <= 6),
+      @required this.onChanged})
+      : assert(() {
+          if (index == null || index < 0 || index > 6) {
+            throw AssertionError(
+              "Widget cannot take index less than 0 and greater than 6, given index = $index\n"
+              "All indexes this widget can take :\n"
+              " 0 - Swatches\n"
+              " 1 - RGB\n"
+              " 2 - HSV\n"
+              " 3 - Wheel\n"
+              " 4 - Palette Hue\n"
+              " 5 - Palette Saturation\n"
+              " 6 - Palette Value\n",
+            );
+          }
+          return true;
+        }()),
         super(key: key);
 
   @override
-  ColorPickerState createState() => new ColorPickerState(color:  this.color);
+  ColorPickerState createState() =>
+      new ColorPickerState(color: this.color, index: this.index);
 }
 
 class ColorPickerState extends State<ColorPicker> {
@@ -2020,53 +2027,52 @@ class ColorPickerState extends State<ColorPicker> {
   Color _color;
   HSVColor _hSVColor;
 
-  Color get color=>this.color;
-  set color(Color value)=>this.color=value;
+  Color get color => this.color;
+  set color(Color value) => this.color = value;
 
-  ColorPickerState({Color color}) {
-    print(widget.index);
+  ColorPickerState({@required Color color, @required this.index}) {
     this._alpha = color.alpha;
     this._color = color;
-    this._index = widget.index;
     this._hSVColor = HSVColor.fromColor(color);
   }
 
   void _alphaOnChanged(int value) {
-    this._alpha=value;
+    this._alpha = value;
     super.widget.onChanged(this._color.withAlpha(value));
   }
-  void _colorOnChanged(Color value){
-    this._color=value;
-    this._hSVColor=HSVColor.fromColor(value);
+
+  void _colorOnChanged(Color value) {
+    this._color = value;
+    this._hSVColor = HSVColor.fromColor(value);
     super.widget.onChanged(value);
   }
-  void _hSVColorOnChanged(HSVColor value){
-    this._color=value.toColor();
-    this._hSVColor=value;
+
+  void _hSVColorOnChanged(HSVColor value) {
+    this._color = value.toColor();
+    this._hSVColor = value;
     super.widget.onChanged(value.toColor());
   }
-  void _colorWithAlphaOnChanged(Color value){
-    this._alpha=value.alpha;
-    Color color=value.withAlpha(255);
-    this._color=color;
-    this._hSVColor=HSVColor.fromColor(color);
+
+  void _colorWithAlphaOnChanged(Color value) {
+    this._alpha = value.alpha;
+    Color color = value.withAlpha(255);
+    this._color = color;
+    this._hSVColor = HSVColor.fromColor(color);
     super.widget.onChanged(value);
   }
 
-
   //pickers
-  int _index;
+  int index;
   List<_IPicker> _pickers;
   void _pickerOnChanged(_IPicker value) => this._index=this._pickers.indexOf(value);
 
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
 
     //pickers
     this._pickers = [
-
       //SwatchesPicker
       new _IPicker(
           index: 0,
@@ -2145,17 +2151,15 @@ class ColorPickerState extends State<ColorPicker> {
     return new DropdownMenuItem<_IPicker>(
         value: item,
         child: new Padding(
-            padding: const EdgeInsets.fromLTRB(10.0,8.0,10.0,0.0),
+            padding: const EdgeInsets.fromLTRB(10.0, 8.0, 10.0, 0.0),
             child: new Text(
               item.name,
-              style: this._index==item.index?
-              Theme.of(context).textTheme.headline.copyWith(fontSize: 18, color: Theme.of(context).accentColor):
-              Theme.of(context).textTheme.headline.copyWith(fontSize: 18),
-            )
-        )
-    );
+              style: this.index == item.index
+                  ? Theme.of(context).textTheme.headline.copyWith(
+                      fontSize: 18, color: Theme.of(context).accentColor)
+                  : Theme.of(context).textTheme.headline.copyWith(fontSize: 18),
+            )));
   }
-
 
   Widget _buildHead() {
     return new SizedBox(
