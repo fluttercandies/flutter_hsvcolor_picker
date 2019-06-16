@@ -20,6 +20,8 @@
 
 library flutter_hsvcolor_picker;
 
+import "dart:math" as Math;
+
 import "package:flutter/cupertino.dart";
 import "package:flutter/foundation.dart";
 import "package:flutter/gestures.dart";
@@ -27,7 +29,6 @@ import "package:flutter/material.dart";
 import "package:flutter/painting.dart";
 import "package:flutter/rendering.dart";
 import "package:flutter/widgets.dart";
-import "dart:math" as Math;
 
 
 
@@ -853,7 +854,7 @@ class _WheelPainter extends CustomPainter{
 
     //Wheel
     Shader sweepShader = const SweepGradient(
-      center: Alignment.bottomRight, 
+      center: Alignment.bottomRight,
       colors: const [
       Color.fromARGB(255, 255, 0, 0),
       Color.fromARGB(255, 255, 255, 0),
@@ -864,7 +865,7 @@ class _WheelPainter extends CustomPainter{
       Color.fromARGB(255, 255, 0, 0),
     ]).createShader(Rect.fromLTWH(0, 0, radio, radio));
     canvas.drawCircle(center, radio, new Paint()..style=PaintingStyle.stroke..strokeWidth = _WheelPainter.doubleStrokeWidth..shader=sweepShader);
-    
+
     canvas.drawCircle(center, radio - _WheelPainter.strokeWidth, new Paint()..style=PaintingStyle.stroke..color=Colors.grey);
     canvas.drawCircle(center, radio + _WheelPainter.strokeWidth, new Paint()..style=PaintingStyle.stroke..color=Colors.grey);
 
@@ -879,7 +880,7 @@ class _WheelPainter extends CustomPainter{
       colors: [Colors.white, HSVColor.fromAHSV(1.0, this.color.hue, 1.0, 1.0).toColor()],
     ).createShader(rect);
     canvas.drawRRect(rRect, new Paint()..style=PaintingStyle.fill..shader = horizontal);
-    
+
     Shader vertical = const LinearGradient(
       begin: Alignment.topCenter,
       end: Alignment.bottomCenter,
@@ -888,7 +889,7 @@ class _WheelPainter extends CustomPainter{
     canvas.drawRRect(rRect, new Paint()..style=PaintingStyle.fill..shader = vertical);
 
     canvas.drawRRect(rRect, new Paint()..style=PaintingStyle.stroke..color = Colors.grey);
- 
+
 
     //Thumb
     final Paint paintWhite = new Paint()..color=Colors.white..strokeWidth=4..style=PaintingStyle.stroke;
@@ -1980,12 +1981,14 @@ class _IPicker{
 
 class ColorPicker extends StatefulWidget {
 
+  final int index;
   final Color color;
   final ValueChanged<Color> onChanged;
 
   const ColorPicker({
     Key key,
     this.color = Colors.blue,
+    this.index = 4,
     @required this.onChanged
   }): super(key: key);
 
@@ -2033,7 +2036,7 @@ class ColorPickerState extends State<ColorPicker> {
 
 
   //pickers
-  int _index = 4;
+  int _index;
   List<_IPicker> _pickers;
   void _pickerOnChanged(_IPicker value) => this._index=this._pickers.indexOf(value);
 
