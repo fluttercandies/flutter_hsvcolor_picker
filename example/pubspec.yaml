@@ -11,4 +11,4 @@ flutter:
   uses-material-design: true
   
   assets:
-   - packages/avatar.jpg
+   - packages/Avatar.jpg

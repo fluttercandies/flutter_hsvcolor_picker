@@ -1,7 +1,5 @@
 import "package:flutter/material.dart";
 import "package:flutter/cupertino.dart";
-import "package:flutter/material.dart";
-import "package:flutter/cupertino.dart";
 import "Pages/SliderPickerPage.dart";
 import "Pages/PalettePickerPage.dart";
 import "Pages/HSVPickerPage.dart";
@@ -12,7 +10,7 @@ import "Pages/PaletteSaturationPickerPage.dart";
 import "Pages/PaletteValuePickerPage.dart";
 import "Pages/HexPickerPage.dart";
 import "Pages/AlphaPickerPage.dart";
-import "Pages/SwatchesPickerPAge.dart";
+import "Pages/SwatchesPickerPage.dart";
 import "Pages/ColorPickerPage.dart";
 
 class MainPage extends StatefulWidget {

@@ -728,11 +728,13 @@ class WheelPicker extends StatefulWidget {
 
   final HSVColor color;
   final ValueChanged<HSVColor> onChanged;
+  final bool hasPalette;
 
   WheelPicker({
     Key key,
     @required this.color,
     @required this.onChanged,
+    this.hasPalette = true
   }) : assert(color != null),
         super(key: key);
 
@@ -743,6 +745,7 @@ class WheelPicker extends StatefulWidget {
 class _WheelPickerState extends State<WheelPicker> {
 
   HSVColor get color=> super.widget.color;
+  bool get hasPalette => super.widget.hasPalette;
 
 
   final GlobalKey paletteKey = GlobalKey();
@@ -779,7 +782,7 @@ class _WheelPickerState extends State<WheelPicker> {
     //this.isPalette =vector.dx.abs() < squareRadio && vector.dy.abs() < squareRadio;
 
     if (this.isWheel) super.widget.onChanged(this.color.withHue(Wheel.vectorToHue(vector)));
-    if (this.isPalette) super.widget.onChanged(HSVColor.fromAHSV(
+    if (this.isPalette && this.hasPalette) super.widget.onChanged(HSVColor.fromAHSV(
         this.color.alpha,
         this.color.hue,
         Wheel.vectorToSaturation(vector.dx, squareRadio).clamp(0.0, 1.0),
@@ -798,7 +801,7 @@ class _WheelPickerState extends State<WheelPicker> {
     Offset vector = offset-startPosition-center;
 
     if (this.isWheel) super.widget.onChanged(this.color.withHue(Wheel.vectorToHue(vector)));
-    if (this.isPalette) super.widget.onChanged(HSVColor.fromAHSV(
+    if (this.isPalette && this.hasPalette) super.widget.onChanged(HSVColor.fromAHSV(
         this.color.alpha,
         this.color.hue,
         Wheel.vectorToSaturation(vector.dx, squareRadio).clamp(0.0, 1.0),
@@ -821,7 +824,7 @@ class _WheelPickerState extends State<WheelPicker> {
             width: 240,
             height: 240,
             child: new CustomPaint(
-                painter: new _WheelPainter(color: this.color)
+                painter: new _WheelPainter(color: this.color, hasPalette: this.hasPalette)
             )
         )
     );
@@ -830,18 +833,19 @@ class _WheelPickerState extends State<WheelPicker> {
 
 
 class _WheelPainter extends CustomPainter{
-
   static double strokeWidth = 8;
   static double doubleStrokeWidth = 16;
   static double radio(Size size)=> Math.min(size.width, size.height).toDouble() / 2 - _WheelPainter.strokeWidth;
   static double squareRadio(double radio) => (radio - _WheelPainter.strokeWidth)/ 1.414213562373095;
 
   final HSVColor color;
+  final bool hasPalette;
 
   _WheelPainter({
     Key key,
-    this.color
-  }):super();
+    this.color,
+    this.hasPalette,
+  }): super();
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -870,25 +874,37 @@ class _WheelPainter extends CustomPainter{
 
 
     //Palette
-    Rect rect = Rect.fromLTWH(center.dx - squareRadio, center.dy - squareRadio, squareRadio * 2, squareRadio * 2);
-    RRect rRect = RRect.fromRectAndRadius(rect, Radius.circular(4));
+    if (hasPalette) {
+      Rect rect = Rect.fromLTWH(
+          center.dx - squareRadio, center.dy - squareRadio, squareRadio * 2,
+          squareRadio * 2);
+      RRect rRect = RRect.fromRectAndRadius(rect, Radius.circular(4));
 
-    Shader horizontal = new LinearGradient(
-      begin: Alignment.centerLeft,
-      end: Alignment.centerRight,
-      colors: [Colors.white, HSVColor.fromAHSV(1.0, this.color.hue, 1.0, 1.0).toColor()],
-    ).createShader(rect);
-    canvas.drawRRect(rRect, new Paint()..style=PaintingStyle.fill..shader = horizontal);
-    
-    Shader vertical = const LinearGradient(
-      begin: Alignment.topCenter,
-      end: Alignment.bottomCenter,
-      colors: [Colors.transparent, Colors.black],
-    ) .createShader(rect);
-    canvas.drawRRect(rRect, new Paint()..style=PaintingStyle.fill..shader = vertical);
+      Shader horizontal = new LinearGradient(
+        begin: Alignment.centerLeft,
+        end: Alignment.centerRight,
+        colors: [
+          Colors.white,
+          HSVColor.fromAHSV(1.0, this.color.hue, 1.0, 1.0).toColor()
+        ],
+      ).createShader(rect);
+      canvas.drawRRect(rRect, new Paint()
+        ..style = PaintingStyle.fill
+        ..shader = horizontal);
 
-    canvas.drawRRect(rRect, new Paint()..style=PaintingStyle.stroke..color = Colors.grey);
- 
+      Shader vertical = const LinearGradient(
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter,
+        colors: [Colors.transparent, Colors.black],
+      ).createShader(rect);
+      canvas.drawRRect(rRect, new Paint()
+        ..style = PaintingStyle.fill
+        ..shader = vertical);
+
+      canvas.drawRRect(rRect, new Paint()
+        ..style = PaintingStyle.stroke
+        ..color = Colors.grey);
+    }
 
     //Thumb
     final Paint paintWhite = new Paint()..color=Colors.white..strokeWidth=4..style=PaintingStyle.stroke;
@@ -899,11 +915,15 @@ class _WheelPainter extends CustomPainter{
 
 
     //Thumb
-    double paletteX = Wheel.saturationToVector(this.color.saturation, squareRadio, center.dx);
-    double paletteY = Wheel.valueToVector(this.color.value, squareRadio, center.dy);
-    Offset paletteVector=new Offset(paletteX, paletteY);
-    canvas.drawCircle(paletteVector, 12, paintBlack);
-    canvas.drawCircle(paletteVector, 12, paintWhite);
+    if (hasPalette) {
+      double paletteX = Wheel.saturationToVector(
+          this.color.saturation, squareRadio, center.dx);
+      double paletteY = Wheel.valueToVector(
+          this.color.value, squareRadio, center.dy);
+      Offset paletteVector = new Offset(paletteX, paletteY);
+      canvas.drawCircle(paletteVector, 12, paintBlack);
+      canvas.drawCircle(paletteVector, 12, paintWhite);
+    }
   }
 
   @override
@@ -2080,13 +2100,24 @@ class ColorPickerState extends State<ColorPicker> {
           name: "Wheel",
           builder: (context)=>new WheelPicker(
             color: this._hSVColor,
+            hasPalette: true,
+            onChanged: (value)=>super.setState(()=>this._hSVColorOnChanged(value)),
+          )
+      ),
+      //WheelPicker
+      new _IPicker(
+          index: 4,
+          name: "Wheel - no pallete",
+          builder: (context)=>new WheelPicker(
+            color: this._hSVColor,
+            hasPalette: false,
             onChanged: (value)=>super.setState(()=>this._hSVColorOnChanged(value)),
           )
       ),
 
       //PaletteHuePicker
       new _IPicker(
-          index: 4,
+          index: 5,
           name: "Palette Hue",
           builder: (context)=>new PaletteHuePicker(
             color: this._hSVColor,
@@ -2096,7 +2127,7 @@ class ColorPickerState extends State<ColorPicker> {
 
       //PaletteSaturationPicker
       new _IPicker(
-          index: 5,
+          index: 6,
           name: "Palette Saturation",
           builder: (context)=>new PaletteSaturationPicker(
             color: this._hSVColor,
@@ -2106,7 +2137,7 @@ class ColorPickerState extends State<ColorPicker> {
 
       //PaletteValuePicker
       new _IPicker(
-          index: 6,
+          index: 7,
           name: "Palette Value",
           builder: (context)=>new PaletteValuePicker(
             color: this._hSVColor,
