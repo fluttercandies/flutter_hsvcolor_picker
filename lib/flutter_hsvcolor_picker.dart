@@ -742,6 +742,44 @@ class WheelPicker extends StatefulWidget {
   _WheelPickerState createState() => new _WheelPickerState();
 }
 
+class CustomPanGestureRecognizer extends OneSequenceGestureRecognizer {
+  final Function onPanDown;
+  final Function onPanUpdate;
+  final Function onPanEnd;
+
+  CustomPanGestureRecognizer(
+      {@required this.onPanDown,
+        @required this.onPanUpdate,
+        @required this.onPanEnd});
+
+  @override
+  void addPointer(PointerEvent event) {
+    if (onPanDown(event.position)) {
+      startTrackingPointer(event.pointer);
+      resolve(GestureDisposition.accepted);
+    } else {
+      stopTrackingPointer(event.pointer);
+    }
+  }
+
+  @override
+  void handleEvent(PointerEvent event) {
+    if (event is PointerMoveEvent) {
+      onPanUpdate(event.position);
+    }
+    if (event is PointerUpEvent) {
+      onPanEnd(event.position);
+      stopTrackingPointer(event.pointer);
+    }
+  }
+
+  @override
+  String get debugDescription => 'customPan';
+
+  @override
+  void didStopTrackingLastPointer(int pointer) {}
+}
+
 class _WheelPickerState extends State<WheelPicker> {
 
   HSVColor get color=> super.widget.color;
@@ -763,7 +801,7 @@ class _WheelPickerState extends State<WheelPicker> {
 
   bool isWheel = false;
   bool isPalette = false;
-  void onPanStart(Offset offset){
+  bool onPanStart(Offset offset){
     RenderBox renderBox = this.paletteKey.currentContext.findRenderObject();
     Size size = renderBox.size;
 
@@ -781,15 +819,22 @@ class _WheelPickerState extends State<WheelPicker> {
     //this.isWheel = vector.distance + _WheelPainter.strokeWidth > radio && vector.distance - squareRadio < radio;
     //this.isPalette =vector.dx.abs() < squareRadio && vector.dy.abs() < squareRadio;
 
-    if (this.isWheel) super.widget.onChanged(this.color.withHue(Wheel.vectorToHue(vector)));
-    if (this.isPalette && this.hasPalette) super.widget.onChanged(HSVColor.fromAHSV(
+    if (this.isWheel) {
+      super.widget.onChanged(this.color.withHue(Wheel.vectorToHue(vector)));
+      return true;
+    }
+    if (this.isPalette && this.hasPalette) {
+      super.widget.onChanged(HSVColor.fromAHSV(
         this.color.alpha,
         this.color.hue,
         Wheel.vectorToSaturation(vector.dx, squareRadio).clamp(0.0, 1.0),
         Wheel.vectorToValue(vector.dy, squareRadio).clamp(0.0, 1.0)
-    ));
+      ));
+      return true;
+    }
   }
-  void onPanUpdate(Offset offset){
+
+  bool onPanUpdate(Offset offset){
     RenderBox renderBox = this.paletteKey.currentContext.findRenderObject();
     Size size = renderBox.size;
 
@@ -807,13 +852,38 @@ class _WheelPickerState extends State<WheelPicker> {
         Wheel.vectorToSaturation(vector.dx, squareRadio).clamp(0.0, 1.0),
         Wheel.vectorToValue(vector.dy, squareRadio).clamp(0.0, 1.0)
     ));
+    return true;
   }
-  void onPanDown(Offset offset)=> this.isWheel = this.isPalette = false;
 
-
+  bool onPanDown(Offset offset) {
+    this.isWheel = this.isPalette = false;
+    return true;
+  }
 
   @override
   Widget build(BuildContext context) {
+    return new RawGestureDetector(
+      gestures: <Type, GestureRecognizerFactory>{
+        CustomPanGestureRecognizer:
+          GestureRecognizerFactoryWithHandlers<CustomPanGestureRecognizer>(
+                () => CustomPanGestureRecognizer(
+                  onPanDown: (details) => this.onPanStart(details),
+                  onPanUpdate: (details)=>this.onPanUpdate(details),
+                  onPanEnd: (details)=>this.onPanDown(details)),
+                  (CustomPanGestureRecognizer instance) {},
+          )
+      },
+      child: new Container(
+          key: this.paletteKey,
+          padding: const EdgeInsets.only(top: 12.0),
+          width: 240,
+          height: 240,
+          child: new CustomPaint(
+              painter: new _WheelPainter(color: this.color, hasPalette: this.hasPalette)
+          )
+      ),
+    );
+
     return new GestureDetector(
         onPanStart: (details)=>this.onPanStart(details.globalPosition),
         onPanUpdate: (details)=>this.onPanUpdate(details.globalPosition),
