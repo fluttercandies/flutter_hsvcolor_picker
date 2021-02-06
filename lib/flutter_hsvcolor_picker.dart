@@ -571,6 +571,40 @@ class _RGBPickerState extends State<RGBPicker> {
 //import "package:flutter/material.dart";
 //import "SliderPicker.dart";
 
+class HSVSliders {
+  double hue;
+  double saturation;
+  double value;
+
+  HSVSliders.fromHSVColor(HSVColor color) {
+    this.hue = color.hue;
+    this.saturation = color.saturation;
+    this.value = color.value;
+  }
+
+  HSVSliders() {
+    hue = 0;
+    saturation = 0;
+    value = 0;
+  }
+
+  HSVColor withHue(double hue) {
+    this.hue = hue;
+    return HSVColor.fromAHSV(0, hue, saturation, value);
+  }
+
+  HSVColor withSaturation(double saturation) {
+    this.saturation = saturation;
+    return HSVColor.fromAHSV(0, hue, saturation, value);
+  }
+
+  HSVColor withValue(double value) {
+    this.value = value;
+    return HSVColor.fromAHSV(0, hue, saturation, value);
+  }
+      
+}
+      
 class HSVPicker extends StatefulWidget {
 
   final HSVColor color;
@@ -584,15 +618,24 @@ class HSVPicker extends StatefulWidget {
         super(key: key);
 
   @override
-  _HSVPickerState createState() => new _HSVPickerState();
+  _HSVPickerState createState() => new _HSVPickerState(color);
 }
 
 class _HSVPickerState extends State<HSVPicker> {
 
   HSVColor get color=> super.widget.color;
+  HSVSliders slider;
+
+  _HSVPickerState(HSVColor color) {
+    slider = HSVSliders.fromHSVColor(color);
+  }
 
   //Hue
-  void hueOnChange(double value) => super.widget.onChanged(this.color.withHue(value));
+  void hueOnChange(double value) {
+    super.widget.onChanged(this.slider.withHue(value));
+    super.widget.onChanged(this.color.withHue(value));
+  }
+
   List<Color> get hueColors =>[
     this.color.withHue(0.0).toColor(),
     this.color.withHue(60.0).toColor(),
@@ -604,14 +647,22 @@ class _HSVPickerState extends State<HSVPicker> {
   ];
 
   //Saturation
-  void saturationOnChange(double value) => super.widget.onChanged(this.color.withSaturation(value));
+  void saturationOnChange(double value) {
+    super.widget.onChanged(this.slider.withSaturation(value));
+    super.widget.onChanged(this.color.withSaturation(value));
+  }
+
   List<Color> get saturationColors =>[
     this.color.withSaturation(0.0).toColor(),
     this.color.withSaturation(1.0).toColor()
   ];
 
   //Value
-  void valueOnChange(double value) => super.widget.onChanged(this.color.withValue(value));
+  void valueOnChange(double value) {
+    super.widget.onChanged(this.slider.withValue(value));
+    super.widget.onChanged(this.color.withValue(value));
+  }
+
   List<Color> get valueColors =>[
     this.color.withValue(0.0).toColor(),
     this.color.withValue(1.0).toColor()
@@ -659,7 +710,7 @@ class _HSVPickerState extends State<HSVPicker> {
           //Hue
           this.buildTitle("H", this.color.hue.toInt().toString()+"º"),
           new SliderPicker(
-              value: this.color.hue,
+              value: this.slider.hue,
               min: 0.0,
               max: 360.0,
               onChanged: this.hueOnChange,
@@ -669,7 +720,7 @@ class _HSVPickerState extends State<HSVPicker> {
           //Saturation
           this.buildTitle("S", (this.color.saturation * 100).toInt().toString()+"º"),
           new SliderPicker(
-              value: this.color.saturation,
+              value: this.slider.saturation,
               min: 0.0,
               max: 1.0,
               onChanged: this.saturationOnChange,
@@ -679,7 +730,7 @@ class _HSVPickerState extends State<HSVPicker> {
           //Value
           this.buildTitle("L", (this.color.value * 100).toInt().toString()+"º"),
           new SliderPicker(
-              value: this.color.value,
+              value: this.slider.value,
               min: 0.0,
               max: 1.0,
               onChanged: this.valueOnChange,
