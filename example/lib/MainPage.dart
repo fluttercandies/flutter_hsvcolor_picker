@@ -12,7 +12,7 @@ import "Pages/PaletteSaturationPickerPage.dart";
 import "Pages/PaletteValuePickerPage.dart";
 import "Pages/HexPickerPage.dart";
 import "Pages/AlphaPickerPage.dart";
-import "Pages/SwatchesPickerPAge.dart";
+import "Pages/SwatchesPickerPage.dart";
 import "Pages/ColorPickerPage.dart";
 
 class MainPage extends StatefulWidget {
