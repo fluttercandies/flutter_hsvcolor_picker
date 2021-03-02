@@ -27,7 +27,7 @@ class AlphaPickerPageState extends State<AlphaPickerPage> {
               children: <Widget>[
                 new Text(
                   this.value.toString(),
-                  style: Theme.of(context).textTheme.display1,
+                  style: Theme.of(context).textTheme.headline4,
                 ),
                 new Divider(),
 
