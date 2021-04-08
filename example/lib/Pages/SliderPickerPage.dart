@@ -36,7 +36,7 @@ class SliderPickerPageState extends State<SliderPickerPage> {
                           Text(
                             ((this.value * 100.0).toInt().toDouble() / 100.0)
                                 .toString(),
-                            style: Theme.of(context).textTheme.display1,
+                            style: Theme.of(context).textTheme.headline4,
                           ),
                           Divider(),
 

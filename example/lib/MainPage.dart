@@ -111,7 +111,7 @@ class MainPageState extends State<MainPage> {
         title: Center(
             child: Text("HSV Color",
                 textAlign: TextAlign.center,
-                style: this.theme.textTheme.headline)),
+                style: this.theme.textTheme.headline5)),
 
         //Left
         leading: IconButton(
@@ -167,10 +167,12 @@ class MainPageState extends State<MainPage> {
           //Button
           Align(
               alignment: Alignment.bottomRight,
-              child: RaisedButton(
+              child: ElevatedButton(
                   onPressed: this.setTheme,
-                  color: this.theme.accentColor,
-                  shape: StadiumBorder(),
+                  style: ElevatedButton.styleFrom(
+                    primary: this.theme.accentColor,
+                    shape: StadiumBorder(),
+                  ),
                   child: Text(
                       this.theme.brightness == Brightness.dark
                           ? "Dark"
