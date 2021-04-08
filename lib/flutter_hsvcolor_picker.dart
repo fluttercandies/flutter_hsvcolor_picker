@@ -44,7 +44,7 @@ class SliderPicker extends StatefulWidget {
   final Widget child;
 
   const SliderPicker({
-    Key key,
+    Key? key,
     this.min = 0.0,
     this.max = 1.0,
     required this.value,
@@ -226,7 +226,7 @@ class PalettePicker extends StatefulWidget {
   final List<Color> topBottomColors;
 
   PalettePicker(
-      {Key key,
+      {Key? key,
       required this.position,
       required this.onChanged,
       this.leftPosition = 0.0,
@@ -360,7 +360,7 @@ class _PalettePickerState extends State<PalettePicker> {
 
 class _PalettePainter extends CustomPainter {
   final Offset ratio;
-  _PalettePainter({Key key, this.ratio}) : super();
+  _PalettePainter({this.ratio}) : super();
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -398,7 +398,7 @@ class RGBPicker extends StatefulWidget {
   final Color color;
   final ValueChanged<Color> onChanged;
 
-  RGBPicker({Key key, this.color, required this.onChanged})
+  RGBPicker({Key? key, this.color, required this.onChanged})
       : assert(color != null),
         super(key: key);
 
@@ -502,7 +502,7 @@ class HSVPicker extends StatefulWidget {
   final HSVColor color;
   final ValueChanged<HSVColor> onChanged;
 
-  HSVPicker({Key key, required this.color, required this.onChanged})
+  HSVPicker({Key? key, required this.color, required this.onChanged})
       : assert(color != null),
         super(key: key);
 
@@ -635,7 +635,7 @@ class WheelPicker extends StatefulWidget {
   final ValueChanged<HSVColor> onChanged;
 
   WheelPicker({
-    Key key,
+    Key? key,
     required this.color,
     required this.onChanged,
   })   : assert(color != null),
@@ -740,7 +740,7 @@ class _WheelPainter extends CustomPainter {
 
   final HSVColor color;
 
-  _WheelPainter({Key key, this.color}) : super();
+  _WheelPainter({this.color}) : super();
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -866,7 +866,7 @@ class PaletteHuePicker extends StatefulWidget {
   final HSVColor color;
   final ValueChanged<HSVColor> onChanged;
 
-  PaletteHuePicker({Key key, required this.color, required this.onChanged})
+  PaletteHuePicker({Key? key, required this.color, required this.onChanged})
       : assert(color != null),
         super(key: key);
 
@@ -956,7 +956,7 @@ class PaletteSaturationPicker extends StatefulWidget {
   final ValueChanged<HSVColor> onChanged;
 
   PaletteSaturationPicker(
-      {Key key, required this.color, required this.onChanged})
+      {Key? key, required this.color, required this.onChanged})
       : assert(color != null),
         super(key: key);
 
@@ -1050,7 +1050,7 @@ class PaletteValuePicker extends StatefulWidget {
   final HSVColor color;
   final ValueChanged<HSVColor> onChanged;
 
-  PaletteValuePicker({Key key, required this.color, required this.onChanged})
+  PaletteValuePicker({Key? key, required this.color, required this.onChanged})
       : assert(color != null),
         super(key: key);
 
@@ -1164,7 +1164,7 @@ class HexPicker extends StatefulWidget {
   final ValueChanged<Color> onChanged;
   final TextEditingController controller;
 
-  HexPicker({Key key, required this.color, required this.onChanged})
+  HexPicker({Key? key, required this.color, required this.onChanged})
       : assert(color != null),
         this.controller =
             TextEditingController(text: Hex.colorToString(color).toUpperCase()),
@@ -1228,7 +1228,7 @@ class AlphaPicker extends StatefulWidget {
   final ValueChanged<int> onChanged;
 
   const AlphaPicker({
-    Key key,
+    Key? key,
     required this.alpha,
     required this.onChanged,
   })   : assert(alpha != null),
@@ -1319,7 +1319,7 @@ class AlphaTrackPainter extends CustomPainter {
 class SwatchesPicker extends StatefulWidget {
   final ValueChanged<Color> onChanged;
 
-  SwatchesPicker({Key key, required this.onChanged}) : super(key: key);
+  SwatchesPicker({Key? key, required this.onChanged}) : super(key: key);
 
   @override
   _SwatchesPickerState createState() => _SwatchesPickerState();
@@ -1749,7 +1749,7 @@ class ColorPicker extends StatefulWidget {
   final ValueChanged<Color> onChanged;
 
   const ColorPicker(
-      {Key key, this.color = Colors.blue, required this.onChanged})
+      {Key? key, this.color = Colors.blue, required this.onChanged})
       : super(key: key);
 
   @override
