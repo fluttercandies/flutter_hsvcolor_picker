@@ -5,21 +5,19 @@ import "package:flutter/widgets.dart";
 import "MainPage.dart";
 
 void main() {
-
   // Device orientation
   SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp,//▯
-    DeviceOrientation.landscapeLeft,//▭
-    DeviceOrientation.landscapeRight//▭
-  ]); 
+    DeviceOrientation.portraitUp, //▯
+    DeviceOrientation.landscapeLeft, //▭
+    DeviceOrientation.landscapeRight //▭
+  ]);
 
- runApp(new MyApp());
+  runApp(MyApp());
 }
-
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return new MainPage();
+    return MainPage();
   }
 }

@@ -16,234 +16,224 @@ import "Pages/SwatchesPickerPAge.dart";
 import "Pages/ColorPickerPage.dart";
 
 class MainPage extends StatefulWidget {
-
   @override
-  MainPageState createState() => new MainPageState();
+  MainPageState createState() => MainPageState();
 }
 
 class MainPageState extends State<MainPage> {
-  
-  GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
+  GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
   int index = 11;
-  Widget get page => this.items.firstWhere((item) => item==null? false: item.index==this.index).page;
+  Widget get page => this
+      .items
+      .firstWhere((item) => item == null ? false : item.index == this.index)
+      .page;
   List<MainItem> items = [
-    new MainItem(index: 0, icon: Icons.linear_scale, text: "Slider", page: new SliderPickerPage()),
-    new MainItem(index: 1, icon: Icons.gradient, text: "Palette", page: new PalettePickerPage()),
+    MainItem(
+        index: 0,
+        icon: Icons.linear_scale,
+        text: "Slider",
+        page: SliderPickerPage()),
+    MainItem(
+        index: 1,
+        icon: Icons.gradient,
+        text: "Palette",
+        page: PalettePickerPage()),
     null,
-    new MainItem(index: 2, icon: Icons.tune, text: "RGB Picker", page: new RGBPickerPage()),
-    new MainItem(index: 3, icon: Icons.tune, text: "HSV Picker", page: new HSVPickerPage()),
-    new MainItem(index: 4, icon: Icons.tune, text: "Wheel Picker", page: new WheelPickerPage()),
+    MainItem(
+        index: 2, icon: Icons.tune, text: "RGB Picker", page: RGBPickerPage()),
+    MainItem(
+        index: 3, icon: Icons.tune, text: "HSV Picker", page: HSVPickerPage()),
+    MainItem(
+        index: 4,
+        icon: Icons.tune,
+        text: "Wheel Picker",
+        page: WheelPickerPage()),
     null,
-    new MainItem(index: 5, icon: Icons.color_lens, text: "Palette Hue Picker", page: new PaletteHuePickerPage()),     
-    new MainItem(index: 6, icon: Icons.color_lens, text: "Palette Saturation Picker", page: new PaletteSaturationPickerPage()),
-    new MainItem(index: 7, icon: Icons.color_lens, text: "Palette Value Picker", page: new PaletteValuePickerPage()),
+    MainItem(
+        index: 5,
+        icon: Icons.color_lens,
+        text: "Palette Hue Picker",
+        page: PaletteHuePickerPage()),
+    MainItem(
+        index: 6,
+        icon: Icons.color_lens,
+        text: "Palette Saturation Picker",
+        page: PaletteSaturationPickerPage()),
+    MainItem(
+        index: 7,
+        icon: Icons.color_lens,
+        text: "Palette Value Picker",
+        page: PaletteValuePickerPage()),
     null,
-    new MainItem(index: 8, icon: Icons.mode_edit, text: "Hex Picker", page: new HexPickerPage()),
-    new MainItem(index: 9, icon: Icons.mode_edit, text: "Alpha Picker", page: new AlphaPickerPage()),
-    new MainItem(index: 10, icon: Icons.mode_edit, text: "Swatches Picker", page: new SwatchesPickerPage()),
+    MainItem(
+        index: 8,
+        icon: Icons.mode_edit,
+        text: "Hex Picker",
+        page: HexPickerPage()),
+    MainItem(
+        index: 9,
+        icon: Icons.mode_edit,
+        text: "Alpha Picker",
+        page: AlphaPickerPage()),
+    MainItem(
+        index: 10,
+        icon: Icons.mode_edit,
+        text: "Swatches Picker",
+        page: SwatchesPickerPage()),
     null,
-    new MainItem(index: 11, icon: Icons.color_lens, text: "Color Picker", page: new ColorPickerPage()),
-  ];  
-   
+    MainItem(
+        index: 11,
+        icon: Icons.color_lens,
+        text: "Color Picker",
+        page: ColorPickerPage()),
+  ];
+
   void iconButtonOnPressed() => this.scaffoldKey.currentState.openDrawer();
-  void listTileOnTap(MainItem item){
-   this.index=item.index;
-   //Navigator.of(context).pop();//Navigator
-  } 
+  void listTileOnTap(MainItem item) {
+    this.index = item.index;
+    //Navigator.of(context).pop();//Navigator
+  }
 
   //Theme
   bool isDark = false;
-  ThemeData get theme => isDark? themeDark:themeLight;
-  ThemeData themeLight = new ThemeData(brightness: Brightness.light, platform: TargetPlatform.iOS);
-  ThemeData themeDark = new ThemeData(brightness: Brightness.dark, platform: TargetPlatform.iOS);
-  void setTheme() => super.setState(()=>isDark =! isDark);   
- 
- 
-  Widget buildAppBar(){
-    return new AppBar(
-      elevation: 0.0,
-      backgroundColor: this.theme.scaffoldBackgroundColor,
-     
-      //Center
-      title: new Center(
-        child: new Text("HSV Color", textAlign: TextAlign.center, style: this.theme.textTheme.headline)
-      ),
-        
-      //Left
-      leading: new IconButton(
-        onPressed: this.iconButtonOnPressed,
-        icon: new IconTheme(
-          data: this.theme.iconTheme,
-          child: new Icon(Icons.dehaze)
-        )
-      ),
+  ThemeData get theme => isDark ? themeDark : themeLight;
+  ThemeData themeLight =
+      ThemeData(brightness: Brightness.light, platform: TargetPlatform.iOS);
+  ThemeData themeDark =
+      ThemeData(brightness: Brightness.dark, platform: TargetPlatform.iOS);
+  void setTheme() => super.setState(() => isDark = !isDark);
 
-      //Right
-      actions: <Widget>[
-        new IconButton(
-          onPressed: this.iconButtonOnPressed,
-          icon: new IconTheme(
-            data: this.theme.iconTheme,
-            child: new Icon(Icons.dehaze)
-          )
-        )
-      ]
+  Widget buildAppBar() {
+    return AppBar(
+        elevation: 0.0,
+        backgroundColor: this.theme.scaffoldBackgroundColor,
 
-    );
-  }
- 
-  Widget buildDrawer(){
-    return new Drawer(
-      child: new DecoratedBox(     
-        decoration: BoxDecoration(color: this.theme.cardColor),
-        child: new Column(
-          children: <Widget>[
-           
-            //Header
-            this.buildDrawerHeader(),
-           
-            //List
-            new Expanded(
-              child: new ListView(
-                children: this.items.map(this.buildListViewItem).toList()
-              )
-            )
+        //Center
+        title: Center(
+            child: Text("HSV Color",
+                textAlign: TextAlign.center,
+                style: this.theme.textTheme.headline)),
 
-          ]
-        )
-      )
-    );
+        //Left
+        leading: IconButton(
+            onPressed: this.iconButtonOnPressed,
+            icon: IconTheme(
+                data: this.theme.iconTheme, child: Icon(Icons.dehaze))),
+
+        //Right
+        actions: <Widget>[
+          IconButton(
+              onPressed: this.iconButtonOnPressed,
+              icon: IconTheme(
+                  data: this.theme.iconTheme, child: Icon(Icons.dehaze)))
+        ]);
   }
 
-  Widget buildDrawerHeader(){
-    return new DrawerHeader(
-      decoration : new BoxDecoration(color: this.theme.accentColor),
-      child : new Stack(
-        children : <Widget>[
-        
+  Widget buildDrawer() {
+    return Drawer(
+        child: DecoratedBox(
+            decoration: BoxDecoration(color: this.theme.cardColor),
+            child: Column(children: <Widget>[
+              //Header
+              this.buildDrawerHeader(),
+
+              //List
+              Expanded(
+                  child: ListView(
+                      children:
+                          this.items.map(this.buildListViewItem).toList()))
+            ])));
+  }
+
+  Widget buildDrawerHeader() {
+    return DrawerHeader(
+        decoration: BoxDecoration(color: this.theme.accentColor),
+        child: Stack(children: <Widget>[
           //Avatar
-          new Align(
-            alignment : Alignment.bottomLeft,
-            child : new Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment : CrossAxisAlignment.start,
-              children : <Widget>[
-                new CircleAvatar(
-                  radius : 34.0, 
-                  backgroundColor: this.theme.cardColor,
-                  backgroundImage: new AssetImage("packages/avatar.jpg")
-                ),
-                new Container(height : 10.0),
-                new Text(
-                  "淹死的鱼ysdy44", 
-                  style : new TextStyle(color : Colors.white, fontSize : 18.0)
-                )
-              ]
-            )
-          ),
+          Align(
+              alignment: Alignment.bottomLeft,
+              child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    CircleAvatar(
+                        radius: 34.0,
+                        backgroundColor: this.theme.cardColor,
+                        backgroundImage: AssetImage("packages/avatar.jpg")),
+                    Container(height: 10.0),
+                    Text("淹死的鱼ysdy44",
+                        style: TextStyle(color: Colors.white, fontSize: 18.0))
+                  ])),
 
           //Button
-         new Align(
-            alignment : Alignment.bottomRight,
-            child : new RaisedButton(
-              onPressed: this.setTheme,
-              color : this.theme.accentColor,
-              shape : new StadiumBorder(),
-              child : new Text(
-                this.theme.brightness==Brightness.dark? "Dark": "Light", 
-                style : new TextStyle(fontSize : 16.0,color : Colors.white)
-              )
-            )
-          )
-
-
-        ]
-      )
-    );
+          Align(
+              alignment: Alignment.bottomRight,
+              child: RaisedButton(
+                  onPressed: this.setTheme,
+                  color: this.theme.accentColor,
+                  shape: StadiumBorder(),
+                  child: Text(
+                      this.theme.brightness == Brightness.dark
+                          ? "Dark"
+                          : "Light",
+                      style: TextStyle(fontSize: 16.0, color: Colors.white))))
+        ]));
   }
 
-  Widget buildDrawer22(){
-    return new Drawer(
-      child: new DecoratedBox(     
-        decoration: BoxDecoration(color: this.theme.cardColor),
-        child: CustomScrollView(
-          scrollDirection: Axis.vertical,
-          reverse: false,
-          controller: ScrollController(),
-          primary: false,
-          physics: ScrollPhysics(),
-          shrinkWrap: false,
-          slivers: <Widget>[
-            
-            //Body
-            new SliverList(
-              delegate: SliverChildListDelegate(
-                <Widget>[
-                  this.buildDrawerHeader()
-                ]
-              )
-            ),
+  Widget buildDrawer22() {
+    return Drawer(
+        child: DecoratedBox(
+            decoration: BoxDecoration(color: this.theme.cardColor),
+            child: CustomScrollView(
+                scrollDirection: Axis.vertical,
+                reverse: false,
+                controller: ScrollController(),
+                primary: false,
+                physics: ScrollPhysics(),
+                shrinkWrap: false,
+                slivers: <Widget>[
+                  //Body
+                  SliverList(
+                      delegate: SliverChildListDelegate(
+                          <Widget>[this.buildDrawerHeader()])),
 
-            //Body
-            new SliverList(
-              delegate: SliverChildListDelegate(
-                this.items.map(this.buildListViewItem).toList()
-              )
-            )
-       
-          ]
-        )
-      )
-    );
-
-
-
-
-
-
+                  //Body
+                  SliverList(
+                      delegate: SliverChildListDelegate(
+                          this.items.map(this.buildListViewItem).toList()))
+                ])));
   }
 
+  Widget buildListViewItem(MainItem item) {
+    if (item == null) return Divider(height: 6.0);
 
-
-  Widget buildListViewItem(MainItem item){
-    if(item==null) return new Divider(height: 6.0);
-
-    return new ListTile(
-      selected: item.index==this.index,
-      leading: new Icon(item.icon),
-      title: new Text(item.text),
-      onTap: ()=>super.setState(()=>this.listTileOnTap(item))
-    );
+    return ListTile(
+        selected: item.index == this.index,
+        leading: Icon(item.icon),
+        title: Text(item.text),
+        onTap: () => super.setState(() => this.listTileOnTap(item)));
   }
 
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
-      title: "HSV Color",
-      theme: this.theme,
-      home: new Scaffold(
-        key: this.scaffoldKey,
-        backgroundColor: this.theme.scaffoldBackgroundColor,
-        body: this.page,   
-        appBar: this.buildAppBar(),
-        drawer: this.buildDrawer22()
-      )
-    );
+    return MaterialApp(
+        title: "HSV Color",
+        theme: this.theme,
+        home: Scaffold(
+            key: this.scaffoldKey,
+            backgroundColor: this.theme.scaffoldBackgroundColor,
+            body: this.page,
+            appBar: this.buildAppBar(),
+            drawer: this.buildDrawer22()));
   }
 }
- 
-class MainItem{
+
+class MainItem {
   final int index;
   final IconData icon;
   final String text;
   final Widget page;
 
-  MainItem({
-    this.index,
-    this.icon,
-    this.text,
-    this.page
-  });
+  MainItem({this.index, this.icon, this.text, this.page});
 }
-

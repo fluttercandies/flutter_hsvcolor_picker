@@ -3,7 +3,7 @@ import 'package:flutter_hsvcolor_picker/flutter_hsvcolor_picker.dart';
 
 class WheelPickerPage extends StatefulWidget {
   @override
-  WheelPickerPageState createState() => new WheelPickerPageState();
+  WheelPickerPageState createState() => WheelPickerPageState();
 }
 
 class WheelPickerPageState extends State<WheelPickerPage> {
@@ -12,40 +12,35 @@ class WheelPickerPageState extends State<WheelPickerPage> {
 
   @override
   Widget build(BuildContext context) {
-    return new Center(
-        child: new Container(
+    return Center(
+        child: Container(
             width: 260,
-            child: new Card(
-                shape: new RoundedRectangleBorder(
+            child: Card(
+                shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(0.0))),
                 elevation: 2.0,
-                child: new Padding(
+                child: Padding(
                     padding: const EdgeInsets.all(10),
-                    child: new Column(
+                    child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: <Widget>[
-                          new FloatingActionButton(
+                          FloatingActionButton(
                             onPressed: () {},
                             backgroundColor: this.color.toColor(),
                           ),
-                          new Divider(),
+                          Divider(),
 
                           ///---------------------------------
-                          new Container(
+                          Container(
                               width: 222,
                               height: 222,
-                              child: new WheelPicker(
+                              child: WheelPicker(
                                 color: this.color,
                                 onChanged: (value) =>
                                     super.setState(() => this.onChanged(value)),
                               ))
 
                           ///---------------------------------
-                        ]
-                    )
-                )
-            )
-        )
-    );
+                        ])))));
   }
 }
