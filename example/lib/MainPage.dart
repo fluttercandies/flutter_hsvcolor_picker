@@ -1,7 +1,5 @@
 import "package:flutter/material.dart";
 import "package:flutter/cupertino.dart";
-import "package:flutter/material.dart";
-import "package:flutter/cupertino.dart";
 import "Pages/SliderPickerPage.dart";
 import "Pages/PalettePickerPage.dart";
 import "Pages/HSVPickerPage.dart";
