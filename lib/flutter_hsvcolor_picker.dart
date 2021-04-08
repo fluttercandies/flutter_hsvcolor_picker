@@ -40,8 +40,8 @@ class SliderPicker extends StatefulWidget {
   final double max;
   final double value;
   final ValueChanged<double> onChanged;
-  final List<Color> colors;
-  final Widget child;
+  final List<Color>? colors;
+  final Widget? child;
 
   const SliderPicker({
     Key? key,
@@ -51,8 +51,7 @@ class SliderPicker extends StatefulWidget {
     required this.onChanged,
     this.colors,
     this.child,
-  })  : assert(value != null),
-        assert(value >= min && value <= max),
+  })  : assert(value >= min && value <= max),
         super(key: key);
 
   @override
@@ -69,7 +68,7 @@ class _SliderPickerState extends State<SliderPicker> {
       super.widget.onChanged((ratio * (max - min) + min).clamp(min, max));
 
   void onPanUpdate(DragUpdateDetails details, BoxConstraints box) {
-    RenderBox renderBox = super.context.findRenderObject();
+    RenderBox renderBox = super.context.findRenderObject() as RenderBox;
     Offset offset = renderBox.globalToLocal(details.globalPosition);
     double ratio = offset.dx / box.maxWidth;
     super.setState(() => this.setRatio(ratio));
@@ -85,27 +84,30 @@ class _SliderPickerState extends State<SliderPicker> {
             children: <Widget>[
               //Track
               LayoutId(
-                  id: _SliderLayout.track,
-                  child: (super.widget.colors == null)
-                      ?
+                id: _SliderLayout.track,
+                child: (super.widget.colors == null)
+                    ?
 
-                      //child
-                      DecoratedBox(
-                          decoration: BoxDecoration(
-                              borderRadius: this.radius,
-                              border: Border.all(color: Colors.grey, width: 1)),
-                          child: ClipRRect(
-                              borderRadius: this.radius,
-                              child: super.widget.child))
-                      :
+                    //child
+                    DecoratedBox(
+                        decoration: BoxDecoration(
+                            borderRadius: this.radius,
+                            border: Border.all(color: Colors.grey, width: 1)),
+                        child: ClipRRect(
+                            borderRadius: this.radius,
+                            child: super.widget.child))
+                    :
 
-                      //Color
-                      DecoratedBox(
-                          decoration: BoxDecoration(
-                              borderRadius: this.radius,
-                              border: Border.all(color: Colors.grey, width: 1),
-                              gradient: LinearGradient(
-                                  colors: super.widget.colors)))),
+                    //Color
+                    DecoratedBox(
+                        decoration: BoxDecoration(
+                          borderRadius: this.radius,
+                          border: Border.all(color: Colors.grey, width: 1),
+                          gradient:
+                              LinearGradient(colors: super.widget.colors!),
+                        ),
+                      ),
+              ),
 
               //Thumb
               LayoutId(
@@ -235,8 +237,7 @@ class PalettePicker extends StatefulWidget {
       this.topPosition = 0.0,
       this.bottomPosition = 1.0,
       required this.topBottomColors})
-      : assert(position != null),
-        super(key: key);
+      : super(key: key);
 
   @override
   _PalettePickerState createState() => _PalettePickerState();
@@ -279,7 +280,8 @@ class _PalettePickerState extends State<PalettePicker> {
 
   /// Ratio(0, 1) > Position(min, max)
   void ratioToPosition(Offset ratio) {
-    RenderBox renderBox = this.paletteKey.currentContext.findRenderObject();
+    RenderBox renderBox =
+        this.paletteKey.currentContext?.findRenderObject() as RenderBox;
     Offset startposition = renderBox.localToGlobal(Offset.zero);
     Size size = renderBox.size;
     Offset updateOffset = ratio - startposition;
@@ -360,7 +362,7 @@ class _PalettePickerState extends State<PalettePicker> {
 
 class _PalettePainter extends CustomPainter {
   final Offset ratio;
-  _PalettePainter({this.ratio}) : super();
+  _PalettePainter({required this.ratio}) : super();
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -398,9 +400,8 @@ class RGBPicker extends StatefulWidget {
   final Color color;
   final ValueChanged<Color> onChanged;
 
-  RGBPicker({Key? key, this.color, required this.onChanged})
-      : assert(color != null),
-        super(key: key);
+  RGBPicker({Key? key, required this.color, required this.onChanged})
+      : super(key: key);
 
   @override
   _RGBPickerState createState() => _RGBPickerState();
@@ -503,8 +504,7 @@ class HSVPicker extends StatefulWidget {
   final ValueChanged<HSVColor> onChanged;
 
   HSVPicker({Key? key, required this.color, required this.onChanged})
-      : assert(color != null),
-        super(key: key);
+      : super(key: key);
 
   @override
   _HSVPickerState createState() => _HSVPickerState();
@@ -638,8 +638,7 @@ class WheelPicker extends StatefulWidget {
     Key? key,
     required this.color,
     required this.onChanged,
-  })   : assert(color != null),
-        super(key: key);
+  }) : super(key: key);
 
   @override
   _WheelPickerState createState() => _WheelPickerState();
@@ -650,20 +649,23 @@ class _WheelPickerState extends State<WheelPicker> {
 
   final GlobalKey paletteKey = GlobalKey();
   Offset getOffset(Offset ratio) {
-    RenderBox renderBox = this.paletteKey.currentContext.findRenderObject();
+    RenderBox renderBox =
+        this.paletteKey.currentContext?.findRenderObject() as RenderBox;
     Offset startPosition = renderBox.localToGlobal(Offset.zero);
     return ratio - startPosition;
   }
 
   Size getSize() {
-    RenderBox renderBox = this.paletteKey.currentContext.findRenderObject();
+    RenderBox renderBox =
+        this.paletteKey.currentContext?.findRenderObject() as RenderBox;
     return renderBox.size;
   }
 
   bool isWheel = false;
   bool isPalette = false;
   void onPanStart(Offset offset) {
-    RenderBox renderBox = this.paletteKey.currentContext.findRenderObject();
+    RenderBox renderBox =
+        this.paletteKey.currentContext?.findRenderObject() as RenderBox;
     Size size = renderBox.size;
 
     double radio = _WheelPainter.radio(size);
@@ -692,7 +694,8 @@ class _WheelPickerState extends State<WheelPicker> {
   }
 
   void onPanUpdate(Offset offset) {
-    RenderBox renderBox = this.paletteKey.currentContext.findRenderObject();
+    RenderBox renderBox =
+        this.paletteKey.currentContext?.findRenderObject() as RenderBox;
     Size size = renderBox.size;
 
     double radio = _WheelPainter.radio(size);
@@ -740,7 +743,7 @@ class _WheelPainter extends CustomPainter {
 
   final HSVColor color;
 
-  _WheelPainter({this.color}) : super();
+  _WheelPainter({required this.color}) : super();
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -867,8 +870,7 @@ class PaletteHuePicker extends StatefulWidget {
   final ValueChanged<HSVColor> onChanged;
 
   PaletteHuePicker({Key? key, required this.color, required this.onChanged})
-      : assert(color != null),
-        super(key: key);
+      : super(key: key);
 
   @override
   _PaletteHuePickerState createState() => _PaletteHuePickerState();
@@ -957,8 +959,7 @@ class PaletteSaturationPicker extends StatefulWidget {
 
   PaletteSaturationPicker(
       {Key? key, required this.color, required this.onChanged})
-      : assert(color != null),
-        super(key: key);
+      : super(key: key);
 
   @override
   _PaletteSaturationPickerState createState() =>
@@ -1051,8 +1052,7 @@ class PaletteValuePicker extends StatefulWidget {
   final ValueChanged<HSVColor> onChanged;
 
   PaletteValuePicker({Key? key, required this.color, required this.onChanged})
-      : assert(color != null),
-        super(key: key);
+      : super(key: key);
 
   @override
   _PaletteValuePickerState createState() => _PaletteValuePickerState();
@@ -1148,7 +1148,7 @@ class Hex {
       text.length == 1 ? "0" + text : text;
 
   //Subste
-  static String textSubString(String text) {
+  static String? textSubString(String? text) {
     if (text == null) return null;
 
     if (text.length < 6) return null;
@@ -1165,8 +1165,7 @@ class HexPicker extends StatefulWidget {
   final TextEditingController controller;
 
   HexPicker({Key? key, required this.color, required this.onChanged})
-      : assert(color != null),
-        this.controller =
+      : this.controller =
             TextEditingController(text: Hex.colorToString(color).toUpperCase()),
         super(key: key);
 
@@ -1178,7 +1177,7 @@ class _HexPickerState extends State<HexPicker> {
   void textOnSubmitted(String value) =>
       super.widget.onChanged(this.textOnChenged(value));
   Color textOnChenged(String text) {
-    String hex = Hex.textSubString(text);
+    String? hex = Hex.textSubString(text);
     if (hex == null) return super.widget.color;
 
     try {
@@ -1232,8 +1231,7 @@ class AlphaPicker extends StatefulWidget {
     Key? key,
     required this.alpha,
     required this.onChanged,
-  })   : assert(alpha != null),
-        super(key: key);
+  }) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _AlphaPickerState();
@@ -1328,7 +1326,7 @@ class SwatchesPicker extends StatefulWidget {
 
 class _SwatchesPickerState extends State<SwatchesPicker>
     with SingleTickerProviderStateMixin {
-  TabController controller;
+  late TabController controller;
 
   void itemClick(Color item) => super.widget.onChanged(item);
 
@@ -1340,7 +1338,7 @@ class _SwatchesPickerState extends State<SwatchesPicker>
         TabController(initialIndex: 1, length: swatches.length, vsync: this);
   }
 
-  Widget buildListView(Color item) {
+  Widget buildListView(Color? item) {
     if (item == null) return Divider(height: 60.0);
 
     return Container(
@@ -1766,7 +1764,7 @@ class ColorPickerState extends State<ColorPicker> {
   Color get color => this.color;
   set color(Color value) => this.color = value;
 
-  ColorPickerState({Color color})
+  ColorPickerState({required Color color})
       : this._alpha = color.alpha,
         this._color = color,
         this._hSVColor = HSVColor.fromColor(color);
@@ -1798,9 +1796,14 @@ class ColorPickerState extends State<ColorPicker> {
 
   //pickers
   int _index = 4;
-  List<_IPicker> _pickers;
-  void _pickerOnChanged(_IPicker value) =>
+  late List<_IPicker> _pickers;
+  void _pickerOnChanged(_IPicker? value) {
+    if (value != null) {
       this._index = this._pickers.indexOf(value);
+    } else {
+      this._index = -1;
+    }
+  }
 
   @override
   void initState() {
@@ -2010,8 +2013,6 @@ class ColorPickerState extends State<ColorPicker> {
           Expanded(child: this._buildBody())
         ]);
     }
-
-    return Text("Color Picker");
   }
 }
 
