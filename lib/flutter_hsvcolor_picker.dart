@@ -47,8 +47,8 @@ class SliderPicker extends StatefulWidget {
     Key key,
     this.min = 0.0,
     this.max = 1.0,
-    @required this.value,
-    @required this.onChanged,
+    required this.value,
+    required this.onChanged,
     this.colors,
     this.child,
   })  : assert(value != null),
@@ -227,14 +227,14 @@ class PalettePicker extends StatefulWidget {
 
   PalettePicker(
       {Key key,
-      @required this.position,
-      @required this.onChanged,
+      required this.position,
+      required this.onChanged,
       this.leftPosition = 0.0,
       this.rightPosition = 1.0,
-      @required this.leftRightColors,
+      required this.leftRightColors,
       this.topPosition = 0.0,
       this.bottomPosition = 1.0,
-      @required this.topBottomColors})
+      required this.topBottomColors})
       : assert(position != null),
         super(key: key);
 
@@ -398,7 +398,7 @@ class RGBPicker extends StatefulWidget {
   final Color color;
   final ValueChanged<Color> onChanged;
 
-  RGBPicker({Key key, this.color, @required this.onChanged})
+  RGBPicker({Key key, this.color, required this.onChanged})
       : assert(color != null),
         super(key: key);
 
@@ -502,7 +502,7 @@ class HSVPicker extends StatefulWidget {
   final HSVColor color;
   final ValueChanged<HSVColor> onChanged;
 
-  HSVPicker({Key key, @required this.color, @required this.onChanged})
+  HSVPicker({Key key, required this.color, required this.onChanged})
       : assert(color != null),
         super(key: key);
 
@@ -636,9 +636,9 @@ class WheelPicker extends StatefulWidget {
 
   WheelPicker({
     Key key,
-    @required this.color,
-    @required this.onChanged,
-  })  : assert(color != null),
+    required this.color,
+    required this.onChanged,
+  })   : assert(color != null),
         super(key: key);
 
   @override
@@ -866,7 +866,7 @@ class PaletteHuePicker extends StatefulWidget {
   final HSVColor color;
   final ValueChanged<HSVColor> onChanged;
 
-  PaletteHuePicker({Key key, @required this.color, @required this.onChanged})
+  PaletteHuePicker({Key key, required this.color, required this.onChanged})
       : assert(color != null),
         super(key: key);
 
@@ -956,7 +956,7 @@ class PaletteSaturationPicker extends StatefulWidget {
   final ValueChanged<HSVColor> onChanged;
 
   PaletteSaturationPicker(
-      {Key key, @required this.color, @required this.onChanged})
+      {Key key, required this.color, required this.onChanged})
       : assert(color != null),
         super(key: key);
 
@@ -1050,7 +1050,7 @@ class PaletteValuePicker extends StatefulWidget {
   final HSVColor color;
   final ValueChanged<HSVColor> onChanged;
 
-  PaletteValuePicker({Key key, @required this.color, @required this.onChanged})
+  PaletteValuePicker({Key key, required this.color, required this.onChanged})
       : assert(color != null),
         super(key: key);
 
@@ -1164,7 +1164,7 @@ class HexPicker extends StatefulWidget {
   final ValueChanged<Color> onChanged;
   final TextEditingController controller;
 
-  HexPicker({Key key, @required this.color, @required this.onChanged})
+  HexPicker({Key key, required this.color, required this.onChanged})
       : assert(color != null),
         this.controller =
             TextEditingController(text: Hex.colorToString(color).toUpperCase()),
@@ -1229,9 +1229,9 @@ class AlphaPicker extends StatefulWidget {
 
   const AlphaPicker({
     Key key,
-    @required this.alpha,
-    @required this.onChanged,
-  })  : assert(alpha != null),
+    required this.alpha,
+    required this.onChanged,
+  })   : assert(alpha != null),
         super(key: key);
 
   @override
@@ -1319,7 +1319,7 @@ class AlphaTrackPainter extends CustomPainter {
 class SwatchesPicker extends StatefulWidget {
   final ValueChanged<Color> onChanged;
 
-  SwatchesPicker({Key key, @required this.onChanged}) : super(key: key);
+  SwatchesPicker({Key key, required this.onChanged}) : super(key: key);
 
   @override
   _SwatchesPickerState createState() => _SwatchesPickerState();
@@ -1741,7 +1741,7 @@ class _IPicker {
   String name;
   WidgetBuilder builder;
 
-  _IPicker({@required this.index, @required this.name, @required this.builder});
+  _IPicker({required this.index, required this.name, required this.builder});
 }
 
 class ColorPicker extends StatefulWidget {
@@ -1749,7 +1749,7 @@ class ColorPicker extends StatefulWidget {
   final ValueChanged<Color> onChanged;
 
   const ColorPicker(
-      {Key key, this.color = Colors.blue, @required this.onChanged})
+      {Key key, this.color = Colors.blue, required this.onChanged})
       : super(key: key);
 
   @override
