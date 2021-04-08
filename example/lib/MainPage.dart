@@ -22,11 +22,11 @@ class MainPageState extends State<MainPage> {
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
   int index = 11;
-  Widget get page => this
+  Widget? get page => this
       .items
       .firstWhere((item) => item == null ? false : item.index == this.index)
-      .page;
-  List<MainItem> items = [
+      ?.page;
+  List<MainItem?> items = [
     MainItem(
         index: 0,
         icon: Icons.linear_scale,
@@ -87,7 +87,7 @@ class MainPageState extends State<MainPage> {
         page: ColorPickerPage()),
   ];
 
-  void iconButtonOnPressed() => this.scaffoldKey.currentState.openDrawer();
+  void iconButtonOnPressed() => this.scaffoldKey.currentState?.openDrawer();
   void listTileOnTap(MainItem item) {
     this.index = item.index;
     //Navigator.of(context).pop();//Navigator
@@ -102,7 +102,7 @@ class MainPageState extends State<MainPage> {
       ThemeData(brightness: Brightness.dark, platform: TargetPlatform.iOS);
   void setTheme() => super.setState(() => isDark = !isDark);
 
-  Widget buildAppBar() {
+  PreferredSizeWidget buildAppBar() {
     return AppBar(
         elevation: 0.0,
         backgroundColor: this.theme.scaffoldBackgroundColor,
@@ -205,7 +205,7 @@ class MainPageState extends State<MainPage> {
                 ])));
   }
 
-  Widget buildListViewItem(MainItem item) {
+  Widget buildListViewItem(MainItem? item) {
     if (item == null) return Divider(height: 6.0);
 
     return ListTile(
@@ -235,5 +235,10 @@ class MainItem {
   final String text;
   final Widget page;
 
-  MainItem({this.index, this.icon, this.text, this.page});
+  MainItem({
+    required this.index,
+    required this.icon,
+    required this.text,
+    required this.page,
+  });
 }
