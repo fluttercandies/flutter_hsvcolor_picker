@@ -22,37 +22,47 @@ class SliderPickerPageState extends State<SliderPickerPage> {
   @override
   Widget build(BuildContext context) {
     return Center(
-        child: Container(
-            width: 260,
-            child: Card(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(0.0))),
-                elevation: 2.0,
-                child: Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: <Widget>[
-                          Text(
-                            ((this.value * 100.0).toInt().toDouble() / 100.0)
-                                .toString(),
-                            style: Theme.of(context).textTheme.headline4,
-                          ),
-                          Divider(),
+      child: Container(
+        width: 260,
+        child: Card(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(
+              Radius.circular(0.0),
+            ),
+          ),
+          elevation: 2.0,
+          child: Padding(
+            padding: const EdgeInsets.all(10),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                Text(
+                  ((this.value * 100.0).toInt().toDouble() / 100.0).toString(),
+                  style: Theme.of(context).textTheme.headline4,
+                ),
+                Divider(),
 
-                          ///---------------------------------
-                          SliderPicker(
-                              min: 0.0,
-                              max: 1.0,
-                              value: this.value,
-                              onChanged: (value) =>
-                                  super.setState(() => this.onChanged(value)),
-                              child: DecoratedBox(
-                                  decoration: BoxDecoration(
-                                      gradient: LinearGradient(
-                                          colors: this.hueColors))))
+                ///---------------------------------
+                SliderPicker(
+                  min: 0.0,
+                  max: 1.0,
+                  value: this.value,
+                  onChanged: (value) => super.setState(
+                    () => this.onChanged(value),
+                  ),
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(colors: this.hueColors),
+                    ),
+                  ),
+                )
 
-                          ///---------------------------------
-                        ])))));
+                ///---------------------------------
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }

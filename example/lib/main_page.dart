@@ -122,35 +122,35 @@ class MainPageState extends State<MainPage> {
 
   PreferredSizeWidget buildAppBar() {
     return AppBar(
-        elevation: 0.0,
-        backgroundColor: this.theme.scaffoldBackgroundColor,
+      elevation: 0.0,
+      backgroundColor: this.theme.scaffoldBackgroundColor,
 
-        // Center
-        title: Center(
-          child: Text("HSV Color",
-              textAlign: TextAlign.center,
-              style: this.theme.textTheme.headline5),
+      // Center
+      title: Center(
+        child: Text("HSV Color",
+            textAlign: TextAlign.center, style: this.theme.textTheme.headline5),
+      ),
+
+      // Left
+      leading: IconButton(
+        onPressed: this.iconButtonOnPressed,
+        icon: IconTheme(
+          data: this.theme.iconTheme,
+          child: Icon(Icons.dehaze),
         ),
+      ),
 
-        // Left
-        leading: IconButton(
+      // Right
+      actions: <Widget>[
+        IconButton(
           onPressed: this.iconButtonOnPressed,
           icon: IconTheme(
             data: this.theme.iconTheme,
             child: Icon(Icons.dehaze),
           ),
-        ),
-
-        // Right
-        actions: <Widget>[
-          IconButton(
-            onPressed: this.iconButtonOnPressed,
-            icon: IconTheme(
-              data: this.theme.iconTheme,
-              child: Icon(Icons.dehaze),
-            ),
-          )
-        ]);
+        )
+      ],
+    );
   }
 
   Widget buildDrawer() {

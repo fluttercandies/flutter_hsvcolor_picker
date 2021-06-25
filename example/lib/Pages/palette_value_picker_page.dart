@@ -13,31 +13,40 @@ class PaletteValuePickerPageState extends State<PaletteValuePickerPage> {
   @override
   Widget build(BuildContext context) {
     return Center(
-        child: Container(
-            width: 260,
-            child: Card(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(0.0))),
-                elevation: 2.0,
-                child: Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: <Widget>[
-                          FloatingActionButton(
-                            onPressed: () {},
-                            backgroundColor: this.color.toColor(),
-                          ),
-                          Divider(),
+      child: Container(
+        width: 260,
+        child: Card(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(
+              Radius.circular(0.0),
+            ),
+          ),
+          elevation: 2.0,
+          child: Padding(
+            padding: const EdgeInsets.all(10),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                FloatingActionButton(
+                  onPressed: () {},
+                  backgroundColor: this.color.toColor(),
+                ),
+                Divider(),
 
-                          ///---------------------------------
-                          PaletteValuePicker(
-                            color: this.color,
-                            onChanged: (value) =>
-                                super.setState(() => this.onChanged(value)),
-                          )
+                ///---------------------------------
+                PaletteValuePicker(
+                  color: this.color,
+                  onChanged: (value) => super.setState(
+                    () => this.onChanged(value),
+                  ),
+                )
 
-                          ///---------------------------------
-                        ])))));
+                ///---------------------------------
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }

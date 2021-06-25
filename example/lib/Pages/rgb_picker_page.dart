@@ -13,31 +13,40 @@ class RGBPickerPageState extends State<RGBPickerPage> {
   @override
   Widget build(BuildContext context) {
     return Center(
-        child: Container(
-            width: 260,
-            child: Card(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(0.0))),
-                elevation: 2.0,
-                child: Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: <Widget>[
-                          FloatingActionButton(
-                            onPressed: () {},
-                            backgroundColor: this.color,
-                          ),
-                          Divider(),
+      child: Container(
+        width: 260,
+        child: Card(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(
+              Radius.circular(0.0),
+            ),
+          ),
+          elevation: 2.0,
+          child: Padding(
+            padding: const EdgeInsets.all(10),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                FloatingActionButton(
+                  onPressed: () {},
+                  backgroundColor: this.color,
+                ),
+                Divider(),
 
-                          ///---------------------------------
-                          RGBPicker(
-                            color: this.color,
-                            onChanged: (value) =>
-                                super.setState(() => this.onChanged(value)),
-                          )
+                ///---------------------------------
+                RGBPicker(
+                  color: this.color,
+                  onChanged: (value) => super.setState(
+                    () => this.onChanged(value),
+                  ),
+                )
 
-                          ///---------------------------------
-                        ])))));
+                ///---------------------------------
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }
