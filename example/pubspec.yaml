@@ -1,6 +1,8 @@
 name: flutter_hsvcolor_picker_example
 description: A new Flutter project.
 
+version: 1.0.0
+
 environment:
   sdk: '>=2.12.0'
 
