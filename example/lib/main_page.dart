@@ -128,8 +128,11 @@ class MainPageState extends State<MainPage> {
 
       // Center
       title: Center(
-        child: Text("HSV Color",
-            textAlign: TextAlign.center, style: this.theme.textTheme.headline5),
+        child: Text(
+          "HSV Color",
+          textAlign: TextAlign.center,
+          style: this.theme.textTheme.headline5,
+        ),
       ),
 
       // Left
