@@ -1,17 +1,18 @@
 import "package:flutter/material.dart";
 import "package:flutter/cupertino.dart";
-import 'Pages/slider_picker_page.dart';
-import 'Pages/palette_picker_page.dart';
-import 'Pages/hsv_picker_page.dart';
-import 'Pages/rgb_picker_page.dart';
-import 'Pages/wheel_picker_page.dart';
-import 'Pages/palette_hue_picker_page.dart';
-import 'Pages/palette_saturation_picker_page.dart';
-import 'Pages/palette_value_picker_page.dart';
-import 'Pages/hex_picker_page.dart';
-import 'Pages/alpha_picker_page.dart';
-import "Pages/SwatchesPickerPAge.dart";
-import 'Pages/color_picker_page.dart';
+
+import 'pages/slider_picker_page.dart';
+import 'pages/palette_picker_page.dart';
+import 'pages/hsv_picker_page.dart';
+import 'pages/rgb_picker_page.dart';
+import 'pages/swatches_picker_page.dart';
+import 'pages/wheel_picker_page.dart';
+import 'pages/palette_hue_picker_page.dart';
+import 'pages/palette_saturation_picker_page.dart';
+import 'pages/palette_value_picker_page.dart';
+import 'pages/hex_picker_page.dart';
+import 'pages/alpha_picker_page.dart';
+import 'pages/color_picker_page.dart';
 
 class MainPage extends StatefulWidget {
   @override
