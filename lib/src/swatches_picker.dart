@@ -22,8 +22,11 @@ class _SwatchesPickerState extends State<SwatchesPicker>
   void initState() {
     super.initState();
 
-    controller =
-        TabController(initialIndex: 1, length: swatches.length, vsync: this);
+    controller = TabController(
+      initialIndex: 1,
+      length: swatches.length,
+      vsync: this,
+    );
   }
 
   Widget buildListView(Color? item) {
@@ -39,11 +42,12 @@ class _SwatchesPickerState extends State<SwatchesPicker>
         border: Border.all(color: Colors.grey),
       ),
       child: InkWell(
-          borderRadius: const BorderRadius.all(
-            Radius.circular(20),
-          ),
-          onTap: () => itemClick(item),
-          splashColor: item),
+        borderRadius: const BorderRadius.all(
+          Radius.circular(20),
+        ),
+        onTap: () => itemClick(item),
+        splashColor: item,
+      ),
     );
   }
 

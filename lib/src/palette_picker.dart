@@ -49,7 +49,10 @@ class _PalettePickerState extends State<PalettePicker> {
   }
 
   double positionToRatio2(
-      double postiton, double minPostition, double maxPostition) {
+    double postiton,
+    double minPostition,
+    double maxPostition,
+  ) {
     if (postiton < minPostition) return 0.0;
     if (postiton > maxPostition) return 1.0;
     return (postiton - minPostition) / (maxPostition - minPostition);
@@ -90,7 +93,7 @@ class _PalettePickerState extends State<PalettePicker> {
   }
 
   Widget buildLeftRightColors() {
-    return Container(
+    return DecoratedBox(
       decoration: BoxDecoration(
         border: Border.all(color: Colors.grey),
         borderRadius: const BorderRadius.all(
@@ -104,16 +107,17 @@ class _PalettePickerState extends State<PalettePicker> {
   }
 
   Widget buildTopBottomColors() {
-    return Container(
+    return DecoratedBox(
       decoration: BoxDecoration(
         border: Border.all(color: Colors.grey),
         borderRadius: const BorderRadius.all(
           Radius.circular(6),
         ),
         gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: super.widget.topBottomColors),
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: super.widget.topBottomColors,
+        ),
       ),
     );
   }

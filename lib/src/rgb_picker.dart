@@ -60,8 +60,9 @@ class _RGBPickerState extends State<RGBPicker> {
             opacity: 0.5,
             child: Text(
               title,
-              style:
-                  Theme.of(context).textTheme.headline6?.copyWith(fontSize: 18),
+              style: Theme.of(context).textTheme.headline6?.copyWith(
+                    fontSize: 18,
+                  ),
             ),
           ),
           Expanded(
@@ -109,10 +110,11 @@ class _RGBPickerState extends State<RGBPicker> {
           color.green.toInt().toString(),
         ),
         SliderPicker(
-            value: color.green.toDouble(),
-            max: 255.0,
-            onChanged: greenOnChange,
-            colors: greenColors),
+          value: color.green.toDouble(),
+          max: 255.0,
+          onChanged: greenOnChange,
+          colors: greenColors,
+        ),
 
         // Blue
         buildTitle(
@@ -120,10 +122,11 @@ class _RGBPickerState extends State<RGBPicker> {
           color.blue.toInt().toString(),
         ),
         SliderPicker(
-            value: color.blue.toDouble(),
-            max: 255.0,
-            onChanged: blueOnChange,
-            colors: blueColors)
+          value: color.blue.toDouble(),
+          max: 255.0,
+          onChanged: blueOnChange,
+          colors: blueColors,
+        )
       ],
     );
   }

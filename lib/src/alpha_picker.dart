@@ -55,10 +55,7 @@ class _AlphaPickerState extends State<AlphaPicker> {
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         // Alpha
-        buildTitle(
-          'A',
-          super.widget.alpha.toString(),
-        ),
+        buildTitle('A', super.widget.alpha.toString()),
         SliderPicker(
           value: super.widget.alpha.toDouble(),
           max: 255.0,

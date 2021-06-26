@@ -60,9 +60,7 @@ class ColorPickerState extends State<ColorPicker> {
   void _hSVColorOnChanged(HSVColor value) {
     _color = value.toColor();
     _hSVColor = value;
-    super.widget.onChanged(
-          value.toColor(),
-        );
+    super.widget.onChanged(value.toColor());
   }
 
   void _colorWithAlphaOnChanged(Color value) {
@@ -212,11 +210,12 @@ class ColorPickerState extends State<ColorPicker> {
               shape: BoxShape.circle,
               border: Border.all(color: Colors.black26),
             ),
-            child: Container(
+            child: DecoratedBox(
               decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  border: Border.all(color: Colors.white, width: 3),
-                  color: _color),
+                shape: BoxShape.circle,
+                border: Border.all(color: Colors.white, width: 3),
+                color: _color,
+              ),
             ),
           ),
 
@@ -290,7 +289,7 @@ class ColorPickerState extends State<ColorPicker> {
   }
 
   Widget _buildBody() {
-    return Container(
+    return SizedBox(
       child: _pickers[_index].builder(context),
     );
   }

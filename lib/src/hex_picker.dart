@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 class Hex {
   // Hex Number To Color
   static Color intToColor(int hexNumber) => Color.fromARGB(
-      255,
-      (hexNumber >> 16) & 0xFF,
-      (hexNumber >> 8) & 0xFF,
-      (hexNumber >> 0) & 0xFF);
+        255,
+        (hexNumber >> 16) & 0xFF,
+        (hexNumber >> 8) & 0xFF,
+        (hexNumber >> 0) & 0xFF,
+      );
 
   // String To Hex Number
   static int stringToInt(String hex) => int.parse(hex, radix: 16);

@@ -185,25 +185,28 @@ class _WheelPainter extends CustomPainter {
       Rect.fromLTWH(0, 0, radio, radio),
     );
     canvas.drawCircle(
-        center,
-        radio,
-        Paint()
-          ..style = PaintingStyle.stroke
-          ..strokeWidth = _WheelPainter.doubleStrokeWidth
-          ..shader = sweepShader);
+      center,
+      radio,
+      Paint()
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = _WheelPainter.doubleStrokeWidth
+        ..shader = sweepShader,
+    );
 
     canvas.drawCircle(
-        center,
-        radio - _WheelPainter.strokeWidth,
-        Paint()
-          ..style = PaintingStyle.stroke
-          ..color = Colors.grey);
+      center,
+      radio - _WheelPainter.strokeWidth,
+      Paint()
+        ..style = PaintingStyle.stroke
+        ..color = Colors.grey,
+    );
     canvas.drawCircle(
-        center,
-        radio + _WheelPainter.strokeWidth,
-        Paint()
-          ..style = PaintingStyle.stroke
-          ..color = Colors.grey);
+      center,
+      radio + _WheelPainter.strokeWidth,
+      Paint()
+        ..style = PaintingStyle.stroke
+        ..color = Colors.grey,
+    );
 
     // Palette
     final Rect rect = Rect.fromLTWH(center.dx - squareRadio,
@@ -220,10 +223,11 @@ class _WheelPainter extends CustomPainter {
       ],
     ).createShader(rect);
     canvas.drawRRect(
-        rRect,
-        Paint()
-          ..style = PaintingStyle.fill
-          ..shader = horizontal);
+      rRect,
+      Paint()
+        ..style = PaintingStyle.fill
+        ..shader = horizontal,
+    );
 
     final Shader vertical = const LinearGradient(
       begin: Alignment.topCenter,
@@ -231,16 +235,18 @@ class _WheelPainter extends CustomPainter {
       colors: <Color>[Colors.transparent, Colors.black],
     ).createShader(rect);
     canvas.drawRRect(
-        rRect,
-        Paint()
-          ..style = PaintingStyle.fill
-          ..shader = vertical);
+      rRect,
+      Paint()
+        ..style = PaintingStyle.fill
+        ..shader = vertical,
+    );
 
     canvas.drawRRect(
-        rRect,
-        Paint()
-          ..style = PaintingStyle.stroke
-          ..color = Colors.grey);
+      rRect,
+      Paint()
+        ..style = PaintingStyle.stroke
+        ..color = Colors.grey,
+    );
 
     // Thumb
     final Paint paintWhite = Paint()
