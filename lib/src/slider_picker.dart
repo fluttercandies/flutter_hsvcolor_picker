@@ -38,9 +38,7 @@ class _SliderPickerState extends State<SliderPicker> {
     final Offset offset =
         renderBox?.globalToLocal(details.globalPosition) ?? Offset.zero;
     final double ratio = offset.dx / box.maxWidth;
-    super.setState(
-      () => setRatio(ratio),
-    );
+    super.setState(() => setRatio(ratio));
   }
 
   BorderRadius radius = const BorderRadius.all(

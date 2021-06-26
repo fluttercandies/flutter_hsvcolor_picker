@@ -65,9 +65,7 @@ class _HexPickerState extends State<HexPicker> {
     if (hex == null) return super.widget.color;
 
     try {
-      return Hex.intToColor(
-        Hex.stringToInt(hex),
-      );
+      return Hex.intToColor(Hex.stringToInt(hex));
     } catch (_) {
       return super.widget.color;
     }

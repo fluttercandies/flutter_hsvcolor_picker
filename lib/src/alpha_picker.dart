@@ -18,9 +18,7 @@ class AlphaPicker extends StatefulWidget {
 
 class _AlphaPickerState extends State<AlphaPicker> {
   void valueOnChanged(double ratio) {
-    super.widget.onChanged(
-          ratio.toInt(),
-        );
+    super.widget.onChanged(ratio.toInt());
   }
 
   Widget buildTitle(String title, String text) {
