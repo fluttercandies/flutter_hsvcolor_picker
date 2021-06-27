@@ -25,9 +25,8 @@ class MainPageState extends State<MainPage> {
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
   int index = 11;
-  Widget? get page => this
-      .items
-      .firstWhere((item) => item == null ? false : item.index == this.index)
+  Widget? get page => items
+      .firstWhere((item) => item == null ? false : item.index == index)
       ?.page;
   List<MainItem?> items = [
     MainItem(
@@ -108,10 +107,10 @@ class MainPageState extends State<MainPage> {
     ),
   ];
 
-  void iconButtonOnPressed() => this.scaffoldKey.currentState?.openDrawer();
+  void iconButtonOnPressed() => scaffoldKey.currentState?.openDrawer();
   void listTileOnTap(MainItem item) {
-    this.index = item.index;
-    // Navigator.of(context).pop();//Navigator
+    index = item.index;
+    // Navigator.of(context).pop(); // Navigator
   }
 
   // Theme
@@ -126,22 +125,22 @@ class MainPageState extends State<MainPage> {
   PreferredSizeWidget buildAppBar() {
     return AppBar(
       elevation: 0.0,
-      backgroundColor: this.theme.scaffoldBackgroundColor,
+      backgroundColor: theme.scaffoldBackgroundColor,
 
       // Center
       title: Center(
         child: Text(
           'HSV Color',
           textAlign: TextAlign.center,
-          style: this.theme.textTheme.headline5,
+          style: theme.textTheme.headline5,
         ),
       ),
 
       // Left
       leading: IconButton(
-        onPressed: this.iconButtonOnPressed,
+        onPressed: iconButtonOnPressed,
         icon: IconTheme(
-          data: this.theme.iconTheme,
+          data: theme.iconTheme,
           child: const Icon(Icons.dehaze),
         ),
       ),
@@ -149,9 +148,9 @@ class MainPageState extends State<MainPage> {
       // Right
       actions: <Widget>[
         IconButton(
-          onPressed: this.iconButtonOnPressed,
+          onPressed: iconButtonOnPressed,
           icon: IconTheme(
-            data: this.theme.iconTheme,
+            data: theme.iconTheme,
             child: const Icon(Icons.dehaze),
           ),
         )
@@ -162,16 +161,16 @@ class MainPageState extends State<MainPage> {
   Widget buildDrawer() {
     return Drawer(
       child: DecoratedBox(
-        decoration: BoxDecoration(color: this.theme.cardColor),
+        decoration: BoxDecoration(color: theme.cardColor),
         child: Column(
           children: <Widget>[
             // Header
-            this.buildDrawerHeader(),
+            buildDrawerHeader(),
 
             // List
             Expanded(
               child: ListView(
-                children: this.items.map(this.buildListViewItem).toList(),
+                children: items.map(buildListViewItem).toList(),
               ),
             )
           ],
@@ -182,7 +181,7 @@ class MainPageState extends State<MainPage> {
 
   Widget buildDrawerHeader() {
     return DrawerHeader(
-      decoration: BoxDecoration(color: this.theme.accentColor),
+      decoration: BoxDecoration(color: theme.accentColor),
       child: Stack(
         children: <Widget>[
           // Avatar
@@ -194,7 +193,7 @@ class MainPageState extends State<MainPage> {
               children: <Widget>[
                 CircleAvatar(
                   radius: 34.0,
-                  backgroundColor: this.theme.cardColor,
+                  backgroundColor: theme.cardColor,
                   backgroundImage: const AssetImage('packages/avatar.jpg'),
                 ),
                 Container(height: 10.0),
@@ -210,13 +209,13 @@ class MainPageState extends State<MainPage> {
           Align(
             alignment: Alignment.bottomRight,
             child: ElevatedButton(
-              onPressed: this.setTheme,
+              onPressed: setTheme,
               style: ElevatedButton.styleFrom(
-                primary: this.theme.accentColor,
+                primary: theme.accentColor,
                 shape: const StadiumBorder(),
               ),
               child: Text(
-                this.theme.brightness == Brightness.dark ? 'Dark' : 'Light',
+                theme.brightness == Brightness.dark ? 'Dark' : 'Light',
                 style: const TextStyle(fontSize: 16.0, color: Colors.white),
               ),
             ),
@@ -229,7 +228,7 @@ class MainPageState extends State<MainPage> {
   Widget buildDrawer22() {
     return Drawer(
       child: DecoratedBox(
-        decoration: BoxDecoration(color: this.theme.cardColor),
+        decoration: BoxDecoration(color: theme.cardColor),
         child: CustomScrollView(
           scrollDirection: Axis.vertical,
           reverse: false,
@@ -241,14 +240,14 @@ class MainPageState extends State<MainPage> {
             // Body
             SliverList(
               delegate: SliverChildListDelegate(
-                <Widget>[this.buildDrawerHeader()],
+                <Widget>[buildDrawerHeader()],
               ),
             ),
 
             // Body
             SliverList(
               delegate: SliverChildListDelegate(
-                this.items.map(this.buildListViewItem).toList(),
+                items.map(buildListViewItem).toList(),
               ),
             )
           ],
@@ -261,11 +260,11 @@ class MainPageState extends State<MainPage> {
     if (item == null) return const Divider(height: 6.0);
 
     return ListTile(
-      selected: item.index == this.index,
+      selected: item.index == index,
       leading: Icon(item.icon),
       title: Text(item.text),
       onTap: () => super.setState(
-        () => this.listTileOnTap(item),
+        () => listTileOnTap(item),
       ),
     );
   }
@@ -274,13 +273,13 @@ class MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'HSV Color',
-      theme: this.theme,
+      theme: theme,
       home: Scaffold(
-        key: this.scaffoldKey,
-        backgroundColor: this.theme.scaffoldBackgroundColor,
-        body: this.page,
-        appBar: this.buildAppBar(),
-        drawer: this.buildDrawer22(),
+        key: scaffoldKey,
+        backgroundColor: theme.scaffoldBackgroundColor,
+        body: page,
+        appBar: buildAppBar(),
+        drawer: buildDrawer22(),
       ),
     );
   }

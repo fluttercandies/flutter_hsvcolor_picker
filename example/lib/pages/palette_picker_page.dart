@@ -35,10 +35,10 @@ class PalettePickerPageState extends State<PalettePickerPage> {
               children: <Widget>[
                 Text(
                   '( ' +
-                      ((this.value.dx * 100.0).toInt().toDouble() / 100.0)
+                      ((value.dx * 100.0).toInt().toDouble() / 100.0)
                           .toString() +
                       ' , ' +
-                      ((this.value.dy * 100.0).toInt().toDouble() / 100.0)
+                      ((value.dy * 100.0).toInt().toDouble() / 100.0)
                           .toString() +
                       ' )',
                   style: Theme.of(context).textTheme.headline4,
@@ -50,9 +50,9 @@ class PalettePickerPageState extends State<PalettePickerPage> {
                     child: PalettePicker(
                         topPosition: 1.0,
                         bottomPosition: 0.0,
-                        position: this.value,
+                        position: value,
                         onChanged: (value) => super.setState(
-                              () => this.onChanged(value),
+                              () => onChanged(value),
                             ),
                         leftRightColors: super.widget.horizontalColors,
                         topBottomColors: super.widget.verticalColors)

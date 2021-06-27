@@ -30,16 +30,16 @@ class AlphaPickerPageState extends State<AlphaPickerPage> {
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 Text(
-                  this.value.toString(),
+                  value.toString(),
                   style: Theme.of(context).textTheme.headline4,
                 ),
                 const Divider(),
 
                 ///---------------------------------
                 AlphaPicker(
-                  alpha: this.value,
+                  alpha: value,
                   onChanged: (value) => super.setState(
-                    () => this.onChanged(value),
+                    () => onChanged(value),
                   ),
                 )
 

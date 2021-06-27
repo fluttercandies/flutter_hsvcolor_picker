@@ -39,7 +39,7 @@ class SliderPickerPageState extends State<SliderPickerPage> {
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 Text(
-                  ((this.value * 100.0).toInt().toDouble() / 100.0).toString(),
+                  ((value * 100.0).toInt().toDouble() / 100.0).toString(),
                   style: Theme.of(context).textTheme.headline4,
                 ),
                 const Divider(),
@@ -48,13 +48,13 @@ class SliderPickerPageState extends State<SliderPickerPage> {
                 SliderPicker(
                   min: 0.0,
                   max: 1.0,
-                  value: this.value,
+                  value: value,
                   onChanged: (value) => super.setState(
-                    () => this.onChanged(value),
+                    () => onChanged(value),
                   ),
                   child: DecoratedBox(
                     decoration: BoxDecoration(
-                      gradient: LinearGradient(colors: this.hueColors),
+                      gradient: LinearGradient(colors: hueColors),
                     ),
                   ),
                 )

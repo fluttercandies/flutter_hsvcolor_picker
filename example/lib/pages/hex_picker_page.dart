@@ -10,7 +10,7 @@ class HexPickerPage extends StatefulWidget {
 
 class HexPickerPageState extends State<HexPickerPage> {
   Color color = Colors.blue;
-  void onChanged(Color value) => this.color = value;
+  void onChanged(Color value) => color = value;
 
   @override
   Widget build(BuildContext context) {
@@ -31,15 +31,15 @@ class HexPickerPageState extends State<HexPickerPage> {
               children: <Widget>[
                 FloatingActionButton(
                   onPressed: () {},
-                  backgroundColor: this.color,
+                  backgroundColor: color,
                 ),
                 const Divider(),
 
                 ///---------------------------------
                 HexPicker(
-                  color: this.color,
+                  color: color,
                   onChanged: (value) => super.setState(
-                    () => this.onChanged(value),
+                    () => onChanged(value),
                   ),
                 )
 

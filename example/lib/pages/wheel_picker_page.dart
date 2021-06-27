@@ -31,7 +31,7 @@ class WheelPickerPageState extends State<WheelPickerPage> {
               children: <Widget>[
                 FloatingActionButton(
                   onPressed: () {},
-                  backgroundColor: this.color.toColor(),
+                  backgroundColor: color.toColor(),
                 ),
                 const Divider(),
 
@@ -40,9 +40,9 @@ class WheelPickerPageState extends State<WheelPickerPage> {
                   width: 222,
                   height: 222,
                   child: WheelPicker(
-                    color: this.color,
+                    color: color,
                     onChanged: (value) => super.setState(
-                      () => this.onChanged(value),
+                      () => onChanged(value),
                     ),
                   ),
                 )

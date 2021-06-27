@@ -10,7 +10,7 @@ class RGBPickerPage extends StatefulWidget {
 
 class RGBPickerPageState extends State<RGBPickerPage> {
   Color color = Colors.blue;
-  void onChanged(Color value) => this.color = value;
+  void onChanged(Color value) => color = value;
 
   @override
   Widget build(BuildContext context) {
@@ -31,15 +31,15 @@ class RGBPickerPageState extends State<RGBPickerPage> {
               children: <Widget>[
                 FloatingActionButton(
                   onPressed: () {},
-                  backgroundColor: this.color,
+                  backgroundColor: color,
                 ),
                 const Divider(),
 
                 ///---------------------------------
                 RGBPicker(
-                  color: this.color,
+                  color: color,
                   onChanged: (value) => super.setState(
-                    () => this.onChanged(value),
+                    () => onChanged(value),
                   ),
                 )
 

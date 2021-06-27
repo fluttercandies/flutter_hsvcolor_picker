@@ -10,7 +10,7 @@ class PaletteValuePickerPage extends StatefulWidget {
 
 class PaletteValuePickerPageState extends State<PaletteValuePickerPage> {
   HSVColor color = HSVColor.fromColor(Colors.blue);
-  void onChanged(HSVColor value) => this.color = value;
+  void onChanged(HSVColor value) => color = value;
 
   @override
   Widget build(BuildContext context) {
@@ -31,15 +31,15 @@ class PaletteValuePickerPageState extends State<PaletteValuePickerPage> {
               children: <Widget>[
                 FloatingActionButton(
                   onPressed: () {},
-                  backgroundColor: this.color.toColor(),
+                  backgroundColor: color.toColor(),
                 ),
                 const Divider(),
 
                 ///---------------------------------
                 PaletteValuePicker(
-                  color: this.color,
+                  color: color,
                   onChanged: (value) => super.setState(
-                    () => this.onChanged(value),
+                    () => onChanged(value),
                   ),
                 )
 
