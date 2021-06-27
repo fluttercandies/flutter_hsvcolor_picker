@@ -286,15 +286,15 @@ class MainPageState extends State<MainPage> {
 }
 
 class MainItem {
-  final int index;
-  final IconData icon;
-  final String text;
-  final Widget page;
-
   MainItem({
     required this.index,
     required this.icon,
     required this.text,
     required this.page,
   });
+
+  final int index;
+  final IconData icon;
+  final String text;
+  final Widget page;
 }
