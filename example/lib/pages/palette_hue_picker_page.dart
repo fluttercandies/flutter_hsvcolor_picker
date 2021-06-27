@@ -15,7 +15,7 @@ class PaletteHuePickerPageState extends State<PaletteHuePickerPage> {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Container(
+      child: SizedBox(
         width: 260,
         child: Card(
           shape: const RoundedRectangleBorder(

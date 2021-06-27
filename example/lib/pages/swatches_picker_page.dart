@@ -12,7 +12,7 @@ class SwatchesPickerPageState extends State<SwatchesPickerPage> {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Container(
+      child: SizedBox(
         width: 300,
         child: Card(
           shape: const RoundedRectangleBorder(

@@ -18,7 +18,7 @@ class PalettePickerPageState extends State<PalettePickerPage> {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Container(
+      child: SizedBox(
         width: 260,
         height: 320,
         child: Card(

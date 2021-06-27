@@ -15,7 +15,7 @@ class WheelPickerPageState extends State<WheelPickerPage> {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Container(
+      child: SizedBox(
         width: 260,
         child: Card(
           shape: const RoundedRectangleBorder(
@@ -36,7 +36,7 @@ class WheelPickerPageState extends State<WheelPickerPage> {
                 const Divider(),
 
                 ///---------------------------------
-                Container(
+                SizedBox(
                   width: 222,
                   height: 222,
                   child: WheelPicker(
