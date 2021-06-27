@@ -3,6 +3,8 @@ import 'package:flutter_hsvcolor_picker/flutter_hsvcolor_picker.dart';
 import 'package:flutter/cupertino.dart';
 
 class ColorPickerPage extends StatefulWidget {
+  const ColorPickerPage({Key? key}) : super(key: key);
+
   @override
   ColorPickerPageState createState() => ColorPickerPageState();
 }
@@ -14,7 +16,7 @@ class ColorPickerPageState extends State<ColorPickerPage> {
       child: Container(
         width: 300,
         child: Card(
-          shape: RoundedRectangleBorder(
+          shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(
               Radius.circular(1.0),
             ),

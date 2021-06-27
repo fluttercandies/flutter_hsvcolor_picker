@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hsvcolor_picker/flutter_hsvcolor_picker.dart';
 
 class PalettePickerPage extends StatefulWidget {
+  PalettePickerPage({Key? key}) : super(key: key);
+
   final List<Color> horizontalColors = [Colors.white, Colors.blue];
   final List<Color> verticalColors = [Colors.transparent, Colors.black];
 
@@ -20,7 +22,7 @@ class PalettePickerPageState extends State<PalettePickerPage> {
         width: 260,
         height: 320,
         child: Card(
-          shape: RoundedRectangleBorder(
+          shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(
               Radius.circular(0.0),
             ),
@@ -41,7 +43,7 @@ class PalettePickerPageState extends State<PalettePickerPage> {
                       ' )',
                   style: Theme.of(context).textTheme.headline4,
                 ),
-                Divider(),
+                const Divider(),
                 Expanded(
 
                     ///---------------------------------

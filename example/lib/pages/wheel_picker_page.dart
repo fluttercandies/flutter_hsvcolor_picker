@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hsvcolor_picker/flutter_hsvcolor_picker.dart';
 
 class WheelPickerPage extends StatefulWidget {
+  const WheelPickerPage({Key? key}) : super(key: key);
+
   @override
   WheelPickerPageState createState() => WheelPickerPageState();
 }
@@ -16,7 +18,7 @@ class WheelPickerPageState extends State<WheelPickerPage> {
       child: Container(
         width: 260,
         child: Card(
-          shape: RoundedRectangleBorder(
+          shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(
               Radius.circular(0.0),
             ),
@@ -31,7 +33,7 @@ class WheelPickerPageState extends State<WheelPickerPage> {
                   onPressed: () {},
                   backgroundColor: this.color.toColor(),
                 ),
-                Divider(),
+                const Divider(),
 
                 ///---------------------------------
                 Container(

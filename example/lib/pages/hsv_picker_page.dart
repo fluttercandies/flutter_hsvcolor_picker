@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hsvcolor_picker/flutter_hsvcolor_picker.dart';
 
 class HSVPickerPage extends StatefulWidget {
+  const HSVPickerPage({Key? key}) : super(key: key);
+
   @override
   HSVPickerPageState createState() => HSVPickerPageState();
 }
@@ -16,7 +18,7 @@ class HSVPickerPageState extends State<HSVPickerPage> {
       child: Container(
         width: 260,
         child: Card(
-          shape: RoundedRectangleBorder(
+          shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(
               Radius.circular(0.0),
             ),
@@ -31,7 +33,7 @@ class HSVPickerPageState extends State<HSVPickerPage> {
                   onPressed: () {},
                   backgroundColor: this.color.toColor(),
                 ),
-                Divider(),
+                const Divider(),
 
                 ///---------------------------------
                 HSVPicker(

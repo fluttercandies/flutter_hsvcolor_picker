@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hsvcolor_picker/flutter_hsvcolor_picker.dart';
 
 class AlphaPickerPage extends StatefulWidget {
+  const AlphaPickerPage({Key? key}) : super(key: key);
+
   @override
   AlphaPickerPageState createState() => AlphaPickerPageState();
 }
@@ -16,7 +18,7 @@ class AlphaPickerPageState extends State<AlphaPickerPage> {
       child: Container(
         width: 260,
         child: Card(
-          shape: RoundedRectangleBorder(
+          shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(
               Radius.circular(0.0),
             ),
@@ -31,7 +33,7 @@ class AlphaPickerPageState extends State<AlphaPickerPage> {
                   this.value.toString(),
                   style: Theme.of(context).textTheme.headline4,
                 ),
-                Divider(),
+                const Divider(),
 
                 ///---------------------------------
                 AlphaPicker(

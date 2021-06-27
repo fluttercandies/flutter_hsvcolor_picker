@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hsvcolor_picker/flutter_hsvcolor_picker.dart';
 
 class SwatchesPickerPage extends StatefulWidget {
+  const SwatchesPickerPage({Key? key}) : super(key: key);
+
   @override
   SwatchesPickerPageState createState() => SwatchesPickerPageState();
 }
@@ -13,7 +15,7 @@ class SwatchesPickerPageState extends State<SwatchesPickerPage> {
       child: Container(
         width: 300,
         child: Card(
-          shape: RoundedRectangleBorder(
+          shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(
               Radius.circular(1.0),
             ),
