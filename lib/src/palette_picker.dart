@@ -93,7 +93,7 @@ class _PalettePickerState extends State<PalettePicker> {
   }
 
   Widget buildLeftRightColors() {
-    return DecoratedBox(
+    return Container(
       decoration: BoxDecoration(
         border: Border.all(color: Colors.grey),
         borderRadius: const BorderRadius.all(
@@ -107,7 +107,7 @@ class _PalettePickerState extends State<PalettePicker> {
   }
 
   Widget buildTopBottomColors() {
-    return DecoratedBox(
+    return Container(
       decoration: BoxDecoration(
         border: Border.all(color: Colors.grey),
         borderRadius: const BorderRadius.all(
