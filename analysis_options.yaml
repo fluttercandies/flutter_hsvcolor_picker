@@ -12,5 +12,6 @@ linter:
     - lines_longer_than_80_chars
     # - public_member_api_docs
     - prefer_single_quotes
+    - sort_child_properties_last
     - sort_constructors_first
     - sort_pub_dependencies
