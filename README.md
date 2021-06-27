@@ -13,7 +13,7 @@ https://pub.dartlang.org/packages/flutter_hsvcolor_picker
 
 ### Installation
 
-Add this to your pubspec.yaml (or create it):
+Add this to your pubspec.yaml:
 
 ```yaml
 dependencies:
@@ -22,8 +22,9 @@ dependencies:
 
 or
 
-```
-flutter_hsvcolor_picker:
+```yaml
+dependencies:
+  flutter_hsvcolor_picker:
     git:
       url: https://github.com/fluttercandies/flutter_hsvcolor_picker.git
 ```
