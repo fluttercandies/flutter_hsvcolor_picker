@@ -1,5 +1,5 @@
-import "package:flutter/material.dart";
-import "package:flutter/cupertino.dart";
+import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
 import 'pages/slider_picker_page.dart';
 import 'pages/palette_picker_page.dart';
@@ -31,77 +31,77 @@ class MainPageState extends State<MainPage> {
     MainItem(
       index: 0,
       icon: Icons.linear_scale,
-      text: "Slider",
+      text: 'Slider',
       page: SliderPickerPage(),
     ),
     MainItem(
       index: 1,
       icon: Icons.gradient,
-      text: "Palette",
+      text: 'Palette',
       page: PalettePickerPage(),
     ),
     null,
     MainItem(
       index: 2,
       icon: Icons.tune,
-      text: "RGB Picker",
+      text: 'RGB Picker',
       page: RGBPickerPage(),
     ),
     MainItem(
       index: 3,
       icon: Icons.tune,
-      text: "HSV Picker",
+      text: 'HSV Picker',
       page: HSVPickerPage(),
     ),
     MainItem(
       index: 4,
       icon: Icons.tune,
-      text: "Wheel Picker",
+      text: 'Wheel Picker',
       page: WheelPickerPage(),
     ),
     null,
     MainItem(
       index: 5,
       icon: Icons.color_lens,
-      text: "Palette Hue Picker",
+      text: 'Palette Hue Picker',
       page: PaletteHuePickerPage(),
     ),
     MainItem(
       index: 6,
       icon: Icons.color_lens,
-      text: "Palette Saturation Picker",
+      text: 'Palette Saturation Picker',
       page: PaletteSaturationPickerPage(),
     ),
     MainItem(
       index: 7,
       icon: Icons.color_lens,
-      text: "Palette Value Picker",
+      text: 'Palette Value Picker',
       page: PaletteValuePickerPage(),
     ),
     null,
     MainItem(
       index: 8,
       icon: Icons.mode_edit,
-      text: "Hex Picker",
+      text: 'Hex Picker',
       page: HexPickerPage(),
     ),
     MainItem(
       index: 9,
       icon: Icons.mode_edit,
-      text: "Alpha Picker",
+      text: 'Alpha Picker',
       page: AlphaPickerPage(),
     ),
     MainItem(
       index: 10,
       icon: Icons.mode_edit,
-      text: "Swatches Picker",
+      text: 'Swatches Picker',
       page: SwatchesPickerPage(),
     ),
     null,
     MainItem(
       index: 11,
       icon: Icons.color_lens,
-      text: "Color Picker",
+      text: 'Color Picker',
       page: ColorPickerPage(),
     ),
   ];
@@ -129,7 +129,7 @@ class MainPageState extends State<MainPage> {
       // Center
       title: Center(
         child: Text(
-          "HSV Color",
+          'HSV Color',
           textAlign: TextAlign.center,
           style: this.theme.textTheme.headline5,
         ),
@@ -193,11 +193,11 @@ class MainPageState extends State<MainPage> {
                 CircleAvatar(
                   radius: 34.0,
                   backgroundColor: this.theme.cardColor,
-                  backgroundImage: AssetImage("packages/avatar.jpg"),
+                  backgroundImage: AssetImage('packages/avatar.jpg'),
                 ),
                 Container(height: 10.0),
                 Text(
-                  "淹死的鱼ysdy44",
+                  '淹死的鱼ysdy44',
                   style: TextStyle(color: Colors.white, fontSize: 18.0),
                 )
               ],
@@ -214,7 +214,7 @@ class MainPageState extends State<MainPage> {
                 shape: StadiumBorder(),
               ),
               child: Text(
-                this.theme.brightness == Brightness.dark ? "Dark" : "Light",
+                this.theme.brightness == Brightness.dark ? 'Dark' : 'Light',
                 style: TextStyle(fontSize: 16.0, color: Colors.white),
               ),
             ),
@@ -271,7 +271,7 @@ class MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "HSV Color",
+      title: 'HSV Color',
       theme: this.theme,
       home: Scaffold(
         key: this.scaffoldKey,

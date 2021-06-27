@@ -1,4 +1,4 @@
-import "package:flutter/material.dart";
+import 'package:flutter/material.dart';
 import 'package:flutter_hsvcolor_picker/flutter_hsvcolor_picker.dart';
 
 class PalettePickerPage extends StatefulWidget {
@@ -32,13 +32,13 @@ class PalettePickerPageState extends State<PalettePickerPage> {
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 Text(
-                  "( " +
+                  '( ' +
                       ((this.value.dx * 100.0).toInt().toDouble() / 100.0)
                           .toString() +
-                      " , " +
+                      ' , ' +
                       ((this.value.dy * 100.0).toInt().toDouble() / 100.0)
                           .toString() +
-                      " )",
+                      ' )',
                   style: Theme.of(context).textTheme.headline4,
                 ),
                 Divider(),
