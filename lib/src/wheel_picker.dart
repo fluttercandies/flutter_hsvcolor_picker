@@ -71,8 +71,10 @@ class _WheelPickerState extends State<WheelPicker> {
     isWheel = !isPalette;
     this.isPalette = isPalette;
 
-    // this.isWheel = vector.distance + _WheelPainter.strokeWidth > radio && vector.distance - squareRadio < radio;
-    // this.isPalette =vector.dx.abs() < squareRadio && vector.dy.abs() < squareRadio;
+    // isWheel = vector.distance + _WheelPainter.strokeWidth > radio &&
+    //     vector.distance - squareRadio < radio;
+    // this.isPalette =
+    //     vector.dx.abs() < squareRadio && vector.dy.abs() < squareRadio;
 
     if (isWheel) {
       super.widget.onChanged(
