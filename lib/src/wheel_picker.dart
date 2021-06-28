@@ -2,23 +2,6 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
-class _Wheel {
-  static double vectorToHue(Offset vector) =>
-      (((math.atan2(vector.dy, vector.dx)) * 180.0 / math.pi) + 360.0) % 360.0;
-  static double vectorToSaturation(double vectorX, double squareRadio) =>
-      vectorX * 0.5 / squareRadio + 0.5;
-  static double vectorToValue(double vectorY, double squareRadio) =>
-      0.5 - vectorY * 0.5 / squareRadio;
-
-  static Offset hueToVector(double h, double radio, Offset center) =>
-      Offset(math.cos(h) * radio + center.dx, math.sin(h) * radio + center.dy);
-  static double saturationToVector(
-          double s, double squareRadio, double centerX) =>
-      (s - 0.5) * squareRadio / 0.5 + centerX;
-  static double valueToVector(double l, double squareRadio, double centerY) =>
-      (0.5 - l) * squareRadio / 0.5 + centerY;
-}
-
 class WheelPicker extends StatefulWidget {
   const WheelPicker({
     required this.color,
@@ -276,4 +259,21 @@ class _WheelPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(_WheelPainter other) => true;
+}
+
+class _Wheel {
+  static double vectorToHue(Offset vector) =>
+      (((math.atan2(vector.dy, vector.dx)) * 180.0 / math.pi) + 360.0) % 360.0;
+  static double vectorToSaturation(double vectorX, double squareRadio) =>
+      vectorX * 0.5 / squareRadio + 0.5;
+  static double vectorToValue(double vectorY, double squareRadio) =>
+      0.5 - vectorY * 0.5 / squareRadio;
+
+  static Offset hueToVector(double h, double radio, Offset center) =>
+      Offset(math.cos(h) * radio + center.dx, math.sin(h) * radio + center.dy);
+  static double saturationToVector(
+          double s, double squareRadio, double centerX) =>
+      (s - 0.5) * squareRadio / 0.5 + centerX;
+  static double valueToVector(double l, double squareRadio, double centerY) =>
+      (0.5 - l) * squareRadio / 0.5 + centerY;
 }

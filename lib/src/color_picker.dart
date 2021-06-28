@@ -10,18 +10,6 @@ import 'rgb_picker.dart';
 import 'swatches_picker.dart';
 import 'wheel_picker.dart';
 
-class _IPicker {
-  _IPicker({
-    required this.index,
-    required this.name,
-    required this.builder,
-  });
-
-  int index;
-  String name;
-  WidgetBuilder builder;
-}
-
 class ColorPicker extends StatefulWidget {
   const ColorPicker({
     required this.onChanged,
@@ -335,4 +323,16 @@ class _ColorPickerState extends State<ColorPicker> {
         );
     }
   }
+}
+
+class _IPicker {
+  _IPicker({
+    required this.index,
+    required this.name,
+    required this.builder,
+  });
+
+  int index;
+  String name;
+  WidgetBuilder builder;
 }
