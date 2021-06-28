@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// Slider for selecting a value between 0 and 1
 class SliderPicker extends StatefulWidget {
   const SliderPicker({
     required this.value,

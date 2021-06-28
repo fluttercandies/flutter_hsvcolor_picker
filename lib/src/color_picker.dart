@@ -10,6 +10,7 @@ import 'rgb_picker.dart';
 import 'swatches_picker.dart';
 import 'wheel_picker.dart';
 
+/// Main color picker including all color pickers of this package
 class ColorPicker extends StatefulWidget {
   const ColorPicker({
     required this.onChanged,

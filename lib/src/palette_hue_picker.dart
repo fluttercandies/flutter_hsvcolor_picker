@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'palette_picker.dart';
 import 'slider_picker.dart';
 
+/// Color palette and color slider
 class PaletteHuePicker extends StatefulWidget {
   const PaletteHuePicker({
     required this.color,

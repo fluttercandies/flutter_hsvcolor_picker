@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 
 import 'slider_picker.dart';
 
+/// Three sliders for selections a color via:
+/// Hue
+/// Saturation
+/// Value
 class HSVPicker extends StatefulWidget {
   const HSVPicker({
     required this.color,

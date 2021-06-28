@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// Palette for selecting two values between 0 and 1
 class PalettePicker extends StatefulWidget {
   const PalettePicker({
     required this.position,

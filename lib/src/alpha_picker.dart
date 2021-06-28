@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'slider_picker.dart';
 
+/// Slider for selecting the alpha value (0-255)
 class AlphaPicker extends StatefulWidget {
   const AlphaPicker({
     required this.alpha,
