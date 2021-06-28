@@ -5,14 +5,14 @@ class HexPicker extends StatefulWidget {
     required this.color,
     required this.onChanged,
     Key? key,
-  })  : controller = TextEditingController(
+  })  : _controller = TextEditingController(
           text: _Hex.colorToString(color).toUpperCase(),
         ),
         super(key: key);
 
   final Color color;
   final ValueChanged<Color> onChanged;
-  final TextEditingController controller;
+  final TextEditingController _controller;
 
   @override
   _HexPickerState createState() => _HexPickerState();
@@ -54,7 +54,7 @@ class _HexPickerState extends State<HexPicker> {
             style:
                 Theme.of(context).textTheme.headline5?.copyWith(fontSize: 20),
             focusNode: FocusNode()..addListener(() {}),
-            controller: super.widget.controller,
+            controller: super.widget._controller,
             onSubmitted: textOnSubmitted,
             decoration: const InputDecoration.collapsed(hintText: 'hex code'),
           ),
