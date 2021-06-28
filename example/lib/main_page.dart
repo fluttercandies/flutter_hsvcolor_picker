@@ -110,7 +110,7 @@ class _MainPageState extends State<MainPage> {
   void iconButtonOnPressed() => scaffoldKey.currentState?.openDrawer();
   void listTileOnTap(_MainItem item) {
     index = item.index;
-    // Navigator.of(context).pop(); // Navigator
+    scaffoldKey.currentState?.openEndDrawer();
   }
 
   // Theme
