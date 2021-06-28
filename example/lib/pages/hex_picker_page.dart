@@ -5,10 +5,10 @@ class HexPickerPage extends StatefulWidget {
   const HexPickerPage({Key? key}) : super(key: key);
 
   @override
-  HexPickerPageState createState() => HexPickerPageState();
+  _HexPickerPageState createState() => _HexPickerPageState();
 }
 
-class HexPickerPageState extends State<HexPickerPage> {
+class _HexPickerPageState extends State<HexPickerPage> {
   Color color = Colors.blue;
   void onChanged(Color value) => color = value;
 

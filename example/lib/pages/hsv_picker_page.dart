@@ -5,10 +5,10 @@ class HSVPickerPage extends StatefulWidget {
   const HSVPickerPage({Key? key}) : super(key: key);
 
   @override
-  HSVPickerPageState createState() => HSVPickerPageState();
+  _HSVPickerPageState createState() => _HSVPickerPageState();
 }
 
-class HSVPickerPageState extends State<HSVPickerPage> {
+class _HSVPickerPageState extends State<HSVPickerPage> {
   HSVColor color = HSVColor.fromColor(Colors.blue);
   void onChanged(HSVColor value) => color = value;
 

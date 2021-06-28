@@ -5,10 +5,10 @@ class AlphaPickerPage extends StatefulWidget {
   const AlphaPickerPage({Key? key}) : super(key: key);
 
   @override
-  AlphaPickerPageState createState() => AlphaPickerPageState();
+  _AlphaPickerPageState createState() => _AlphaPickerPageState();
 }
 
-class AlphaPickerPageState extends State<AlphaPickerPage> {
+class _AlphaPickerPageState extends State<AlphaPickerPage> {
   int value = 0;
   void onChanged(int value) => this.value = value;
 

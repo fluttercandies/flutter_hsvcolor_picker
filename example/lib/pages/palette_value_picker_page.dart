@@ -5,10 +5,10 @@ class PaletteValuePickerPage extends StatefulWidget {
   const PaletteValuePickerPage({Key? key}) : super(key: key);
 
   @override
-  PaletteValuePickerPageState createState() => PaletteValuePickerPageState();
+  _PaletteValuePickerPageState createState() => _PaletteValuePickerPageState();
 }
 
-class PaletteValuePickerPageState extends State<PaletteValuePickerPage> {
+class _PaletteValuePickerPageState extends State<PaletteValuePickerPage> {
   HSVColor color = HSVColor.fromColor(Colors.blue);
   void onChanged(HSVColor value) => color = value;
 

@@ -5,10 +5,10 @@ class SliderPickerPage extends StatefulWidget {
   const SliderPickerPage({Key? key}) : super(key: key);
 
   @override
-  SliderPickerPageState createState() => SliderPickerPageState();
+  _SliderPickerPageState createState() => _SliderPickerPageState();
 }
 
-class SliderPickerPageState extends State<SliderPickerPage> {
+class _SliderPickerPageState extends State<SliderPickerPage> {
   final List<Color> hueColors = [
     const Color.fromARGB(255, 255, 0, 0),
     const Color.fromARGB(255, 255, 255, 0),

@@ -8,10 +8,10 @@ class PalettePickerPage extends StatefulWidget {
   final List<Color> verticalColors = [Colors.transparent, Colors.black];
 
   @override
-  PalettePickerPageState createState() => PalettePickerPageState();
+  _PalettePickerPageState createState() => _PalettePickerPageState();
 }
 
-class PalettePickerPageState extends State<PalettePickerPage> {
+class _PalettePickerPageState extends State<PalettePickerPage> {
   Offset value = Offset.zero;
   void onChanged(Offset value) => this.value = value;
 

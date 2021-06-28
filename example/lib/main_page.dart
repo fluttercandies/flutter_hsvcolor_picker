@@ -18,88 +18,88 @@ class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
 
   @override
-  MainPageState createState() => MainPageState();
+  _MainPageState createState() => _MainPageState();
 }
 
-class MainPageState extends State<MainPage> {
+class _MainPageState extends State<MainPage> {
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
   int index = 11;
   Widget? get page => items
       .firstWhere((item) => item == null ? false : item.index == index)
       ?.page;
-  List<MainItem?> items = [
-    MainItem(
+  List<_MainItem?> items = [
+    _MainItem(
       index: 0,
       icon: Icons.linear_scale,
       text: 'Slider',
       page: const SliderPickerPage(),
     ),
-    MainItem(
+    _MainItem(
       index: 1,
       icon: Icons.gradient,
       text: 'Palette',
       page: PalettePickerPage(),
     ),
     null,
-    MainItem(
+    _MainItem(
       index: 2,
       icon: Icons.tune,
       text: 'RGB Picker',
       page: const RGBPickerPage(),
     ),
-    MainItem(
+    _MainItem(
       index: 3,
       icon: Icons.tune,
       text: 'HSV Picker',
       page: const HSVPickerPage(),
     ),
-    MainItem(
+    _MainItem(
       index: 4,
       icon: Icons.tune,
       text: 'Wheel Picker',
       page: const WheelPickerPage(),
     ),
     null,
-    MainItem(
+    _MainItem(
       index: 5,
       icon: Icons.color_lens,
       text: 'Palette Hue Picker',
       page: const PaletteHuePickerPage(),
     ),
-    MainItem(
+    _MainItem(
       index: 6,
       icon: Icons.color_lens,
       text: 'Palette Saturation Picker',
       page: const PaletteSaturationPickerPage(),
     ),
-    MainItem(
+    _MainItem(
       index: 7,
       icon: Icons.color_lens,
       text: 'Palette Value Picker',
       page: const PaletteValuePickerPage(),
     ),
     null,
-    MainItem(
+    _MainItem(
       index: 8,
       icon: Icons.mode_edit,
       text: 'Hex Picker',
       page: const HexPickerPage(),
     ),
-    MainItem(
+    _MainItem(
       index: 9,
       icon: Icons.mode_edit,
       text: 'Alpha Picker',
       page: const AlphaPickerPage(),
     ),
-    MainItem(
+    _MainItem(
       index: 10,
       icon: Icons.mode_edit,
       text: 'Swatches Picker',
       page: const SwatchesPickerPage(),
     ),
     null,
-    MainItem(
+    _MainItem(
       index: 11,
       icon: Icons.color_lens,
       text: 'Color Picker',
@@ -108,7 +108,7 @@ class MainPageState extends State<MainPage> {
   ];
 
   void iconButtonOnPressed() => scaffoldKey.currentState?.openDrawer();
-  void listTileOnTap(MainItem item) {
+  void listTileOnTap(_MainItem item) {
     index = item.index;
     // Navigator.of(context).pop(); // Navigator
   }
@@ -256,7 +256,7 @@ class MainPageState extends State<MainPage> {
     );
   }
 
-  Widget buildListViewItem(MainItem? item) {
+  Widget buildListViewItem(_MainItem? item) {
     if (item == null) return const Divider(height: 6.0);
 
     return ListTile(
@@ -285,8 +285,8 @@ class MainPageState extends State<MainPage> {
   }
 }
 
-class MainItem {
-  MainItem({
+class _MainItem {
+  _MainItem({
     required this.index,
     required this.icon,
     required this.text,

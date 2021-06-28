@@ -5,10 +5,10 @@ class WheelPickerPage extends StatefulWidget {
   const WheelPickerPage({Key? key}) : super(key: key);
 
   @override
-  WheelPickerPageState createState() => WheelPickerPageState();
+  _WheelPickerPageState createState() => _WheelPickerPageState();
 }
 
-class WheelPickerPageState extends State<WheelPickerPage> {
+class _WheelPickerPageState extends State<WheelPickerPage> {
   HSVColor color = HSVColor.fromColor(Colors.blue);
   void onChanged(HSVColor color) => this.color = color;
 

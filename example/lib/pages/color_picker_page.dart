@@ -6,10 +6,10 @@ class ColorPickerPage extends StatefulWidget {
   const ColorPickerPage({Key? key}) : super(key: key);
 
   @override
-  ColorPickerPageState createState() => ColorPickerPageState();
+  _ColorPickerPageState createState() => _ColorPickerPageState();
 }
 
-class ColorPickerPageState extends State<ColorPickerPage> {
+class _ColorPickerPageState extends State<ColorPickerPage> {
   @override
   Widget build(BuildContext context) {
     return Center(
