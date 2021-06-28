@@ -52,11 +52,6 @@ class _PaletteSaturationPickerState extends State<PaletteSaturationPicker> {
   ];
 
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,

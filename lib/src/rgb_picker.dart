@@ -83,11 +83,6 @@ class _RGBPickerState extends State<RGBPicker> {
   }
 
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
