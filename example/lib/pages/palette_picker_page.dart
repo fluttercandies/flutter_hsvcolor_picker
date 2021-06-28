@@ -54,8 +54,8 @@ class _PalettePickerPageState extends State<PalettePickerPage> {
                         onChanged: (value) => super.setState(
                               () => onChanged(value),
                             ),
-                        leftRightColors: super.widget.horizontalColors,
-                        topBottomColors: super.widget.verticalColors)
+                        leftRightColors: widget.horizontalColors,
+                        topBottomColors: widget.verticalColors)
 
                     ///---------------------------------
 

@@ -19,17 +19,17 @@ class HexPicker extends StatefulWidget {
 }
 
 class _HexPickerState extends State<HexPicker> {
-  void textOnSubmitted(String value) => super.widget.onChanged(
+  void textOnSubmitted(String value) => widget.onChanged(
         textOnChenged(value),
       );
   Color textOnChenged(String text) {
     final String? hex = _Hex.textSubString(text);
-    if (hex == null) return super.widget.color;
+    if (hex == null) return widget.color;
 
     try {
       return _Hex.intToColor(_Hex.stringToInt(hex));
     } catch (_) {
-      return super.widget.color;
+      return widget.color;
     }
   }
 
@@ -54,7 +54,7 @@ class _HexPickerState extends State<HexPicker> {
             style:
                 Theme.of(context).textTheme.headline5?.copyWith(fontSize: 20),
             focusNode: FocusNode()..addListener(() {}),
-            controller: super.widget._controller,
+            controller: widget._controller,
             onSubmitted: textOnSubmitted,
             decoration: const InputDecoration.collapsed(hintText: 'hex code'),
           ),

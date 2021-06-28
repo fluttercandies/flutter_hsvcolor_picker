@@ -17,10 +17,10 @@ class HSVPicker extends StatefulWidget {
 }
 
 class _HSVPickerState extends State<HSVPicker> {
-  HSVColor get color => super.widget.color;
+  HSVColor get color => widget.color;
 
   // Hue
-  void hueOnChange(double value) => super.widget.onChanged(
+  void hueOnChange(double value) => widget.onChanged(
         color.withHue(value),
       );
   List<Color> get hueColors => <Color>[
@@ -34,7 +34,7 @@ class _HSVPickerState extends State<HSVPicker> {
       ];
 
   // Saturation
-  void saturationOnChange(double value) => super.widget.onChanged(
+  void saturationOnChange(double value) => widget.onChanged(
         color.withSaturation(value),
       );
   List<Color> get saturationColors => <Color>[
@@ -43,7 +43,7 @@ class _HSVPickerState extends State<HSVPicker> {
       ];
 
   // Value
-  void valueOnChange(double value) => super.widget.onChanged(
+  void valueOnChange(double value) => widget.onChanged(
         color.withValue(value),
       );
   List<Color> get valueColors => <Color>[

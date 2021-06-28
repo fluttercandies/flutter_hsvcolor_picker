@@ -17,7 +17,7 @@ class WheelPicker extends StatefulWidget {
 }
 
 class _WheelPickerState extends State<WheelPicker> {
-  HSVColor get color => super.widget.color;
+  HSVColor get color => widget.color;
 
   final GlobalKey paletteKey = GlobalKey();
   Offset getOffset(Offset ratio) {
@@ -60,21 +60,21 @@ class _WheelPickerState extends State<WheelPicker> {
     //     vector.dx.abs() < squareRadio && vector.dy.abs() < squareRadio;
 
     if (isWheel) {
-      super.widget.onChanged(
-            color.withHue(
-              _Wheel.vectorToHue(vector),
-            ),
-          );
+      widget.onChanged(
+        color.withHue(
+          _Wheel.vectorToHue(vector),
+        ),
+      );
     }
     if (this.isPalette) {
-      super.widget.onChanged(
-            HSVColor.fromAHSV(
-              color.alpha,
-              color.hue,
-              _Wheel.vectorToSaturation(vector.dx, squareRadio).clamp(0.0, 1.0),
-              _Wheel.vectorToValue(vector.dy, squareRadio).clamp(0.0, 1.0),
-            ),
-          );
+      widget.onChanged(
+        HSVColor.fromAHSV(
+          color.alpha,
+          color.hue,
+          _Wheel.vectorToSaturation(vector.dx, squareRadio).clamp(0.0, 1.0),
+          _Wheel.vectorToValue(vector.dy, squareRadio).clamp(0.0, 1.0),
+        ),
+      );
     }
   }
 
@@ -92,21 +92,21 @@ class _WheelPickerState extends State<WheelPicker> {
     final Offset vector = offset - startPosition - center;
 
     if (isWheel) {
-      super.widget.onChanged(
-            color.withHue(
-              _Wheel.vectorToHue(vector),
-            ),
-          );
+      widget.onChanged(
+        color.withHue(
+          _Wheel.vectorToHue(vector),
+        ),
+      );
     }
     if (isPalette) {
-      super.widget.onChanged(
-            HSVColor.fromAHSV(
-              color.alpha,
-              color.hue,
-              _Wheel.vectorToSaturation(vector.dx, squareRadio).clamp(0.0, 1.0),
-              _Wheel.vectorToValue(vector.dy, squareRadio).clamp(0.0, 1.0),
-            ),
-          );
+      widget.onChanged(
+        HSVColor.fromAHSV(
+          color.alpha,
+          color.hue,
+          _Wheel.vectorToSaturation(vector.dx, squareRadio).clamp(0.0, 1.0),
+          _Wheel.vectorToValue(vector.dy, squareRadio).clamp(0.0, 1.0),
+        ),
+      );
     }
   }
 

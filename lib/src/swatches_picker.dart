@@ -16,7 +16,7 @@ class _SwatchesPickerState extends State<SwatchesPicker>
     with SingleTickerProviderStateMixin {
   late TabController controller;
 
-  void itemClick(Color item) => super.widget.onChanged(item);
+  void itemClick(Color item) => widget.onChanged(item);
 
   @override
   void initState() {

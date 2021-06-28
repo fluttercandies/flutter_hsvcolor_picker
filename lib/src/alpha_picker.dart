@@ -18,7 +18,7 @@ class AlphaPicker extends StatefulWidget {
 
 class _AlphaPickerState extends State<AlphaPicker> {
   void valueOnChanged(double ratio) {
-    super.widget.onChanged(ratio.toInt());
+    widget.onChanged(ratio.toInt());
   }
 
   Widget buildTitle(String title, String text) {
@@ -53,9 +53,9 @@ class _AlphaPickerState extends State<AlphaPicker> {
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         // Alpha
-        buildTitle('A', super.widget.alpha.toString()),
+        buildTitle('A', widget.alpha.toString()),
         SliderPicker(
-          value: super.widget.alpha.toDouble(),
+          value: widget.alpha.toDouble(),
           max: 255.0,
           onChanged: valueOnChanged,
           child: CustomPaint(

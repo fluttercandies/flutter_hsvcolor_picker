@@ -18,10 +18,10 @@ class PaletteHuePicker extends StatefulWidget {
 }
 
 class _PaletteHuePickerState extends State<PaletteHuePicker> {
-  HSVColor get color => super.widget.color;
+  HSVColor get color => widget.color;
 
   // Hue
-  void hueOnChange(double value) => super.widget.onChanged(
+  void hueOnChange(double value) => widget.onChanged(
         color.withHue(value),
       );
   List<Color> get hueColors => <Color>[
@@ -35,7 +35,7 @@ class _PaletteHuePickerState extends State<PaletteHuePicker> {
       ];
 
   // Saturation Value
-  void saturationValueOnChange(Offset value) => super.widget.onChanged(
+  void saturationValueOnChange(Offset value) => widget.onChanged(
         HSVColor.fromAHSV(color.alpha, color.hue, value.dx, value.dy),
       );
   // Saturation

@@ -24,12 +24,12 @@ class SliderPicker extends StatefulWidget {
 }
 
 class _SliderPickerState extends State<SliderPicker> {
-  double get value => super.widget.value;
-  double get min => super.widget.min;
-  double get max => super.widget.max;
+  double get value => widget.value;
+  double get min => widget.min;
+  double get max => widget.max;
 
   double getRatio() => ((value - min) / (max - min)).clamp(0.0, 1.0);
-  void setRatio(double ratio) => super.widget.onChanged(
+  void setRatio(double ratio) => widget.onChanged(
         (ratio * (max - min) + min).clamp(min, max),
       );
 
@@ -54,7 +54,7 @@ class _SliderPickerState extends State<SliderPicker> {
           // Track
           LayoutId(
             id: _SliderLayout.track,
-            child: (super.widget.colors == null)
+            child: (widget.colors == null)
                 ?
 
                 // Child
@@ -65,7 +65,7 @@ class _SliderPickerState extends State<SliderPicker> {
                     ),
                     child: ClipRRect(
                       borderRadius: radius,
-                      child: super.widget.child,
+                      child: widget.child,
                     ),
                   )
                 :
@@ -75,7 +75,7 @@ class _SliderPickerState extends State<SliderPicker> {
                     decoration: BoxDecoration(
                       borderRadius: radius,
                       border: Border.all(color: Colors.grey),
-                      gradient: LinearGradient(colors: super.widget.colors!),
+                      gradient: LinearGradient(colors: widget.colors!),
                     ),
                   ),
           ),

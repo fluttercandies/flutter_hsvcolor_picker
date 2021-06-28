@@ -34,19 +34,19 @@ class _ColorPickerState extends State<ColorPicker> {
 
   void _alphaOnChanged(int value) {
     _alpha = value;
-    super.widget.onChanged(_color.withAlpha(value));
+    widget.onChanged(_color.withAlpha(value));
   }
 
   void _colorOnChanged(Color value) {
     _color = value;
     _hSVColor = HSVColor.fromColor(value);
-    super.widget.onChanged(value);
+    widget.onChanged(value);
   }
 
   void _hSVColorOnChanged(HSVColor value) {
     _color = value.toColor();
     _hSVColor = value;
-    super.widget.onChanged(value.toColor());
+    widget.onChanged(value.toColor());
   }
 
   void _colorWithAlphaOnChanged(Color value) {
@@ -54,7 +54,7 @@ class _ColorPickerState extends State<ColorPicker> {
     final Color color = value.withAlpha(255);
     _color = color;
     _hSVColor = HSVColor.fromColor(color);
-    super.widget.onChanged(value);
+    widget.onChanged(value);
   }
 
   // Pickers

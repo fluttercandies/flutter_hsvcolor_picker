@@ -29,11 +29,11 @@ class PalettePicker extends StatefulWidget {
 class _PalettePickerState extends State<PalettePicker> {
   final GlobalKey paletteKey = GlobalKey();
 
-  Offset get position => super.widget.position;
-  double get leftPosition => super.widget.leftPosition;
-  double get rightPosition => super.widget.rightPosition;
-  double get topPosition => super.widget.topPosition;
-  double get bottomPosition => super.widget.bottomPosition;
+  Offset get position => widget.position;
+  double get leftPosition => widget.leftPosition;
+  double get rightPosition => widget.rightPosition;
+  double get topPosition => widget.topPosition;
+  double get bottomPosition => widget.bottomPosition;
 
   /// Position(min, max) > Ratio(0, 1)
   Offset positionToRatio() {
@@ -79,7 +79,7 @@ class _PalettePickerState extends State<PalettePicker> {
         : ratioToPosition2(1.0 - ratioY, bottomPosition, topPosition);
 
     final Offset position = Offset(positionX, positionY);
-    super.widget.onChanged(position);
+    widget.onChanged(position);
   }
 
   double ratioToPosition2(
@@ -100,7 +100,7 @@ class _PalettePickerState extends State<PalettePicker> {
           Radius.circular(6),
         ),
         gradient: LinearGradient(
-          colors: super.widget.leftRightColors,
+          colors: widget.leftRightColors,
         ),
       ),
     );
@@ -116,7 +116,7 @@ class _PalettePickerState extends State<PalettePicker> {
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
-          colors: super.widget.topBottomColors,
+          colors: widget.topBottomColors,
         ),
       ),
     );

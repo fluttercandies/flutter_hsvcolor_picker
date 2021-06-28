@@ -17,10 +17,10 @@ class RGBPicker extends StatefulWidget {
 }
 
 class _RGBPickerState extends State<RGBPicker> {
-  Color get color => super.widget.color;
+  Color get color => widget.color;
 
   // Red
-  void redOnChange(double value) => super.widget.onChanged(
+  void redOnChange(double value) => widget.onChanged(
         Color.fromARGB(color.alpha, value.toInt(), color.green, color.blue),
       );
   List<Color> get redColors => <Color>[
@@ -29,7 +29,7 @@ class _RGBPickerState extends State<RGBPicker> {
       ];
 
   // Green
-  void greenOnChange(double value) => super.widget.onChanged(
+  void greenOnChange(double value) => widget.onChanged(
         Color.fromARGB(color.alpha, color.red, value.toInt(), color.blue),
       );
   List<Color> get greenColors => <Color>[
@@ -38,7 +38,7 @@ class _RGBPickerState extends State<RGBPicker> {
       ];
 
   // Blue
-  void blueOnChange(double value) => super.widget.onChanged(
+  void blueOnChange(double value) => widget.onChanged(
         Color.fromARGB(
           color.alpha,
           color.red,
