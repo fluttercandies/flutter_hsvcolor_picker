@@ -24,7 +24,7 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
-  int index = 11;
+  int index = 0;
   Widget? get page => items
       .firstWhere((item) => item == null ? false : item.index == index)
       ?.page;
