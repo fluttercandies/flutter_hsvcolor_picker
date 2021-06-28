@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class Hex {
+class _Hex {
   // Hex Number To Color
   static Color intToColor(int hexNumber) => Color.fromARGB(
         255,
@@ -44,7 +44,7 @@ class HexPicker extends StatefulWidget {
     required this.onChanged,
     Key? key,
   })  : controller = TextEditingController(
-          text: Hex.colorToString(color).toUpperCase(),
+          text: _Hex.colorToString(color).toUpperCase(),
         ),
         super(key: key);
 
@@ -61,11 +61,11 @@ class _HexPickerState extends State<HexPicker> {
         textOnChenged(value),
       );
   Color textOnChenged(String text) {
-    final String? hex = Hex.textSubString(text);
+    final String? hex = _Hex.textSubString(text);
     if (hex == null) return super.widget.color;
 
     try {
-      return Hex.intToColor(Hex.stringToInt(hex));
+      return _Hex.intToColor(_Hex.stringToInt(hex));
     } catch (_) {
       return super.widget.color;
     }

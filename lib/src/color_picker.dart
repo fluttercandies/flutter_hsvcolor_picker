@@ -33,11 +33,11 @@ class ColorPicker extends StatefulWidget {
   final Color color;
 
   @override
-  ColorPickerState createState() => ColorPickerState();
+  _ColorPickerState createState() => _ColorPickerState();
 }
 
-class ColorPickerState extends State<ColorPicker> {
-  ColorPickerState();
+class _ColorPickerState extends State<ColorPicker> {
+  _ColorPickerState();
 
   // Color
   late int _alpha;

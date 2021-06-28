@@ -2,7 +2,7 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
-class Wheel {
+class _Wheel {
   static double vectorToHue(Offset vector) =>
       (((math.atan2(vector.dy, vector.dx)) * 180.0 / math.pi) + 360.0) % 360.0;
   static double vectorToSaturation(double vectorX, double squareRadio) =>
@@ -79,7 +79,7 @@ class _WheelPickerState extends State<WheelPicker> {
     if (isWheel) {
       super.widget.onChanged(
             color.withHue(
-              Wheel.vectorToHue(vector),
+              _Wheel.vectorToHue(vector),
             ),
           );
     }
@@ -88,8 +88,8 @@ class _WheelPickerState extends State<WheelPicker> {
             HSVColor.fromAHSV(
               color.alpha,
               color.hue,
-              Wheel.vectorToSaturation(vector.dx, squareRadio).clamp(0.0, 1.0),
-              Wheel.vectorToValue(vector.dy, squareRadio).clamp(0.0, 1.0),
+              _Wheel.vectorToSaturation(vector.dx, squareRadio).clamp(0.0, 1.0),
+              _Wheel.vectorToValue(vector.dy, squareRadio).clamp(0.0, 1.0),
             ),
           );
     }
@@ -111,7 +111,7 @@ class _WheelPickerState extends State<WheelPicker> {
     if (isWheel) {
       super.widget.onChanged(
             color.withHue(
-              Wheel.vectorToHue(vector),
+              _Wheel.vectorToHue(vector),
             ),
           );
     }
@@ -120,8 +120,8 @@ class _WheelPickerState extends State<WheelPicker> {
             HSVColor.fromAHSV(
               color.alpha,
               color.hue,
-              Wheel.vectorToSaturation(vector.dx, squareRadio).clamp(0.0, 1.0),
-              Wheel.vectorToValue(vector.dy, squareRadio).clamp(0.0, 1.0),
+              _Wheel.vectorToSaturation(vector.dx, squareRadio).clamp(0.0, 1.0),
+              _Wheel.vectorToValue(vector.dy, squareRadio).clamp(0.0, 1.0),
             ),
           );
     }
@@ -259,16 +259,16 @@ class _WheelPainter extends CustomPainter {
       ..color = Colors.black
       ..strokeWidth = 6
       ..style = PaintingStyle.stroke;
-    final Offset wheel =
-        Wheel.hueToVector((color.hue + 360.0) * math.pi / 180.0, radio, center);
+    final Offset wheel = _Wheel.hueToVector(
+        (color.hue + 360.0) * math.pi / 180.0, radio, center);
     canvas.drawCircle(wheel, 12, paintBlack);
     canvas.drawCircle(wheel, 12, paintWhite);
 
     // Thumb
     final double paletteX =
-        Wheel.saturationToVector(color.saturation, squareRadio, center.dx);
+        _Wheel.saturationToVector(color.saturation, squareRadio, center.dx);
     final double paletteY =
-        Wheel.valueToVector(color.value, squareRadio, center.dy);
+        _Wheel.valueToVector(color.value, squareRadio, center.dy);
     final Offset paletteVector = Offset(paletteX, paletteY);
     canvas.drawCircle(paletteVector, 12, paintBlack);
     canvas.drawCircle(paletteVector, 12, paintWhite);

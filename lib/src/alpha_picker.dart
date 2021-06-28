@@ -59,7 +59,7 @@ class _AlphaPickerState extends State<AlphaPicker> {
           max: 255.0,
           onChanged: valueOnChanged,
           child: CustomPaint(
-            painter: AlphaTrackPainter(),
+            painter: _AlphaTrackPainter(),
           ),
         )
       ],
@@ -67,8 +67,8 @@ class _AlphaPickerState extends State<AlphaPicker> {
   }
 }
 
-/// Track
-class AlphaTrackPainter extends CustomPainter {
+// Track
+class _AlphaTrackPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final double side = size.height / 2;

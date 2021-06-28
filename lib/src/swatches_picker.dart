@@ -24,7 +24,7 @@ class _SwatchesPickerState extends State<SwatchesPicker>
 
     controller = TabController(
       initialIndex: 1,
-      length: swatches.length,
+      length: _swatches.length,
       vsync: this,
     );
   }
@@ -62,14 +62,14 @@ class _SwatchesPickerState extends State<SwatchesPicker>
           mainAxisSpacing: 4.0,
           crossAxisSpacing: 4.0,
           padding: const EdgeInsets.all(4.0),
-          children: swatches.map(buildListView).toList(),
+          children: _swatches.map(buildListView).toList(),
         ),
       ),
     );
   }
 }
 
-List<Color> swatches = <Color>[
+List<Color> _swatches = <Color>[
   //[
   Colors.transparent, //transparent
   Colors.black, //black
