@@ -309,13 +309,15 @@ class _ColorPickerState extends State<ColorPicker> {
         return Row(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                _buildHead(),
-                _buildDropdown(),
-                _buildAlphaPicker(),
-              ],
+            Flexible(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  _buildHead(),
+                  _buildDropdown(),
+                  _buildAlphaPicker(),
+                ],
+              ),
             ),
             Expanded(
               child: _buildBody(),
