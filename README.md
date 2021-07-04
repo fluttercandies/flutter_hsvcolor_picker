@@ -20,13 +20,11 @@ https://pub.dev/packages/flutter_hsvcolor_picker/install
 
 import "package:flutter_hsvcolor_picker/flutter_hsvcolor_picker.dart";
 
-
-new ColorPicker(
+ColorPicker(
   color: Colors.blue,
   onChanged: (value){ },
   initialPicker: Picker.paletteHue,
 )
-
 ```
 
 Also see the example app on GitHub: https://github.com/fluttercandies/flutter_hsvcolor_picker/tree/master/example/lib
