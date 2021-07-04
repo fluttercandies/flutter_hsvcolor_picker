@@ -34,8 +34,9 @@ class ColorPicker extends StatefulWidget {
 
   /// The first picker widget that is shown.
   ///
-  /// Use [Picker.swatches], [Picker.rgb], [Picker.hsv], [Picker.wheel],
-  /// [Picker.paletteHue], [Picker.paletteSaturation] or [Picker.paletteValue].
+  /// See also:
+  ///
+  ///  * [Picker] Enumeration of pickers.
   final Picker initialPicker;
 
   @override
