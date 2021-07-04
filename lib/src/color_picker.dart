@@ -35,7 +35,8 @@ class _ColorPickerState extends State<ColorPicker> {
 
   void _alphaOnChanged(int value) {
     _alpha = value;
-    widget.onChanged(_color.withAlpha(value));
+    _color = _color.withAlpha(_alpha);
+    widget.onChanged(_color);
   }
 
   void _colorOnChanged(Color value) {
