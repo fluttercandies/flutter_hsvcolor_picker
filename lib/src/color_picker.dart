@@ -10,16 +10,33 @@ import 'rgb_picker.dart';
 import 'swatches_picker.dart';
 import 'wheel_picker.dart';
 
+enum Picker {
+  swatches,
+  rgb,
+  hsv,
+  wheel,
+  paletteHue,
+  paletteSaturation,
+  paletteValue,
+}
+
 /// Main color picker including all color pickers of this package
 class ColorPicker extends StatefulWidget {
   const ColorPicker({
     required this.onChanged,
     this.color = Colors.blue,
+    this.initialPicker = Picker.paletteHue,
     Key? key,
   }) : super(key: key);
 
   final ValueChanged<Color> onChanged;
   final Color color;
+
+  /// The first picker widget that is shown.
+  ///
+  /// Use [Picker.swatches], [Picker.rgb], [Picker.hsv], [Picker.wheel],
+  /// [Picker.paletteHue], [Picker.paletteSaturation] or [Picker.paletteValue].
+  final Picker initialPicker;
 
   @override
   _ColorPickerState createState() => _ColorPickerState();
@@ -32,6 +49,8 @@ class _ColorPickerState extends State<ColorPicker> {
   late int _alpha;
   late Color _color;
   late HSVColor _hSVColor;
+  late List<_IPicker> _pickers;
+  late int _index;
 
   void _alphaOnChanged(int value) {
     _alpha = value;
@@ -58,9 +77,6 @@ class _ColorPickerState extends State<ColorPicker> {
     widget.onChanged(value);
   }
 
-  // Pickers
-  int _index = 4;
-  late List<_IPicker> _pickers;
   void _pickerOnChanged(_IPicker? value) {
     if (value != null) {
       _index = _pickers.indexOf(value);
@@ -81,8 +97,8 @@ class _ColorPickerState extends State<ColorPicker> {
     _pickers = <_IPicker>[
       // SwatchesPicker
       _IPicker(
-        index: 0,
         name: 'Swatches',
+        picker: Picker.swatches,
         builder: (BuildContext context) => SwatchesPicker(
           onChanged: (Color value) => super.setState(
             () => _colorWithAlphaOnChanged(value),
@@ -92,8 +108,8 @@ class _ColorPickerState extends State<ColorPicker> {
 
       // RGBPicker
       _IPicker(
-        index: 1,
         name: 'RGB',
+        picker: Picker.rgb,
         builder: (BuildContext context) => RGBPicker(
           color: _color,
           onChanged: (Color value) => super.setState(
@@ -104,8 +120,8 @@ class _ColorPickerState extends State<ColorPicker> {
 
       // HSVPicker
       _IPicker(
-        index: 2,
         name: 'HSV',
+        picker: Picker.hsv,
         builder: (BuildContext context) => HSVPicker(
           color: _hSVColor,
           onChanged: (HSVColor value) => super.setState(
@@ -116,8 +132,8 @@ class _ColorPickerState extends State<ColorPicker> {
 
       // WheelPicker
       _IPicker(
-        index: 3,
         name: 'Wheel',
+        picker: Picker.wheel,
         builder: (BuildContext context) => WheelPicker(
           color: _hSVColor,
           onChanged: (HSVColor value) => super.setState(
@@ -128,8 +144,8 @@ class _ColorPickerState extends State<ColorPicker> {
 
       // PaletteHuePicker
       _IPicker(
-        index: 4,
         name: 'Palette Hue',
+        picker: Picker.paletteHue,
         builder: (BuildContext context) => PaletteHuePicker(
           color: _hSVColor,
           onChanged: (HSVColor value) => super.setState(
@@ -140,8 +156,8 @@ class _ColorPickerState extends State<ColorPicker> {
 
       // PaletteSaturationPicker
       _IPicker(
-        index: 5,
         name: 'Palette Saturation',
+        picker: Picker.paletteSaturation,
         builder: (BuildContext context) => PaletteSaturationPicker(
           color: _hSVColor,
           onChanged: (HSVColor value) => super.setState(
@@ -152,8 +168,8 @@ class _ColorPickerState extends State<ColorPicker> {
 
       // PaletteValuePicker
       _IPicker(
-        index: 6,
         name: 'Palette Value',
+        picker: Picker.paletteValue,
         builder: (BuildContext context) => PaletteValuePicker(
           color: _hSVColor,
           onChanged: (HSVColor value) => super.setState(
@@ -162,6 +178,10 @@ class _ColorPickerState extends State<ColorPicker> {
         ),
       ),
     ];
+
+    _index = _pickers.indexOf(
+      _pickers.firstWhere((element) => element.picker == widget.initialPicker),
+    );
   }
 
   // Dropdown
@@ -172,7 +192,7 @@ class _ColorPickerState extends State<ColorPicker> {
         padding: const EdgeInsets.fromLTRB(10.0, 8.0, 10.0, 0.0),
         child: Text(
           item.name,
-          style: _index == item.index
+          style: _index == _pickers.indexOf(item)
               ? Theme.of(context)
                   .textTheme
                   .headline5
@@ -328,12 +348,12 @@ class _ColorPickerState extends State<ColorPicker> {
 
 class _IPicker {
   _IPicker({
-    required this.index,
     required this.name,
+    required this.picker,
     required this.builder,
   });
 
-  int index;
   String name;
+  Picker picker;
   WidgetBuilder builder;
 }
