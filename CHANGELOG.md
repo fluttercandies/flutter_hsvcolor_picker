@@ -1,11 +1,14 @@
+## [1.0.1]
+
+* Add .gihub files.
 ## [1.0.0]
 
 * Migrate to null safety.
 
-## [0.1.1] - TODO: Add release date.
+## [0.1.1]
 
-* TODO: Describe initial release.
+* Describe initial release.
 
-## [0.1.2] - TODO: Add release date.
+## [0.1.2]
 
-* TODO: Some bugs have been improved.
+* Some bugs have been improved.
