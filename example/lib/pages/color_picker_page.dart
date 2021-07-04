@@ -23,9 +23,18 @@ class _ColorPickerPageState extends State<ColorPickerPage> {
           ),
           elevation: 4.0,
           child: Padding(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 14.0, vertical: 2.0),
-            child: ColorPicker(color: Colors.blue, onChanged: (value) {}),
+            padding: const EdgeInsets.symmetric(
+              horizontal: 14.0,
+              vertical: 2.0,
+            ),
+
+            ///---------------------------------
+            child: ColorPicker(
+              color: Colors.blue,
+              onChanged: (value) {},
+            ),
+
+            ///---------------------------------
           ),
         ),
       ),

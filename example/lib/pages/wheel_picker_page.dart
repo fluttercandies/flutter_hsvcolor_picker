@@ -34,11 +34,11 @@ class _WheelPickerPageState extends State<WheelPickerPage> {
                   backgroundColor: color.toColor(),
                 ),
                 const Divider(),
-
-                ///---------------------------------
                 SizedBox(
                   width: 222,
                   height: 222,
+
+                  ///---------------------------------
                   child: WheelPicker(
                     color: color,
                     onChanged: (value) => super.setState(
