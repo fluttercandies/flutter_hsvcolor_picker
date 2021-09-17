@@ -58,7 +58,7 @@ class _RGBPickerState extends State<RGBPicker> {
       child: Row(
         children: <Widget>[
           Opacity(
-            opacity: 0.5,
+            opacity: 0.65,
             child: Text(
               title,
               style: Theme.of(context).textTheme.headline6?.copyWith(

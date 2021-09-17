@@ -28,7 +28,7 @@ class _AlphaPickerState extends State<AlphaPicker> {
       child: Row(
         children: <Widget>[
           Opacity(
-            opacity: 0.5,
+            opacity: 0.65,
             child: Text(title, style: Theme.of(context).textTheme.headline6),
           ),
           Expanded(
