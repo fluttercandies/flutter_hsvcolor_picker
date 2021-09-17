@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-import 'alpha_picker.dart';
-import 'hex_picker.dart';
-import 'hsv_picker.dart';
-import 'palette_hue_picker.dart';
-import 'palette_saturation_picker.dart';
-import 'palette_value_picker.dart';
-import 'rgb_picker.dart';
-import 'swatches_picker.dart';
-import 'wheel_picker.dart';
+import 'widgets/alpha_picker.dart';
+import 'widgets/hex_picker.dart';
+import 'pickers/hsv_picker.dart';
+import 'pickers/palette_hue_picker.dart';
+import 'pickers/palette_saturation_picker.dart';
+import 'pickers/palette_value_picker.dart';
+import 'pickers/rgb_picker.dart';
+import 'pickers/swatches_picker.dart';
+import 'pickers/wheel_picker.dart';
 
 enum Picker {
   swatches,

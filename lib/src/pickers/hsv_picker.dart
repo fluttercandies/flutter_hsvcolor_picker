@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'slider_picker.dart';
-import 'widgets/slider_title.dart';
+import '../widgets/slider_picker.dart';
+import '../widgets/slider_title.dart';
 
 /// Three sliders for selections a color via:
 /// Hue
