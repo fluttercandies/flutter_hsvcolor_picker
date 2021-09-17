@@ -195,10 +195,10 @@ class _ColorPickerState extends State<ColorPicker> {
         child: Text(
           item.name,
           style: _index == _pickers.indexOf(item)
-              ? Theme.of(context)
-                  .textTheme
-                  .headline5
-                  ?.copyWith(fontSize: 18, color: Theme.of(context).accentColor)
+              ? Theme.of(context).textTheme.headline5?.copyWith(
+                    fontSize: 18,
+                    color: Theme.of(context).colorScheme.secondary,
+                  )
               : Theme.of(context).textTheme.headline5?.copyWith(fontSize: 18),
         ),
       ),

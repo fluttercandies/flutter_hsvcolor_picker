@@ -181,7 +181,7 @@ class _MainPageState extends State<MainPage> {
 
   Widget buildDrawerHeader() {
     return DrawerHeader(
-      decoration: BoxDecoration(color: theme.accentColor),
+      decoration: BoxDecoration(color: theme.colorScheme.secondary),
       child: Stack(
         children: <Widget>[
           // Avatar
@@ -211,7 +211,7 @@ class _MainPageState extends State<MainPage> {
             child: ElevatedButton(
               onPressed: setTheme,
               style: ElevatedButton.styleFrom(
-                primary: theme.accentColor,
+                primary: theme.colorScheme.secondary,
                 shape: const StadiumBorder(),
               ),
               child: Text(
