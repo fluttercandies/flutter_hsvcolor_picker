@@ -244,7 +244,7 @@ class _ColorPickerState extends State<ColorPicker> {
     );
   }
 
-  Widget _buildDropdown() {
+  Widget _buildDropdownLandscapeMode() {
     return SizedBox(
       height: 38,
       child: Material(
@@ -272,7 +272,7 @@ class _ColorPickerState extends State<ColorPicker> {
     );
   }
 
-  Widget _buildDropdown2() {
+  Widget _buildDropdownPortraitMode() {
     return SizedBox(
       height: 38,
       child: DecoratedBox(
@@ -321,7 +321,7 @@ class _ColorPickerState extends State<ColorPicker> {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             _buildHead(),
-            _buildDropdown2(),
+            _buildDropdownPortraitMode(),
             _buildBody(),
             _buildAlphaPicker(),
           ],
@@ -336,7 +336,7 @@ class _ColorPickerState extends State<ColorPicker> {
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   _buildHead(),
-                  _buildDropdown(),
+                  _buildDropdownLandscapeMode(),
                   _buildAlphaPicker(),
                 ],
               ),
