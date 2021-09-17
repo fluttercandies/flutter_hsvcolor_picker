@@ -17,7 +17,7 @@ class SliderTitle extends StatelessWidget {
       child: Row(
         children: <Widget>[
           Opacity(
-            opacity: 0.65,
+            opacity: 0.7,
             child: Align(
               alignment: Alignment.bottomCenter,
               child: Padding(
