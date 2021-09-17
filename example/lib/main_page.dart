@@ -197,9 +197,12 @@ class _MainPageState extends State<MainPage> {
                   backgroundImage: const AssetImage('packages/avatar.jpg'),
                 ),
                 Container(height: 10.0),
-                const Text(
-                  '淹死的鱼ysdy44',
-                  style: TextStyle(color: Colors.white, fontSize: 18.0),
+                const Padding(
+                  padding: EdgeInsets.only(bottom: 8),
+                  child: Text(
+                    '淹死的鱼ysdy44',
+                    style: TextStyle(color: Colors.white, fontSize: 18.0),
+                  ),
                 )
               ],
             ),
