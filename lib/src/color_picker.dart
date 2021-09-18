@@ -191,7 +191,7 @@ class _ColorPickerState extends State<ColorPicker> {
     return DropdownMenuItem<_IPicker>(
       value: item,
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(10.0, 4.0, 10.0, 4.0),
+        padding: const EdgeInsets.fromLTRB(10.0, 8.0, 10.0, 0.0),
         child: Text(
           item.name,
           style: _index == _pickers.indexOf(item)
