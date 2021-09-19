@@ -196,7 +196,7 @@ class _MainPageState extends State<MainPage> {
                   backgroundColor: theme.cardColor,
                   backgroundImage: const AssetImage('packages/avatar.jpg'),
                 ),
-                Container(height: 10.0),
+                const SizedBox(height: 10.0),
                 const Padding(
                   padding: EdgeInsets.only(bottom: 8),
                   child: Text(
