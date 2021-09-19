@@ -36,7 +36,7 @@ class SliderTitle extends StatelessWidget {
             child: Align(
               alignment: Alignment.bottomRight,
               child: Padding(
-                padding: const EdgeInsets.only(right: 8.0),
+                padding: const EdgeInsets.only(right: 10.0),
                 child: Text(
                   text,
                   style: Theme.of(context)
