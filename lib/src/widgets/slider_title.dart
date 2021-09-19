@@ -12,41 +12,34 @@ class SliderTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 34.0,
+    return Padding(
+      padding: const EdgeInsets.only(top: 10.0),
       child: Row(
         children: <Widget>[
-          Opacity(
-            opacity: 0.7,
-            child: Align(
-              alignment: Alignment.bottomCenter,
-              child: Padding(
-                padding: const EdgeInsets.only(left: 10.0),
-                child: Text(
-                  title,
-                  style: Theme.of(context)
-                      .textTheme
-                      .headline6
-                      ?.copyWith(fontSize: 18),
-                ),
+          Container(
+            alignment: Alignment.bottomCenter,
+            margin: const EdgeInsets.only(left: 10.0),
+            child: Opacity(
+              opacity: 0.7,
+              child: Text(
+                title,
+                style: Theme.of(context).textTheme.headline6?.copyWith(
+                      fontSize: 18,
+                    ),
               ),
             ),
           ),
-          Expanded(
-            child: Align(
-              alignment: Alignment.bottomRight,
-              child: Padding(
-                padding: const EdgeInsets.only(right: 10.0),
-                child: Text(
-                  text,
-                  style: Theme.of(context)
-                      .textTheme
-                      .headline5
-                      ?.copyWith(fontSize: 18),
-                ),
-              ),
+          const Spacer(),
+          Container(
+            alignment: Alignment.bottomCenter,
+            margin: const EdgeInsets.only(right: 10.0),
+            child: Text(
+              text,
+              style: Theme.of(context).textTheme.headline5?.copyWith(
+                    fontSize: 18,
+                  ),
             ),
-          )
+          ),
         ],
       ),
     );
