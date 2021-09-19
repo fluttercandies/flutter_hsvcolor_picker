@@ -280,9 +280,7 @@ class _ColorPickerState extends State<ColorPicker> {
         child: DecoratedBox(
           decoration: BoxDecoration(
             border: Border.all(color: Theme.of(context).dividerColor),
-            borderRadius: const BorderRadius.all(
-              Radius.circular(3.0),
-            ),
+            borderRadius: BorderRadius.circular(3.0),
           ),
           child: DropdownButton<_IPicker>(
             iconSize: 32.0,
