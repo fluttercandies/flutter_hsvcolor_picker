@@ -252,10 +252,8 @@ class _ColorPickerState extends State<ColorPicker> {
         color: Theme.of(context).cardColor,
         shadowColor: Colors.black26,
         elevation: 4.0,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(
-            Radius.circular(2.0),
-          ),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(2.0),
         ),
         child: DropdownButton<_IPicker>(
           iconSize: 32.0,
