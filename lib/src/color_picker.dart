@@ -273,29 +273,24 @@ class _ColorPickerState extends State<ColorPicker> {
   }
 
   Widget _buildDropdownPortraitMode() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 6.0),
-      child: SizedBox(
-        height: 38,
-        child: DecoratedBox(
-          decoration: BoxDecoration(
-            border: Border.all(color: Theme.of(context).dividerColor),
-            borderRadius: BorderRadius.circular(3.0),
-          ),
-          child: DropdownButton<_IPicker>(
-            iconSize: 32.0,
-            isExpanded: true,
-            isDense: true,
-            style:
-                Theme.of(context).textTheme.headline5?.copyWith(fontSize: 20),
-            value: _pickers[_index],
-            onChanged: (_IPicker? value) => super.setState(
-              () => _pickerOnChanged(value),
-            ),
-            items: _pickers.map(_buildDropdownMenuItems).toList(),
-            underline: const SizedBox(),
-          ),
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 6.0),
+      height: 38,
+      decoration: BoxDecoration(
+        border: Border.all(color: Theme.of(context).dividerColor),
+        borderRadius: BorderRadius.circular(3.0),
+      ),
+      child: DropdownButton<_IPicker>(
+        iconSize: 32.0,
+        isExpanded: true,
+        isDense: true,
+        style: Theme.of(context).textTheme.headline5?.copyWith(fontSize: 20),
+        value: _pickers[_index],
+        onChanged: (_IPicker? value) => super.setState(
+          () => _pickerOnChanged(value),
         ),
+        items: _pickers.map(_buildDropdownMenuItems).toList(),
+        underline: const SizedBox(),
       ),
     );
   }
