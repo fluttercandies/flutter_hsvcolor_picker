@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import 'palette_picker.dart';
-import 'slider_picker.dart';
+import '../widgets/palette_picker.dart';
+import '../widgets/slider_picker.dart';
 
-class PaletteValuePicker extends StatefulWidget {
-  const PaletteValuePicker({
+class PaletteSaturationPicker extends StatefulWidget {
+  const PaletteSaturationPicker({
     required this.color,
     required this.onChanged,
     Key? key,
@@ -14,24 +14,26 @@ class PaletteValuePicker extends StatefulWidget {
   final ValueChanged<HSVColor> onChanged;
 
   @override
-  _PaletteValuePickerState createState() => _PaletteValuePickerState();
+  _PaletteSaturationPickerState createState() =>
+      _PaletteSaturationPickerState();
 }
 
-class _PaletteValuePickerState extends State<PaletteValuePicker> {
+class _PaletteSaturationPickerState extends State<PaletteSaturationPicker> {
   HSVColor get color => widget.color;
 
-  // Value
-  void valueOnChange(double value) => widget.onChanged(
-        color.withValue(value),
+  // Saturation
+  void saturationOnChange(double value) => widget.onChanged(
+        color.withSaturation(value),
       );
-  List<Color> get valueColors => <Color>[
-        Colors.black,
-        color.withValue(1.0).toColor(),
+  List<Color> get saturationColors => <Color>[
+        color.withSaturation(0.0).toColor(),
+        color.withSaturation(1.0).toColor()
       ];
 
-  // Hue Saturation
-  void hueSaturationOnChange(Offset value) => widget.onChanged(
-        HSVColor.fromAHSV(color.alpha, value.dx, value.dy, color.value),
+  // Hue Value
+  Offset get hueValueOffset => Offset(color.hue, color.value);
+  void hueValueOnChange(Offset value) => widget.onChanged(
+        HSVColor.fromAHSV(color.alpha, value.dx, color.saturation, value.dy),
       );
   // Hue
   final List<Color> hueColors = <Color>[
@@ -43,10 +45,10 @@ class _PaletteValuePickerState extends State<PaletteValuePicker> {
     const Color.fromARGB(255, 255, 0, 255),
     const Color.fromARGB(255, 255, 0, 0)
   ];
-  // Saturation
-  final List<Color> saturationColors = <Color>[
+  // Value
+  final List<Color> valueColors = <Color>[
     Colors.transparent,
-    Colors.white,
+    Colors.black,
   ];
 
   @override
@@ -60,22 +62,22 @@ class _PaletteValuePickerState extends State<PaletteValuePicker> {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 20),
             child: PalettePicker(
-              position: Offset(color.hue, color.saturation),
-              onChanged: hueSaturationOnChange,
+              position: hueValueOffset,
+              onChanged: hueValueOnChange,
               rightPosition: 360.0,
               leftRightColors: hueColors,
               topPosition: 1.0,
               bottomPosition: 0.0,
-              topBottomColors: saturationColors,
+              topBottomColors: valueColors,
             ),
           ),
         ),
 
         // Slider
         SliderPicker(
-          value: color.value,
-          onChanged: valueOnChange,
-          colors: valueColors,
+          value: color.saturation,
+          onChanged: saturationOnChange,
+          colors: saturationColors,
         )
       ],
     );

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'slider_picker.dart';
+import '../widgets/slider_picker.dart';
+import '../widgets/slider_title.dart';
 
 /// Three sliders for selections a color via:
 /// Hue
@@ -55,39 +56,13 @@ class _HSVPickerState extends State<HSVPicker> {
         color.withValue(1.0).toColor(),
       ];
 
-  Widget buildTitle(String title, String text) {
-    return SizedBox(
-      height: 34.0,
-      child: Row(
-        children: <Widget>[
-          Opacity(
-            opacity: 0.5,
-            child: Text(title, style: Theme.of(context).textTheme.headline6),
-          ),
-          Expanded(
-            child: Align(
-              alignment: Alignment.centerRight,
-              child: Text(
-                text,
-                style: Theme.of(context)
-                    .textTheme
-                    .headline5
-                    ?.copyWith(fontSize: 18),
-              ),
-            ),
-          )
-        ],
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         // Hue
-        buildTitle('H', '${color.hue.toInt()}º'),
+        SliderTitle('H', '${color.hue.toInt()}º'),
         SliderPicker(
           value: color.hue,
           max: 360.0,
@@ -96,7 +71,7 @@ class _HSVPickerState extends State<HSVPicker> {
         ),
 
         // Saturation
-        buildTitle('S', '${(color.saturation * 100).toInt()}º'),
+        SliderTitle('S', '${(color.saturation * 100).toInt()}º'),
         SliderPicker(
           value: color.saturation,
           onChanged: saturationOnChange,
@@ -104,7 +79,7 @@ class _HSVPickerState extends State<HSVPicker> {
         ),
 
         // Value
-        buildTitle('L', '${(color.value * 100).toInt()}º'),
+        SliderTitle('L', '${(color.value * 100).toInt()}º'),
         SliderPicker(
           value: color.value,
           onChanged: valueOnChange,

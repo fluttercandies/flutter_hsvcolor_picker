@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'slider_picker.dart';
+import 'slider_title.dart';
 
 /// Slider for selecting the alpha value (0-255)
 class AlphaPicker extends StatefulWidget {
@@ -22,39 +23,13 @@ class _AlphaPickerState extends State<AlphaPicker> {
     widget.onChanged(ratio.toInt());
   }
 
-  Widget buildTitle(String title, String text) {
-    return SizedBox(
-      height: 34.0,
-      child: Row(
-        children: <Widget>[
-          Opacity(
-            opacity: 0.5,
-            child: Text(title, style: Theme.of(context).textTheme.headline6),
-          ),
-          Expanded(
-            child: Align(
-              alignment: Alignment.centerRight,
-              child: Text(
-                text,
-                style: Theme.of(context)
-                    .textTheme
-                    .headline5
-                    ?.copyWith(fontSize: 18),
-              ),
-            ),
-          )
-        ],
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         // Alpha
-        buildTitle('A', widget.alpha.toString()),
+        SliderTitle('A', widget.alpha.toString()),
         SliderPicker(
           value: widget.alpha.toDouble(),
           max: 255.0,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'palette_picker.dart';
-import 'slider_picker.dart';
+import '../widgets/palette_picker.dart';
+import '../widgets/slider_picker.dart';
 
 /// Color palette and color slider
 class PaletteHuePicker extends StatefulWidget {

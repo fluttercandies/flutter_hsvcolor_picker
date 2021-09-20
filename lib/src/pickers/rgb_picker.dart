@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'slider_picker.dart';
+import '../widgets/slider_picker.dart';
+import '../widgets/slider_title.dart';
 
 /// Three sliders for selecting a color based on RGB
 class RGBPicker extends StatefulWidget {
@@ -52,44 +53,13 @@ class _RGBPickerState extends State<RGBPicker> {
         color.withBlue(255),
       ];
 
-  Widget buildTitle(String title, String text) {
-    return SizedBox(
-      height: 34.0,
-      child: Row(
-        children: <Widget>[
-          Opacity(
-            opacity: 0.5,
-            child: Text(
-              title,
-              style: Theme.of(context).textTheme.headline6?.copyWith(
-                    fontSize: 18,
-                  ),
-            ),
-          ),
-          Expanded(
-            child: Align(
-              alignment: Alignment.centerRight,
-              child: Text(
-                text,
-                style: Theme.of(context)
-                    .textTheme
-                    .headline5
-                    ?.copyWith(fontSize: 18),
-              ),
-            ),
-          )
-        ],
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         // Red
-        buildTitle(
+        SliderTitle(
           'R',
           color.red.toInt().toString(),
         ),
@@ -101,7 +71,7 @@ class _RGBPickerState extends State<RGBPicker> {
         ),
 
         // Green
-        buildTitle(
+        SliderTitle(
           'G',
           color.green.toInt().toString(),
         ),
@@ -113,7 +83,7 @@ class _RGBPickerState extends State<RGBPicker> {
         ),
 
         // Blue
-        buildTitle(
+        SliderTitle(
           'B',
           color.blue.toInt().toString(),
         ),

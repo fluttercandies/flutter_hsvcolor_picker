@@ -181,7 +181,7 @@ class _MainPageState extends State<MainPage> {
 
   Widget buildDrawerHeader() {
     return DrawerHeader(
-      decoration: BoxDecoration(color: theme.accentColor),
+      decoration: const BoxDecoration(color: Colors.blue),
       child: Stack(
         children: <Widget>[
           // Avatar
@@ -196,10 +196,13 @@ class _MainPageState extends State<MainPage> {
                   backgroundColor: theme.cardColor,
                   backgroundImage: const AssetImage('packages/avatar.jpg'),
                 ),
-                Container(height: 10.0),
-                const Text(
-                  '淹死的鱼ysdy44',
-                  style: TextStyle(color: Colors.white, fontSize: 18.0),
+                const SizedBox(height: 10.0),
+                const Padding(
+                  padding: EdgeInsets.only(bottom: 8),
+                  child: Text(
+                    '淹死的鱼ysdy44',
+                    style: TextStyle(color: Colors.white, fontSize: 18.0),
+                  ),
                 )
               ],
             ),
@@ -211,7 +214,7 @@ class _MainPageState extends State<MainPage> {
             child: ElevatedButton(
               onPressed: setTheme,
               style: ElevatedButton.styleFrom(
-                primary: theme.accentColor,
+                primary: Colors.blue.shade400,
                 shape: const StadiumBorder(),
               ),
               child: Text(

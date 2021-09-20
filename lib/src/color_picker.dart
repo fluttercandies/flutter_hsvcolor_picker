@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-import 'alpha_picker.dart';
-import 'hex_picker.dart';
-import 'hsv_picker.dart';
-import 'palette_hue_picker.dart';
-import 'palette_saturation_picker.dart';
-import 'palette_value_picker.dart';
-import 'rgb_picker.dart';
-import 'swatches_picker.dart';
-import 'wheel_picker.dart';
+import 'widgets/alpha_picker.dart';
+import 'widgets/hex_picker.dart';
+import 'pickers/hsv_picker.dart';
+import 'pickers/palette_hue_picker.dart';
+import 'pickers/palette_saturation_picker.dart';
+import 'pickers/palette_value_picker.dart';
+import 'pickers/rgb_picker.dart';
+import 'pickers/swatches_picker.dart';
+import 'pickers/wheel_picker.dart';
 
 enum Picker {
   swatches,
@@ -195,10 +195,10 @@ class _ColorPickerState extends State<ColorPicker> {
         child: Text(
           item.name,
           style: _index == _pickers.indexOf(item)
-              ? Theme.of(context)
-                  .textTheme
-                  .headline5
-                  ?.copyWith(fontSize: 18, color: Theme.of(context).accentColor)
+              ? Theme.of(context).textTheme.headline5?.copyWith(
+                    fontSize: 18,
+                    color: Theme.of(context).colorScheme.secondary,
+                  )
               : Theme.of(context).textTheme.headline5?.copyWith(fontSize: 18),
         ),
       ),
@@ -244,7 +244,7 @@ class _ColorPickerState extends State<ColorPicker> {
     );
   }
 
-  Widget _buildDropdown() {
+  Widget _buildDropdownLandscapeMode() {
     return SizedBox(
       height: 38,
       child: Material(
@@ -252,10 +252,8 @@ class _ColorPickerState extends State<ColorPicker> {
         color: Theme.of(context).cardColor,
         shadowColor: Colors.black26,
         elevation: 4.0,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(
-            Radius.circular(2.0),
-          ),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(2.0),
         ),
         child: DropdownButton<_IPicker>(
           iconSize: 32.0,
@@ -272,27 +270,25 @@ class _ColorPickerState extends State<ColorPicker> {
     );
   }
 
-  Widget _buildDropdown2() {
-    return SizedBox(
+  Widget _buildDropdownPortraitMode() {
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 6.0),
       height: 38,
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          border: Border.all(color: Theme.of(context).dividerColor),
-          borderRadius: const BorderRadius.all(
-            Radius.circular(3.0),
-          ),
+      decoration: BoxDecoration(
+        border: Border.all(color: Theme.of(context).dividerColor),
+        borderRadius: BorderRadius.circular(3.0),
+      ),
+      child: DropdownButton<_IPicker>(
+        iconSize: 32.0,
+        isExpanded: true,
+        isDense: true,
+        style: Theme.of(context).textTheme.headline5?.copyWith(fontSize: 20),
+        value: _pickers[_index],
+        onChanged: (_IPicker? value) => super.setState(
+          () => _pickerOnChanged(value),
         ),
-        child: DropdownButton<_IPicker>(
-          iconSize: 32.0,
-          isExpanded: true,
-          isDense: true,
-          style: Theme.of(context).textTheme.headline5?.copyWith(fontSize: 20),
-          value: _pickers[_index],
-          onChanged: (_IPicker? value) => super.setState(
-            () => _pickerOnChanged(value),
-          ),
-          items: _pickers.map(_buildDropdownMenuItems).toList(),
-        ),
+        items: _pickers.map(_buildDropdownMenuItems).toList(),
+        underline: const SizedBox(),
       ),
     );
   }
@@ -321,7 +317,7 @@ class _ColorPickerState extends State<ColorPicker> {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             _buildHead(),
-            _buildDropdown2(),
+            _buildDropdownPortraitMode(),
             _buildBody(),
             _buildAlphaPicker(),
           ],
@@ -336,7 +332,7 @@ class _ColorPickerState extends State<ColorPicker> {
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   _buildHead(),
-                  _buildDropdown(),
+                  _buildDropdownLandscapeMode(),
                   _buildAlphaPicker(),
                 ],
               ),
