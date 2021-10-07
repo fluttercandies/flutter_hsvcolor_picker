@@ -20,9 +20,16 @@ enum Picker {
   paletteValue,
 }
 
+/// The orientation of the ColorPicker.
 enum PickerOrientation {
+  /// The orientation is inherited from device's orientation.
+  /// On web, if window width > height, the orientation is landscape.
   inherit,
+
+  /// Always portrait mode.
   portrait,
+
+  /// Always landscape mode.
   landscape,
 }
 
