@@ -1,3 +1,7 @@
+## [1.2.1]
+
+* Add `pickerOrientation` to `ColorPicker` to lock the orientation if needed
+
 ## [1.2.0]
 
 * Update deprecated theme color (accentColor -> colorScheme.secondary)
