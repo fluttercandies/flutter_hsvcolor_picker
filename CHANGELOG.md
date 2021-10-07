@@ -1,6 +1,6 @@
 ## [1.2.1]
 
-* Add `pickerOrientation` to `ColorPicker` to lock the orientation if needed
+* Add `pickerOrientation` to `ColorPicker` to lock the orientation if needed.
 
 ## [1.2.0]
 
