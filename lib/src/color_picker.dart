@@ -20,12 +20,19 @@ enum Picker {
   paletteValue,
 }
 
+enum PickerOrientation {
+  dynamic,
+  alwaysPortrait,
+  alwaysLandscape,
+}
+
 /// Main color picker including all color pickers of this package
 class ColorPicker extends StatefulWidget {
   const ColorPicker({
     required this.onChanged,
     this.color = Colors.blue,
     this.initialPicker = Picker.paletteHue,
+    this.pickerOrientation = PickerOrientation.dynamic,
     Key? key,
   }) : super(key: key);
 
@@ -38,6 +45,8 @@ class ColorPicker extends StatefulWidget {
   ///
   ///  * [Picker] Enumeration of pickers.
   final Picker initialPicker;
+
+  final PickerOrientation pickerOrientation;
 
   @override
   _ColorPickerState createState() => _ColorPickerState();
@@ -308,9 +317,21 @@ class _ColorPickerState extends State<ColorPicker> {
     );
   }
 
+  Orientation _getOrientation(PickerOrientation pickerOrientation) {
+    switch (pickerOrientation) {
+      case PickerOrientation.dynamic:
+        return MediaQuery.of(context).orientation;
+      case PickerOrientation.alwaysPortrait:
+        return Orientation.portrait;
+      case PickerOrientation.alwaysLandscape:
+        return Orientation.landscape;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    final Orientation orientation = MediaQuery.of(context).orientation;
+    final Orientation orientation = _getOrientation(widget.pickerOrientation);
+
     switch (orientation) {
       case Orientation.portrait:
         return Column(
