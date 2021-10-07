@@ -20,7 +20,7 @@
 * Publishing test.
 ## [1.0.1]
 
-* Add .gihub files.
+* Add .github files.
 ## [1.0.0]
 
 * Migrate to null safety.
