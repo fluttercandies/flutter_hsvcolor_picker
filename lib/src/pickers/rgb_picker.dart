@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../widgets/slider_picker.dart';
 import '../widgets/slider_title.dart';
 
-/// Three sliders for selecting a color based on RGB
+/// Three sliders for selecting a color based on RGB.
 class RGBPicker extends StatefulWidget {
   const RGBPicker({
     required this.color,
