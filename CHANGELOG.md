@@ -1,14 +1,18 @@
+## [1.2.1]
+
+* Add `pickerOrientation` to `ColorPicker` to lock the orientation if needed.
+
 ## [1.2.0]
 
-* Update deprecated theme color (accentColor -> colorScheme.secondary)
-* Improve UI
-* Refactor folder structure
+* Update deprecated theme color (accentColor -> colorScheme.secondary).
+* Improve UI.
+* Refactor folder structure.
 
 ## [1.1.0]
 
-* Fix ColorPicker not shown in landscape mode
-* Fix alpha slider not changing the alpha value of color
-* Add initialPicker for changing the first picker of ColorPicker
+* Fix ColorPicker not shown in landscape mode.
+* Fix alpha slider not changing the alpha value of color.
+* Add initialPicker for changing the first picker of ColorPicker.
 
 ## [1.0.2]
 

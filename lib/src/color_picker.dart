@@ -20,12 +20,26 @@ enum Picker {
   paletteValue,
 }
 
+/// The orientation of the ColorPicker.
+enum PickerOrientation {
+  /// The orientation is inherited from device's orientation.
+  /// On web, if window width > height, the orientation is landscape.
+  inherit,
+
+  /// Always portrait mode.
+  portrait,
+
+  /// Always landscape mode.
+  landscape,
+}
+
 /// Main color picker including all color pickers of this package
 class ColorPicker extends StatefulWidget {
   const ColorPicker({
     required this.onChanged,
     this.color = Colors.blue,
     this.initialPicker = Picker.paletteHue,
+    this.pickerOrientation = PickerOrientation.inherit,
     Key? key,
   }) : super(key: key);
 
@@ -38,6 +52,8 @@ class ColorPicker extends StatefulWidget {
   ///
   ///  * [Picker] Enumeration of pickers.
   final Picker initialPicker;
+
+  final PickerOrientation pickerOrientation;
 
   @override
   _ColorPickerState createState() => _ColorPickerState();
@@ -308,9 +324,21 @@ class _ColorPickerState extends State<ColorPicker> {
     );
   }
 
+  Orientation _getOrientation(PickerOrientation pickerOrientation) {
+    switch (pickerOrientation) {
+      case PickerOrientation.inherit:
+        return MediaQuery.of(context).orientation;
+      case PickerOrientation.portrait:
+        return Orientation.portrait;
+      case PickerOrientation.landscape:
+        return Orientation.landscape;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    final Orientation orientation = MediaQuery.of(context).orientation;
+    final Orientation orientation = _getOrientation(widget.pickerOrientation);
+
     switch (orientation) {
       case Orientation.portrait:
         return Column(
