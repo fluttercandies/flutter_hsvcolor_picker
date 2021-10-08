@@ -2,7 +2,7 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
-/// Color palette and color wheel
+/// Color palette and color wheel.
 class WheelPicker extends StatefulWidget {
   const WheelPicker({
     required this.color,

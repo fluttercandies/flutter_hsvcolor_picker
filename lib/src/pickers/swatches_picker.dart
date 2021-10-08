@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-/// Color swatches
+/// Color swatches.
 class SwatchesPicker extends StatefulWidget {
   const SwatchesPicker({
     required this.onChanged,

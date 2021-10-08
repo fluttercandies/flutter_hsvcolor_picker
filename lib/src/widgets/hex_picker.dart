@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-/// Textfield for entering the Hex color code (RRGGBB)
+/// Textfield for entering the Hex color code (RRGGBB).
 class HexPicker extends StatefulWidget {
   HexPicker({
     required this.color,

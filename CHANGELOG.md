@@ -1,6 +1,7 @@
 ## [1.2.1]
 
 * Add `pickerOrientation` to `ColorPicker` to lock the orientation if needed.
+* Improve documentation.
 
 ## [1.2.0]
 
@@ -19,7 +20,7 @@
 * Publishing test.
 ## [1.0.1]
 
-* Add .gihub files.
+* Add .github files.
 ## [1.0.0]
 
 * Migrate to null safety.

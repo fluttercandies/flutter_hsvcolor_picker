@@ -33,7 +33,7 @@ enum PickerOrientation {
   landscape,
 }
 
-/// Main color picker including all color pickers of this package
+/// Main color picker including all color pickers of this package.
 class ColorPicker extends StatefulWidget {
   const ColorPicker({
     required this.onChanged,
