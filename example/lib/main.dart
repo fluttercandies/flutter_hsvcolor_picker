@@ -27,7 +27,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  // Color _color = Colors.blue;
+  final _colorNotifier = ValueNotifier<Color>(Colors.green);
 
   @override
   Widget build(BuildContext context) {
@@ -35,11 +35,13 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(50),
-          child: ColorPicker(
-            // color: _color,
-            onChanged: (Color value) {
-              // _color = value;
-              // setState(() {});
+          child: ValueListenableBuilder<Color>(
+            valueListenable: _colorNotifier,
+            builder: (_, color, __) {
+              return ColorPicker(
+                color: color,
+                onChanged: (value) => color = value,
+              );
             },
           ),
         ),
