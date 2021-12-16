@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_hsvcolor_picker/flutter_hsvcolor_picker.dart';
 
-class HSVPickerPage extends StatefulWidget {
-  const HSVPickerPage({Key? key}) : super(key: key);
+class AlphaPickerPage extends StatefulWidget {
+  const AlphaPickerPage({Key? key}) : super(key: key);
 
   @override
-  _HSVPickerPageState createState() => _HSVPickerPageState();
+  _AlphaPickerPageState createState() => _AlphaPickerPageState();
 }
 
-class _HSVPickerPageState extends State<HSVPickerPage> {
-  HSVColor color = HSVColor.fromColor(Colors.blue);
-  void onChanged(HSVColor value) => color = value;
+class _AlphaPickerPageState extends State<AlphaPickerPage> {
+  int value = 0;
+  void onChanged(int value) => this.value = value;
 
   @override
   Widget build(BuildContext context) {
@@ -29,15 +30,15 @@ class _HSVPickerPageState extends State<HSVPickerPage> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                FloatingActionButton(
-                  onPressed: () {},
-                  backgroundColor: color.toColor(),
+                Text(
+                  value.toString(),
+                  style: Theme.of(context).textTheme.headline4,
                 ),
                 const Divider(),
 
                 ///---------------------------------
-                HSVPicker(
-                  color: color,
+                AlphaPicker(
+                  alpha: value,
                   onChanged: (value) => super.setState(
                     () => onChanged(value),
                   ),

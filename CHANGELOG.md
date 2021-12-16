@@ -1,3 +1,7 @@
+## [1.2.2]
+
+* Update example app.
+
 ## [1.2.1]
 
 * Add `pickerOrientation` to `ColorPicker` to lock the orientation if needed.

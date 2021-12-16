@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_hsvcolor_picker/flutter_hsvcolor_picker.dart';
 
-class WheelPickerPage extends StatefulWidget {
-  const WheelPickerPage({Key? key}) : super(key: key);
+class PaletteSaturationPickerPage extends StatefulWidget {
+  const PaletteSaturationPickerPage({Key? key}) : super(key: key);
 
   @override
-  _WheelPickerPageState createState() => _WheelPickerPageState();
+  _PaletteSaturationPickerPageState createState() =>
+      _PaletteSaturationPickerPageState();
 }
 
-class _WheelPickerPageState extends State<WheelPickerPage> {
+class _PaletteSaturationPickerPageState
+    extends State<PaletteSaturationPickerPage> {
   HSVColor color = HSVColor.fromColor(Colors.blue);
-  void onChanged(HSVColor color) => this.color = color;
+  void onChanged(HSVColor value) => color = value;
 
   @override
   Widget build(BuildContext context) {
@@ -34,16 +37,12 @@ class _WheelPickerPageState extends State<WheelPickerPage> {
                   backgroundColor: color.toColor(),
                 ),
                 const Divider(),
-                SizedBox(
-                  width: 222,
-                  height: 222,
 
-                  ///---------------------------------
-                  child: WheelPicker(
-                    color: color,
-                    onChanged: (value) => super.setState(
-                      () => onChanged(value),
-                    ),
+                ///---------------------------------
+                PaletteSaturationPicker(
+                  color: color,
+                  onChanged: (value) => super.setState(
+                    () => onChanged(value),
                   ),
                 )
 

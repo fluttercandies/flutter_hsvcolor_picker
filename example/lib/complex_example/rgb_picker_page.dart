@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_hsvcolor_picker/flutter_hsvcolor_picker.dart';
 
-class HexPickerPage extends StatefulWidget {
-  const HexPickerPage({Key? key}) : super(key: key);
+class RGBPickerPage extends StatefulWidget {
+  const RGBPickerPage({Key? key}) : super(key: key);
 
   @override
-  _HexPickerPageState createState() => _HexPickerPageState();
+  _RGBPickerPageState createState() => _RGBPickerPageState();
 }
 
-class _HexPickerPageState extends State<HexPickerPage> {
+class _RGBPickerPageState extends State<RGBPickerPage> {
   Color color = Colors.blue;
   void onChanged(Color value) => color = value;
 
@@ -36,7 +37,7 @@ class _HexPickerPageState extends State<HexPickerPage> {
                 const Divider(),
 
                 ///---------------------------------
-                HexPicker(
+                RGBPicker(
                   color: color,
                   onChanged: (value) => super.setState(
                     () => onChanged(value),

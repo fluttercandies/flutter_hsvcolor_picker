@@ -1,18 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 
-import 'pages/slider_picker_page.dart';
-import 'pages/palette_picker_page.dart';
-import 'pages/hsv_picker_page.dart';
-import 'pages/rgb_picker_page.dart';
-import 'pages/swatches_picker_page.dart';
-import 'pages/wheel_picker_page.dart';
-import 'pages/palette_hue_picker_page.dart';
-import 'pages/palette_saturation_picker_page.dart';
-import 'pages/palette_value_picker_page.dart';
-import 'pages/hex_picker_page.dart';
-import 'pages/alpha_picker_page.dart';
-import 'pages/color_picker_page.dart';
+import 'slider_picker_page.dart';
+import 'palette_picker_page.dart';
+import 'hsv_picker_page.dart';
+import 'rgb_picker_page.dart';
+import 'swatches_picker_page.dart';
+import 'wheel_picker_page.dart';
+import 'palette_hue_picker_page.dart';
+import 'palette_saturation_picker_page.dart';
+import 'palette_value_picker_page.dart';
+import 'hex_picker_page.dart';
+import 'alpha_picker_page.dart';
+import 'color_picker_page.dart';
+
+void main() => runApp(const MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const MainPage();
+  }
+}
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);

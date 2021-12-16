@@ -27,7 +27,6 @@ ColorPicker(
 )
 ```
 
-Also see the example app on GitHub: https://github.com/fluttercandies/flutter_hsvcolor_picker/tree/master/example/lib
-
+For a more detailed example, head over to: https://github.com/fluttercandies/flutter_hsvcolor_picker/tree/master/example/lib/complex_example
 
 ![](https://github.com/fluttercandies/flutter_hsvcolor_picker/blob/master/screenshot/design.png)
