@@ -5,9 +5,7 @@ import 'package:flutter_hsvcolor_picker/flutter_hsvcolor_picker.dart';
 /// For a more detailed example, head over to:
 /// https://github.com/fluttercandies/flutter_hsvcolor_picker/example/lib/complex_example
 
-void main() async {
-  runApp(const MyApp());
-}
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
