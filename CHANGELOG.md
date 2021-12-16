@@ -1,6 +1,6 @@
 ## [1.2.2]
 
-* Update example app
+* Update example app.
 
 ## [1.2.1]
 
