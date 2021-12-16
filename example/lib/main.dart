@@ -1,16 +1,52 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
-import 'main_page.dart';
+import 'package:flutter_hsvcolor_picker/flutter_hsvcolor_picker.dart';
 
-void main() => runApp(const MyApp());
+/// For a more detailed example, head over to:
+/// https://github.com/fluttercandies/flutter_hsvcolor_picker/example/lib/complex_example_main.dart
+
+void main() async {
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return const MainPage();
+    return MaterialApp(
+      theme: ThemeData.light(),
+      darkTheme: ThemeData.dark(),
+      home: const MyHomePage(),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({Key? key}) : super(key: key);
+
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  // Color _color = Colors.blue;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(50),
+          child: ColorPicker(
+            // color: _color,
+            onChanged: (Color value) {
+              // _color = value;
+              // setState(() {});
+            },
+          ),
+        ),
+      ),
+    );
   }
 }
