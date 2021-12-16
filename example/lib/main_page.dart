@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 
 import 'pages/slider_picker_page.dart';
 import 'pages/palette_picker_page.dart';
