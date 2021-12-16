@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_hsvcolor_picker/flutter_hsvcolor_picker.dart';
 
-class SwatchesPickerPage extends StatefulWidget {
-  const SwatchesPickerPage({Key? key}) : super(key: key);
+class ColorPickerPage extends StatefulWidget {
+  const ColorPickerPage({Key? key}) : super(key: key);
 
   @override
-  _SwatchesPickerPageState createState() => _SwatchesPickerPageState();
+  _ColorPickerPageState createState() => _ColorPickerPageState();
 }
 
-class _SwatchesPickerPageState extends State<SwatchesPickerPage> {
+class _ColorPickerPageState extends State<ColorPickerPage> {
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -22,11 +23,14 @@ class _SwatchesPickerPageState extends State<SwatchesPickerPage> {
           ),
           elevation: 4.0,
           child: Padding(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 14.0, vertical: 2.0),
+            padding: const EdgeInsets.symmetric(
+              horizontal: 14.0,
+              vertical: 2.0,
+            ),
 
             ///---------------------------------
-            child: SwatchesPicker(
+            child: ColorPicker(
+              color: Colors.blue,
               onChanged: (value) {},
             ),
 

@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_hsvcolor_picker/flutter_hsvcolor_picker.dart';
 
-class PaletteSaturationPickerPage extends StatefulWidget {
-  const PaletteSaturationPickerPage({Key? key}) : super(key: key);
+class PaletteHuePickerPage extends StatefulWidget {
+  const PaletteHuePickerPage({Key? key}) : super(key: key);
 
   @override
-  _PaletteSaturationPickerPageState createState() =>
-      _PaletteSaturationPickerPageState();
+  _PaletteHuePickerPageState createState() => _PaletteHuePickerPageState();
 }
 
-class _PaletteSaturationPickerPageState
-    extends State<PaletteSaturationPickerPage> {
+class _PaletteHuePickerPageState extends State<PaletteHuePickerPage> {
   HSVColor color = HSVColor.fromColor(Colors.blue);
   void onChanged(HSVColor value) => color = value;
 
@@ -38,7 +37,7 @@ class _PaletteSaturationPickerPageState
                 const Divider(),
 
                 ///---------------------------------
-                PaletteSaturationPicker(
+                PaletteHuePicker(
                   color: color,
                   onChanged: (value) => super.setState(
                     () => onChanged(value),
