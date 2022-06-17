@@ -11,9 +11,13 @@ class PalettePicker extends StatefulWidget {
     this.rightPosition = 1.0,
     this.topPosition = 0.0,
     this.bottomPosition = 1.0,
+    this.border,
+    BorderRadius? borderRadius,
     Key? key,
-  }) : super(key: key);
-
+  })  : borderRadius = borderRadius ?? _PalettePickerState.defaultRadius,
+        super(key: key);
+  final Border? border;
+  final BorderRadius borderRadius;
   final Offset position;
   final ValueChanged<Offset> onChanged;
   final double leftPosition;
@@ -93,13 +97,15 @@ class _PalettePickerState extends State<PalettePicker> {
     return ratio * maxposition + (1.0 - ratio) * minposition;
   }
 
+  static const defaultRadius = BorderRadius.all(
+    Radius.circular(6),
+  );
+  static final defaultBorder = Border.all(color: Colors.grey);
   Widget buildLeftRightColors() {
     return Container(
       decoration: BoxDecoration(
-        border: Border.all(color: Colors.grey),
-        borderRadius: const BorderRadius.all(
-          Radius.circular(6),
-        ),
+        border: widget.border ?? defaultBorder,
+        borderRadius: widget.borderRadius,
         gradient: LinearGradient(
           colors: widget.leftRightColors,
         ),
@@ -110,10 +116,8 @@ class _PalettePickerState extends State<PalettePicker> {
   Widget buildTopBottomColors() {
     return Container(
       decoration: BoxDecoration(
-        border: Border.all(color: Colors.grey),
-        borderRadius: const BorderRadius.all(
-          Radius.circular(6),
-        ),
+        border: widget.border ?? defaultBorder,
+        borderRadius: widget.borderRadius,
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
