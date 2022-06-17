@@ -14,7 +14,7 @@ class SliderPicker extends StatefulWidget {
     double? height,
     Key? key,
   })  : height = height ?? 40.0,
-        borderRadius = _SliderPickerState.defaultRadius,
+        borderRadius = borderRadius ?? _SliderPickerState.defaultRadius,
         assert(value >= min && value <= max),
         super(key: key);
   final Border? border;
