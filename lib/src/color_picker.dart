@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'widgets/alpha_picker.dart';
-import 'widgets/hex_picker.dart';
 import 'pickers/hsv_picker.dart';
 import 'pickers/palette_hue_picker.dart';
 import 'pickers/palette_saturation_picker.dart';
@@ -9,6 +7,8 @@ import 'pickers/palette_value_picker.dart';
 import 'pickers/rgb_picker.dart';
 import 'pickers/swatches_picker.dart';
 import 'pickers/wheel_picker.dart';
+import 'widgets/alpha_picker.dart';
+import 'widgets/hex_picker.dart';
 
 enum Picker {
   swatches,
@@ -70,29 +70,26 @@ class _ColorPickerState extends State<ColorPicker> {
   late int _index;
 
   void _alphaOnChanged(int value) {
-    _alpha = value;
-    _color = _color.withAlpha(_alpha);
-    widget.onChanged(_color);
+    _updateColor(_color.withAlpha(value));
   }
 
   void _colorOnChanged(Color value) {
-    _color = value;
-    _hSVColor = HSVColor.fromColor(value);
-    widget.onChanged(value);
+    _updateColor(value.withAlpha(_color.alpha));
   }
 
   void _hSVColorOnChanged(HSVColor value) {
-    _color = value.toColor();
-    _hSVColor = value;
-    widget.onChanged(value.toColor());
+    _updateColor(value.toColor().withAlpha(_color.alpha));
   }
 
   void _colorWithAlphaOnChanged(Color value) {
-    _alpha = value.alpha;
-    final Color color = value.withAlpha(255);
+    _updateColor(value);
+  }
+
+  void _updateColor(Color color) {
+    _alpha = color.alpha;
     _color = color;
     _hSVColor = HSVColor.fromColor(color);
-    widget.onChanged(value);
+    widget.onChanged(color);
   }
 
   void _pickerOnChanged(_IPicker? value) {
