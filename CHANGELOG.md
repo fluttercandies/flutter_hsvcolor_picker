@@ -1,3 +1,7 @@
+## [1.2.3]
+
+* Fix bug on color change where previously set alpha value was ignored.
+
 ## [1.2.2]
 
 * Update example app.
