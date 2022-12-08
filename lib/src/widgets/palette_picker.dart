@@ -12,12 +12,13 @@ class PalettePicker extends StatefulWidget {
     this.topPosition = 0.0,
     this.bottomPosition = 1.0,
     this.border,
-    BorderRadius? borderRadius,
+    this.borderRadius = const BorderRadius.all(
+      Radius.circular(6),
+    ),
     Key? key,
-  })  : borderRadius = borderRadius ?? _PalettePickerState.defaultRadius,
-        super(key: key);
+  }) : super(key: key);
   final Border? border;
-  final BorderRadius borderRadius;
+  final BorderRadius? borderRadius;
   final Offset position;
   final ValueChanged<Offset> onChanged;
   final double leftPosition;
@@ -97,9 +98,6 @@ class _PalettePickerState extends State<PalettePicker> {
     return ratio * maxposition + (1.0 - ratio) * minposition;
   }
 
-  static const defaultRadius = BorderRadius.all(
-    Radius.circular(6),
-  );
   static final defaultBorder = Border.all(color: Colors.grey);
   Widget buildLeftRightColors() {
     return Container(
