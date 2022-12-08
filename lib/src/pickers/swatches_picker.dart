@@ -30,9 +30,7 @@ class _SwatchesPickerState extends State<SwatchesPicker>
     );
   }
 
-  Widget buildListView(Color? item) {
-    if (item == null) return const Divider(height: 60.0);
-
+  Widget buildListView(Color item) {
     return Container(
       width: 40.0,
       height: 40.0,
