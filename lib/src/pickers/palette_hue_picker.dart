@@ -76,8 +76,8 @@ class _PaletteHuePickerState extends State<PaletteHuePicker> {
           child: Padding(
             padding: widget.palletePadding,
             child: PalettePicker(
-              border: widget.palleteBorder,
-              borderRadius: widget.palleteBorderRadius,
+              border: widget.paletteBorder,
+              borderRadius: widget.paletteBorderRadius,
               position: Offset(color.saturation, color.value),
               onChanged: saturationValueOnChange,
               leftRightColors: saturationColors,
