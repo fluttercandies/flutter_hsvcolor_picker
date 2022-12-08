@@ -72,7 +72,7 @@ class _PaletteHuePickerState extends State<PaletteHuePicker> {
       children: <Widget>[
         // Palette
         SizedBox(
-          height: widget.palleteHeight,
+          height: widget.paletteHeight,
           child: Padding(
             padding: widget.palletePadding,
             child: PalettePicker(
