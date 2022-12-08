@@ -21,8 +21,8 @@ class PaletteHuePicker extends StatefulWidget {
 
   final HSVColor color;
   final ValueChanged<HSVColor> onChanged;
-  final double palleteHeight;
-  final EdgeInsets palletePadding;
+  final double paletteHeight;
+  final EdgeInsets palettePadding;
   final Border? hueBorder;
   final double? hueHeight;
   final BorderRadius? hueBorderRadius;
