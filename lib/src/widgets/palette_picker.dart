@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 /// Palette for selecting two values between 0 and 1.
 class PalettePicker extends StatefulWidget {
-  const PalettePicker({
+  PalettePicker({
     required this.position,
     required this.onChanged,
     required this.leftRightColors,
@@ -11,12 +11,11 @@ class PalettePicker extends StatefulWidget {
     this.rightPosition = 1.0,
     this.topPosition = 0.0,
     this.bottomPosition = 1.0,
-    this.border,
-    this.borderRadius = const BorderRadius.all(
-      Radius.circular(6),
-    ),
+    this.borderRadius = const BorderRadius.all(Radius.circular(6)),
+    Border? border,
     Key? key,
-  }) : super(key: key);
+  })  : border = border ?? Border.all(color: Colors.grey),
+        super(key: key);
   final Border? border;
   final BorderRadius? borderRadius;
   final Offset position;
@@ -98,11 +97,10 @@ class _PalettePickerState extends State<PalettePicker> {
     return ratio * maxposition + (1.0 - ratio) * minposition;
   }
 
-  static final defaultBorder = Border.all(color: Colors.grey);
   Widget buildLeftRightColors() {
     return Container(
       decoration: BoxDecoration(
-        border: widget.border ?? defaultBorder,
+        border: widget.border,
         borderRadius: widget.borderRadius,
         gradient: LinearGradient(
           colors: widget.leftRightColors,
@@ -114,7 +112,7 @@ class _PalettePickerState extends State<PalettePicker> {
   Widget buildTopBottomColors() {
     return Container(
       decoration: BoxDecoration(
-        border: widget.border ?? defaultBorder,
+        border: widget.border,
         borderRadius: widget.borderRadius,
         gradient: LinearGradient(
           begin: Alignment.topCenter,

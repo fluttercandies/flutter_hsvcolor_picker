@@ -9,9 +9,7 @@ class SliderPicker extends StatefulWidget {
     this.max = 1.0,
     this.colors,
     this.child,
-    this.borderRadius = const BorderRadius.all(
-      Radius.circular(20.0),
-    ),
+    this.borderRadius = const BorderRadius.all(Radius.circular(20.0)),
     this.border,
     this.height = 40.0,
     Key? key,
