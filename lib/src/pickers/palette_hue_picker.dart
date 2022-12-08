@@ -74,7 +74,7 @@ class _PaletteHuePickerState extends State<PaletteHuePicker> {
         SizedBox(
           height: widget.paletteHeight,
           child: Padding(
-            padding: widget.palletePadding,
+            padding: widget.palettePadding,
             child: PalettePicker(
               border: widget.paletteBorder,
               borderRadius: widget.paletteBorderRadius,
