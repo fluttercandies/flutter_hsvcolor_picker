@@ -26,8 +26,8 @@ class PaletteHuePicker extends StatefulWidget {
   final Border? hueBorder;
   final double? hueHeight;
   final BorderRadius? hueBorderRadius;
-  final Border? palleteBorder;
-  final BorderRadius? palleteBorderRadius;
+  final Border? paletteBorder;
+  final BorderRadius? paletteBorderRadius;
 
   @override
   _PaletteHuePickerState createState() => _PaletteHuePickerState();
