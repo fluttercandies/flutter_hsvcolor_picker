@@ -8,26 +8,26 @@ class PaletteHuePicker extends StatefulWidget {
   const PaletteHuePicker({
     required this.color,
     required this.onChanged,
-    this.palleteHeight = 280.0,
-    this.palletePadding =
+    this.paletteHeight = 280.0,
+    this.palettePadding =
         const EdgeInsets.symmetric(horizontal: 12, vertical: 20),
     this.hueBorder,
     this.hueBorderRadius,
     this.hueHeight,
-    this.palleteBorder,
-    this.palleteBorderRadius,
+    this.paletteBorder,
+    this.paletteBorderRadius,
     Key? key,
   }) : super(key: key);
 
   final HSVColor color;
   final ValueChanged<HSVColor> onChanged;
-  final double palleteHeight;
-  final EdgeInsets palletePadding;
+  final double paletteHeight;
+  final EdgeInsets palettePadding;
   final Border? hueBorder;
   final double? hueHeight;
   final BorderRadius? hueBorderRadius;
-  final Border? palleteBorder;
-  final BorderRadius? palleteBorderRadius;
+  final Border? paletteBorder;
+  final BorderRadius? paletteBorderRadius;
 
   @override
   _PaletteHuePickerState createState() => _PaletteHuePickerState();
@@ -72,12 +72,12 @@ class _PaletteHuePickerState extends State<PaletteHuePicker> {
       children: <Widget>[
         // Palette
         SizedBox(
-          height: widget.palleteHeight,
+          height: widget.paletteHeight,
           child: Padding(
-            padding: widget.palletePadding,
+            padding: widget.palettePadding,
             child: PalettePicker(
-              border: widget.palleteBorder,
-              borderRadius: widget.palleteBorderRadius,
+              border: widget.paletteBorder,
+              borderRadius: widget.paletteBorderRadius,
               position: Offset(color.saturation, color.value),
               onChanged: saturationValueOnChange,
               leftRightColors: saturationColors,
