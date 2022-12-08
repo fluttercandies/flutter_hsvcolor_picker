@@ -14,8 +14,8 @@ class PaletteHuePicker extends StatefulWidget {
     this.hueBorder,
     this.hueBorderRadius,
     this.hueHeight,
-    this.palleteBorder,
-    this.palleteBorderRadius,
+    this.paletteBorder,
+    this.paletteBorderRadius,
     Key? key,
   }) : super(key: key);
 
