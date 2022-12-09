@@ -16,6 +16,7 @@ class PalettePicker extends StatefulWidget {
     Key? key,
   })  : border = border ?? Border.all(color: Colors.grey),
         super(key: key);
+
   final Border? border;
   final BorderRadius? borderRadius;
   final Offset position;
