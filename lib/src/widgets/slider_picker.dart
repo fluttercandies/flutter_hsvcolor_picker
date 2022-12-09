@@ -47,7 +47,6 @@ class _SliderPickerState extends State<SliderPicker> {
     super.setState(() => setRatio(ratio));
   }
 
-  BorderRadius? get borderRadius => widget.borderRadius;
 
   Widget buildSlider(double maxWidth) {
     return SizedBox(
