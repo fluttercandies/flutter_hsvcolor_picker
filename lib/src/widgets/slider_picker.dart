@@ -68,7 +68,7 @@ class _SliderPickerState extends State<SliderPicker> {
                       border: widget.border ?? Border.all(color: Colors.grey),
                     ),
                     child: ClipRRect(
-                      borderRadius: borderRadius,
+                      borderRadius: widget.borderRadius,
                       child: widget.child,
                     ),
                   )
