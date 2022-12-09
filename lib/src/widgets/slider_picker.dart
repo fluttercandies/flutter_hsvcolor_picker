@@ -77,7 +77,7 @@ class _SliderPickerState extends State<SliderPicker> {
                 // Color
                 DecoratedBox(
                     decoration: BoxDecoration(
-                      borderRadius: borderRadius,
+                      borderRadius: widget.borderRadius,
                       border: widget.border ?? Border.all(color: Colors.grey),
                       gradient: LinearGradient(colors: widget.colors!),
                     ),
