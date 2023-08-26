@@ -17,7 +17,7 @@ class SliderPicker extends StatefulWidget {
         super(key: key);
   final Border? border;
   final double? height;
-  final BorderRadius? borderRadius;
+  final BorderRadius borderRadius;
   final double value;
   final ValueChanged<double> onChanged;
   final double min;
@@ -46,7 +46,6 @@ class _SliderPickerState extends State<SliderPicker> {
     final double ratio = offset.dx / box.maxWidth;
     super.setState(() => setRatio(ratio));
   }
-
 
   Widget buildSlider(double maxWidth) {
     return SizedBox(
