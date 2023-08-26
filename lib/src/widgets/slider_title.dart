@@ -21,7 +21,7 @@ class SliderTitle extends StatelessWidget {
             opacity: 0.7,
             child: Text(
               title,
-              style: Theme.of(context).textTheme.headline6?.copyWith(
+              style: Theme.of(context).textTheme.titleLarge?.copyWith(
                     fontSize: 18,
                   ),
             ),
@@ -29,7 +29,7 @@ class SliderTitle extends StatelessWidget {
           const Spacer(),
           Text(
             text,
-            style: Theme.of(context).textTheme.headline5?.copyWith(
+            style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                   fontSize: 18,
                 ),
           ),
