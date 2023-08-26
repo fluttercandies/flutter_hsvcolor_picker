@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 
-import 'slider_picker_page.dart';
-import 'palette_picker_page.dart';
-import 'hsv_picker_page.dart';
-import 'rgb_picker_page.dart';
-import 'swatches_picker_page.dart';
-import 'wheel_picker_page.dart';
-import 'palette_hue_picker_page.dart';
-import 'palette_saturation_picker_page.dart';
-import 'palette_value_picker_page.dart';
-import 'hex_picker_page.dart';
 import 'alpha_picker_page.dart';
 import 'color_picker_page.dart';
+import 'hex_picker_page.dart';
+import 'hsv_picker_page.dart';
+import 'palette_hue_picker_page.dart';
+import 'palette_picker_page.dart';
+import 'palette_saturation_picker_page.dart';
+import 'palette_value_picker_page.dart';
+import 'rgb_picker_page.dart';
+import 'slider_picker_page.dart';
+import 'swatches_picker_page.dart';
+import 'wheel_picker_page.dart';
 
 void main() => runApp(const MyApp());
 
@@ -142,7 +142,7 @@ class _MainPageState extends State<MainPage> {
         child: Text(
           'HSV Color',
           textAlign: TextAlign.center,
-          style: theme.textTheme.headline5,
+          style: theme.textTheme.headlineSmall,
         ),
       ),
 
@@ -224,7 +224,7 @@ class _MainPageState extends State<MainPage> {
             child: ElevatedButton(
               onPressed: setTheme,
               style: ElevatedButton.styleFrom(
-                primary: Colors.blue.shade400,
+                backgroundColor: Colors.blue.shade400,
                 shape: const StadiumBorder(),
               ),
               child: Text(

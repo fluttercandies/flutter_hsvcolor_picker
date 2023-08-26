@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_hsvcolor_picker/flutter_hsvcolor_picker.dart';
 
 class AlphaPickerPage extends StatefulWidget {
@@ -32,7 +31,7 @@ class _AlphaPickerPageState extends State<AlphaPickerPage> {
               children: <Widget>[
                 Text(
                   value.toString(),
-                  style: Theme.of(context).textTheme.headline4,
+                  style: Theme.of(context).textTheme.headlineMedium,
                 ),
                 const Divider(),
 

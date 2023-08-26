@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_hsvcolor_picker/flutter_hsvcolor_picker.dart';
 
 class SliderPickerPage extends StatefulWidget {
@@ -41,7 +40,7 @@ class _SliderPickerPageState extends State<SliderPickerPage> {
               children: <Widget>[
                 Text(
                   ((value * 100.0).toInt().toDouble() / 100.0).toString(),
-                  style: Theme.of(context).textTheme.headline4,
+                  style: Theme.of(context).textTheme.headlineMedium,
                 ),
                 const Divider(),
 

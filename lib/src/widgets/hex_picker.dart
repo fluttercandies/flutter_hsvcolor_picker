@@ -45,15 +45,17 @@ class _HexPickerState extends State<HexPicker> {
           child: Text(
             '#',
             style:
-                Theme.of(context).textTheme.headline6?.copyWith(fontSize: 18),
+                Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 18),
           ),
         ),
 
         // TextField
         Expanded(
           child: TextField(
-            style:
-                Theme.of(context).textTheme.headline5?.copyWith(fontSize: 20),
+            style: Theme.of(context)
+                .textTheme
+                .headlineSmall
+                ?.copyWith(fontSize: 20),
             focusNode: FocusNode()..addListener(() {}),
             controller: widget._controller,
             onSubmitted: textOnSubmitted,
