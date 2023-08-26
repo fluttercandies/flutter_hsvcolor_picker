@@ -228,9 +228,9 @@ class _ColorPickerState extends State<ColorPicker> {
           Container(
             width: 32,
             height: 32,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               shape: BoxShape.circle,
-              border: const Border.fromBorderSide(
+              border: Border.fromBorderSide(
                 BorderSide(color: Colors.black26),
               ),
             ),
