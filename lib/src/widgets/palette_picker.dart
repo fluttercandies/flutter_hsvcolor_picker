@@ -11,11 +11,10 @@ class PalettePicker extends StatefulWidget {
     this.rightPosition = 1.0,
     this.topPosition = 0.0,
     this.bottomPosition = 1.0,
+    this.border = const Border.fromBorderSide(BorderSide(color: Colors.grey)),
     this.borderRadius = const BorderRadius.all(Radius.circular(6)),
-    Border? border,
     Key? key,
-  })  : border = border ?? Border.all(color: Colors.grey),
-        super(key: key);
+  }) : super(key: key);
 
   final Border? border;
   final BorderRadius? borderRadius;
