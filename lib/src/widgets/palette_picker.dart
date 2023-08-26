@@ -16,7 +16,7 @@ class PalettePicker extends StatefulWidget {
     Key? key,
   }) : super(key: key);
 
-  final Border? border;
+  final Border border;
   final BorderRadius? borderRadius;
   final Offset position;
   final ValueChanged<Offset> onChanged;

@@ -10,12 +10,12 @@ class SliderPicker extends StatefulWidget {
     this.colors,
     this.child,
     this.borderRadius = const BorderRadius.all(Radius.circular(20.0)),
-    this.border,
+    this.border = const Border.fromBorderSide(BorderSide(color: Colors.grey)),
     this.height = 40.0,
     Key? key,
   })  : assert(value >= min && value <= max),
         super(key: key);
-  final Border? border;
+  final Border border;
   final double? height;
   final BorderRadius borderRadius;
   final double value;
@@ -63,10 +63,7 @@ class _SliderPickerState extends State<SliderPicker> {
                 DecoratedBox(
                     decoration: BoxDecoration(
                       borderRadius: widget.borderRadius,
-                      border: widget.border ??
-                          const Border.fromBorderSide(
-                            BorderSide(color: Colors.grey),
-                          ),
+                      border: widget.border,
                     ),
                     child: ClipRRect(
                       borderRadius: widget.borderRadius,
@@ -79,10 +76,7 @@ class _SliderPickerState extends State<SliderPicker> {
                 DecoratedBox(
                     decoration: BoxDecoration(
                       borderRadius: widget.borderRadius,
-                      border: widget.border ??
-                          const Border.fromBorderSide(
-                            BorderSide(color: Colors.grey),
-                          ),
+                      border: widget.border,
                       gradient: LinearGradient(colors: widget.colors!),
                     ),
                   ),
