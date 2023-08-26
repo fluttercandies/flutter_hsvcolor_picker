@@ -9,10 +9,15 @@ class SliderPicker extends StatefulWidget {
     this.max = 1.0,
     this.colors,
     this.child,
+    this.borderRadius = _SliderPickerState._defaultBorderRadius,
+    this.border = const Border.fromBorderSide(BorderSide(color: Colors.grey)),
+    this.height = 40.0,
     Key? key,
   })  : assert(value >= min && value <= max),
         super(key: key);
-
+  final Border? border;
+  final double? height;
+  final BorderRadius? borderRadius;
   final double value;
   final ValueChanged<double> onChanged;
   final double min;
@@ -25,6 +30,8 @@ class SliderPicker extends StatefulWidget {
 }
 
 class _SliderPickerState extends State<SliderPicker> {
+  static const _defaultBorderRadius = BorderRadius.all(Radius.circular(20.0));
+
   double get value => widget.value;
   double get min => widget.min;
   double get max => widget.max;
@@ -42,10 +49,6 @@ class _SliderPickerState extends State<SliderPicker> {
     super.setState(() => setRatio(ratio));
   }
 
-  BorderRadius radius = const BorderRadius.all(
-    Radius.circular(20.0),
-  );
-
   Widget buildSlider(double maxWidth) {
     return SizedBox(
       width: maxWidth,
@@ -61,11 +64,11 @@ class _SliderPickerState extends State<SliderPicker> {
                 // Child
                 DecoratedBox(
                     decoration: BoxDecoration(
-                      borderRadius: radius,
-                      border: Border.all(color: Colors.grey),
+                      borderRadius: widget.borderRadius,
+                      border: widget.border,
                     ),
                     child: ClipRRect(
-                      borderRadius: radius,
+                      borderRadius: widget.borderRadius ?? _defaultBorderRadius,
                       child: widget.child,
                     ),
                   )
@@ -74,8 +77,8 @@ class _SliderPickerState extends State<SliderPicker> {
                 // Color
                 DecoratedBox(
                     decoration: BoxDecoration(
-                      borderRadius: radius,
-                      border: Border.all(color: Colors.grey),
+                      borderRadius: widget.borderRadius,
+                      border: widget.border,
                       gradient: LinearGradient(colors: widget.colors!),
                     ),
                   ),
@@ -117,7 +120,7 @@ class _SliderPickerState extends State<SliderPicker> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 40.0,
+      height: widget.height,
       child: LayoutBuilder(
         builder: (BuildContext context, BoxConstraints box) =>
             buildSlider(box.maxWidth),

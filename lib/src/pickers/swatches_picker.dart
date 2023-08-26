@@ -38,7 +38,9 @@ class _SwatchesPickerState extends State<SwatchesPicker>
       decoration: BoxDecoration(
         color: item,
         shape: BoxShape.circle,
-        border: Border.all(color: Colors.grey),
+        border: const Border.fromBorderSide(
+          BorderSide(color: Colors.grey),
+        ),
       ),
       child: InkWell(
         borderRadius: const BorderRadius.all(
