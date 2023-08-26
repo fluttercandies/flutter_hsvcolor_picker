@@ -1,3 +1,9 @@
+## [1.3.0]
+
+* Expose some decoration properties for PaletteHuePicker.
+* Update deprecated theme variables
+* Updates in example app.
+
 ## [1.2.3]
 
 * Fix bug on color change where previously set alpha value was ignored.
