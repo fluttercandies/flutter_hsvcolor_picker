@@ -16,7 +16,7 @@ class HexPicker extends StatefulWidget {
   final TextEditingController _controller;
 
   @override
-  _HexPickerState createState() => _HexPickerState();
+  State<HexPicker> createState() => _HexPickerState();
 }
 
 class _HexPickerState extends State<HexPicker> {

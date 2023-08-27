@@ -5,7 +5,7 @@ class SliderPickerPage extends StatefulWidget {
   const SliderPickerPage({Key? key}) : super(key: key);
 
   @override
-  _SliderPickerPageState createState() => _SliderPickerPageState();
+  State<SliderPickerPage> createState() => _SliderPickerPageState();
 }
 
 class _SliderPickerPageState extends State<SliderPickerPage> {

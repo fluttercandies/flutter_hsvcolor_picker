@@ -14,7 +14,7 @@ class PaletteSaturationPicker extends StatefulWidget {
   final ValueChanged<HSVColor> onChanged;
 
   @override
-  _PaletteSaturationPickerState createState() =>
+  State<PaletteSaturationPicker> createState() =>
       _PaletteSaturationPickerState();
 }
 

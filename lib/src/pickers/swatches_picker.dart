@@ -10,7 +10,7 @@ class SwatchesPicker extends StatefulWidget {
   final ValueChanged<Color> onChanged;
 
   @override
-  _SwatchesPickerState createState() => _SwatchesPickerState();
+  State<SwatchesPicker> createState() => _SwatchesPickerState();
 }
 
 class _SwatchesPickerState extends State<SwatchesPicker>

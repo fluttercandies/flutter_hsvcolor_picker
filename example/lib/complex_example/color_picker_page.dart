@@ -6,7 +6,7 @@ class ColorPickerPage extends StatefulWidget {
   const ColorPickerPage({Key? key}) : super(key: key);
 
   @override
-  _ColorPickerPageState createState() => _ColorPickerPageState();
+  State<ColorPickerPage> createState() => _ColorPickerPageState();
 }
 
 class _ColorPickerPageState extends State<ColorPickerPage> {

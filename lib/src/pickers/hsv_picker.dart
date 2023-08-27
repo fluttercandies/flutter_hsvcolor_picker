@@ -18,7 +18,7 @@ class HSVPicker extends StatefulWidget {
   final ValueChanged<HSVColor> onChanged;
 
   @override
-  _HSVPickerState createState() => _HSVPickerState();
+  State<HSVPicker> createState() => _HSVPickerState();
 }
 
 class _HSVPickerState extends State<HSVPicker> {

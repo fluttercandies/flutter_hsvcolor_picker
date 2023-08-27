@@ -15,7 +15,7 @@ class RGBPicker extends StatefulWidget {
   final ValueChanged<Color> onChanged;
 
   @override
-  _RGBPickerState createState() => _RGBPickerState();
+  State<RGBPicker> createState() => _RGBPickerState();
 }
 
 class _RGBPickerState extends State<RGBPicker> {

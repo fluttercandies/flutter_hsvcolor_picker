@@ -6,7 +6,7 @@ class SwatchesPickerPage extends StatefulWidget {
   const SwatchesPickerPage({Key? key}) : super(key: key);
 
   @override
-  _SwatchesPickerPageState createState() => _SwatchesPickerPageState();
+  State<SwatchesPickerPage> createState() => _SwatchesPickerPageState();
 }
 
 class _SwatchesPickerPageState extends State<SwatchesPickerPage> {

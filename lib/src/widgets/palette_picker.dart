@@ -28,7 +28,7 @@ class PalettePicker extends StatefulWidget {
   final List<Color> topBottomColors;
 
   @override
-  _PalettePickerState createState() => _PalettePickerState();
+  State<PalettePicker> createState() => _PalettePickerState();
 }
 
 class _PalettePickerState extends State<PalettePicker> {

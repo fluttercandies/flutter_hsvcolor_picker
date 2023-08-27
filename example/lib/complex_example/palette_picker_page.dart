@@ -8,7 +8,7 @@ class PalettePickerPage extends StatefulWidget {
   final List<Color> verticalColors = [Colors.transparent, Colors.black];
 
   @override
-  _PalettePickerPageState createState() => _PalettePickerPageState();
+  State<PalettePickerPage> createState() => _PalettePickerPageState();
 }
 
 class _PalettePickerPageState extends State<PalettePickerPage> {
@@ -34,13 +34,7 @@ class _PalettePickerPageState extends State<PalettePickerPage> {
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 Text(
-                  '( ' +
-                      ((value.dx * 100.0).toInt().toDouble() / 100.0)
-                          .toString() +
-                      ' , ' +
-                      ((value.dy * 100.0).toInt().toDouble() / 100.0)
-                          .toString() +
-                      ' )',
+                  '''( ${(value.dx * 100.0).toInt().toDouble() / 100.0} , ${(value.dy * 100.0).toInt().toDouble() / 100.0} )''',
                   style: Theme.of(context).textTheme.headlineMedium,
                 ),
                 const Divider(),

@@ -6,7 +6,7 @@ class HSVPickerPage extends StatefulWidget {
   const HSVPickerPage({Key? key}) : super(key: key);
 
   @override
-  _HSVPickerPageState createState() => _HSVPickerPageState();
+  State<HSVPickerPage> createState() => _HSVPickerPageState();
 }
 
 class _HSVPickerPageState extends State<HSVPickerPage> {

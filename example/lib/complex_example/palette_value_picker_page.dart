@@ -6,7 +6,7 @@ class PaletteValuePickerPage extends StatefulWidget {
   const PaletteValuePickerPage({Key? key}) : super(key: key);
 
   @override
-  _PaletteValuePickerPageState createState() => _PaletteValuePickerPageState();
+  State<PaletteValuePickerPage> createState() => _PaletteValuePickerPageState();
 }
 
 class _PaletteValuePickerPageState extends State<PaletteValuePickerPage> {

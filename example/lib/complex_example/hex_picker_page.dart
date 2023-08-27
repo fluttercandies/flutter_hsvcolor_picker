@@ -6,7 +6,7 @@ class HexPickerPage extends StatefulWidget {
   const HexPickerPage({Key? key}) : super(key: key);
 
   @override
-  _HexPickerPageState createState() => _HexPickerPageState();
+  State<HexPickerPage> createState() => _HexPickerPageState();
 }
 
 class _HexPickerPageState extends State<HexPickerPage> {
