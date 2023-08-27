@@ -17,7 +17,7 @@ jobs:
       - name: Publish
         uses: k-paxian/dart-package-publisher@1.6
         with:
-          credential: 'MockCredential'
+          credential: ${{ secrets.CREDENTIAL_JSON }}
           flutter_package: true
           skip_test: true
           dry_run: true
