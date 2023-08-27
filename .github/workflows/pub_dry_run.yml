@@ -15,7 +15,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Publish
-        uses: k-paxian/dart-package-publisher@master
+        uses: k-paxian/dart-package-publisher@1.6
         with:
           credential: 'MockCredential'
           flutter_package: true
