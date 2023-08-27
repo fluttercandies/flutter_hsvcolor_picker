@@ -1,3 +1,7 @@
+## [1.4.0+1]
+
+* Update image paths in readme.
+
 ## [1.4.0]
 
 * Update dependencies.
