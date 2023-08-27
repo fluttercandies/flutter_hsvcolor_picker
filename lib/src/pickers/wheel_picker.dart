@@ -14,7 +14,7 @@ class WheelPicker extends StatefulWidget {
   final ValueChanged<HSVColor> onChanged;
 
   @override
-  _WheelPickerState createState() => _WheelPickerState();
+  State<WheelPicker> createState() => _WheelPickerState();
 }
 
 class _WheelPickerState extends State<WheelPicker> {

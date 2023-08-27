@@ -6,7 +6,7 @@ class RGBPickerPage extends StatefulWidget {
   const RGBPickerPage({Key? key}) : super(key: key);
 
   @override
-  _RGBPickerPageState createState() => _RGBPickerPageState();
+  State<RGBPickerPage> createState() => _RGBPickerPageState();
 }
 
 class _RGBPickerPageState extends State<RGBPickerPage> {

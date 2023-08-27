@@ -6,7 +6,7 @@ class PaletteHuePickerPage extends StatefulWidget {
   const PaletteHuePickerPage({Key? key}) : super(key: key);
 
   @override
-  _PaletteHuePickerPageState createState() => _PaletteHuePickerPageState();
+  State<PaletteHuePickerPage> createState() => _PaletteHuePickerPageState();
 }
 
 class _PaletteHuePickerPageState extends State<PaletteHuePickerPage> {

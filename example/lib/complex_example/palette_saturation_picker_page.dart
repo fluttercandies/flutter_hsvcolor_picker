@@ -6,7 +6,7 @@ class PaletteSaturationPickerPage extends StatefulWidget {
   const PaletteSaturationPickerPage({Key? key}) : super(key: key);
 
   @override
-  _PaletteSaturationPickerPageState createState() =>
+  State<PaletteSaturationPickerPage> createState() =>
       _PaletteSaturationPickerPageState();
 }
 

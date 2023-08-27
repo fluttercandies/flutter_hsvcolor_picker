@@ -14,7 +14,7 @@ class PaletteValuePicker extends StatefulWidget {
   final ValueChanged<HSVColor> onChanged;
 
   @override
-  _PaletteValuePickerState createState() => _PaletteValuePickerState();
+  State<PaletteValuePicker> createState() => _PaletteValuePickerState();
 }
 
 class _PaletteValuePickerState extends State<PaletteValuePicker> {

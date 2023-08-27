@@ -6,7 +6,7 @@ class WheelPickerPage extends StatefulWidget {
   const WheelPickerPage({Key? key}) : super(key: key);
 
   @override
-  _WheelPickerPageState createState() => _WheelPickerPageState();
+  State<WheelPickerPage> createState() => _WheelPickerPageState();
 }
 
 class _WheelPickerPageState extends State<WheelPickerPage> {
