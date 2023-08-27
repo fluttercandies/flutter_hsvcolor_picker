@@ -4,10 +4,10 @@ An HSV color picker designed for your Flutter app.
 
 Pickers: RGB, HSV, Color Wheel, Palette Hue, Palette Saturation, Palette Value, Swatches.
 
-![](https://github.com/fluttercandies/flutter_hsvcolor_picker/blob/main/screenshot/phone.png)
+![](https://raw.githubusercontent.com/fluttercandies/flutter_hsvcolor_picker/main/screenshot/phone.png)
 
 ## Getting Started
-  ![](https://github.com/fluttercandies/flutter_hsvcolor_picker/blob/main/screenshot/logo.png)
+  ![](https://raw.githubusercontent.com/fluttercandies/flutter_hsvcolor_picker/main/screenshot/logo.png)
 
 
 ### Installation
@@ -30,4 +30,4 @@ ColorPicker(
 
 For a more detailed example, head over to: https://github.com/fluttercandies/flutter_hsvcolor_picker/tree/main/example/lib/complex_example
 
-![](https://github.com/fluttercandies/flutter_hsvcolor_picker/blob/main/screenshot/design.png)
+![](https://raw.githubusercontent.com/fluttercandies/flutter_hsvcolor_picker/main/screenshot/design.png)
