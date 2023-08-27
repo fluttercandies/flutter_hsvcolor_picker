@@ -14,10 +14,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Publish
-        uses: k-paxian/dart-package-publisher@1.6
+      - name: Dry run
+        uses: k-paxian/dart-package-publisher@master
         with:
-          credential: ${{ secrets.CREDENTIAL_JSON }}
-          flutter_package: true
-          skip_test: true
-          dry_run: true
+          credentialJson: 'MockCredentialJson'
+          flutter: true
+          dryRunOnly: true
+          skipTests: true
