@@ -12,7 +12,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Publish
-        uses: k-paxian/dart-package-publisher@master
+        uses: k-paxian/dart-package-publisher@v1.6
         with:
           credentialJson: ${{ secrets.CREDENTIAL_JSON }}
           flutter: true
