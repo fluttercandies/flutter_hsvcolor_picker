@@ -1,3 +1,8 @@
+## [1.4.0]
+
+* Update dependencies.
+* Rename to `main` branch, and update links in readme.
+
 ## [1.3.0]
 
 * Expose some decoration properties for PaletteHuePicker.
