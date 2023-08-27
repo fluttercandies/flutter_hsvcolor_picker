@@ -34,7 +34,7 @@ class _PalettePickerPageState extends State<PalettePickerPage> {
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 Text(
-                  '( ${(value.dx * 100.0).toInt().toDouble() / 100.0} , ${(value.dy * 100.0).toInt().toDouble() / 100.0} )',
+                  '''( ${(value.dx * 100.0).toInt().toDouble() / 100.0} , ${(value.dy * 100.0).toInt().toDouble() / 100.0} )''',
                   style: Theme.of(context).textTheme.headlineMedium,
                 ),
                 const Divider(),
