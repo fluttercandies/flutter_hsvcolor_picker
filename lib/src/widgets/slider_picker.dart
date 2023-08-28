@@ -11,12 +11,12 @@ class SliderPicker extends StatefulWidget {
     this.child,
     this.borderRadius = _SliderPickerState._defaultBorderRadius,
     this.border = const Border.fromBorderSide(BorderSide(color: Colors.grey)),
-    this.height = 40.0,
+    this.height = 40,
     Key? key,
   })  : assert(value >= min && value <= max),
         super(key: key);
   final Border? border;
-  final double? height;
+  final double height;
   final BorderRadius? borderRadius;
   final double value;
   final ValueChanged<double> onChanged;
@@ -52,6 +52,7 @@ class _SliderPickerState extends State<SliderPicker> {
   Widget buildSlider(double maxWidth) {
     return SizedBox(
       width: maxWidth,
+      height: widget.height,
       child: CustomMultiChildLayout(
         delegate: _SliderLayout(),
         children: <Widget>[
