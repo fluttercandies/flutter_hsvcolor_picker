@@ -7,11 +7,13 @@ class PaletteValuePicker extends StatefulWidget {
   const PaletteValuePicker({
     required this.color,
     required this.onChanged,
+    this.paletteHeight = 280,
     Key? key,
   }) : super(key: key);
 
   final HSVColor color;
   final ValueChanged<HSVColor> onChanged;
+  final double paletteHeight;
 
   @override
   State<PaletteValuePicker> createState() => _PaletteValuePickerState();
@@ -56,7 +58,7 @@ class _PaletteValuePickerState extends State<PaletteValuePicker> {
       children: <Widget>[
         // Palette
         SizedBox(
-          height: 280.0,
+          height: widget.paletteHeight,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 20),
             child: PalettePicker(

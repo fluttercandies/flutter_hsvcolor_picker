@@ -40,6 +40,7 @@ class ColorPicker extends StatefulWidget {
     this.color = Colors.blue,
     this.initialPicker = Picker.paletteHue,
     this.pickerOrientation = PickerOrientation.inherit,
+    this.paletteHeight = 280,
     Key? key,
   }) : super(key: key);
 
@@ -54,6 +55,8 @@ class ColorPicker extends StatefulWidget {
   final Picker initialPicker;
 
   final PickerOrientation pickerOrientation;
+
+  final double paletteHeight;
 
   @override
   State<ColorPicker> createState() => _ColorPickerState();
@@ -163,6 +166,7 @@ class _ColorPickerState extends State<ColorPicker> {
         picker: Picker.paletteHue,
         builder: (BuildContext context) => PaletteHuePicker(
           color: _hSVColor,
+          paletteHeight: widget.paletteHeight,
           onChanged: (HSVColor value) => super.setState(
             () => _hSVColorOnChanged(value),
           ),
@@ -175,6 +179,7 @@ class _ColorPickerState extends State<ColorPicker> {
         picker: Picker.paletteSaturation,
         builder: (BuildContext context) => PaletteSaturationPicker(
           color: _hSVColor,
+          paletteHeight: widget.paletteHeight,
           onChanged: (HSVColor value) => super.setState(
             () => _hSVColorOnChanged(value),
           ),
@@ -187,6 +192,7 @@ class _ColorPickerState extends State<ColorPicker> {
         picker: Picker.paletteValue,
         builder: (BuildContext context) => PaletteValuePicker(
           color: _hSVColor,
+          paletteHeight: widget.paletteHeight,
           onChanged: (HSVColor value) => super.setState(
             () => _hSVColorOnChanged(value),
           ),

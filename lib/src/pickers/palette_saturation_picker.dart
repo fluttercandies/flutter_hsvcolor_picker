@@ -7,11 +7,13 @@ class PaletteSaturationPicker extends StatefulWidget {
   const PaletteSaturationPicker({
     required this.color,
     required this.onChanged,
+    this.paletteHeight = 280,
     Key? key,
   }) : super(key: key);
 
   final HSVColor color;
   final ValueChanged<HSVColor> onChanged;
+  final double paletteHeight;
 
   @override
   State<PaletteSaturationPicker> createState() =>
@@ -58,7 +60,7 @@ class _PaletteSaturationPickerState extends State<PaletteSaturationPicker> {
       children: <Widget>[
         // Palette
         SizedBox(
-          height: 280.0,
+          height: widget.paletteHeight,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 20),
             child: PalettePicker(
