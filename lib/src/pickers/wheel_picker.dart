@@ -7,11 +7,13 @@ class WheelPicker extends StatefulWidget {
   const WheelPicker({
     required this.color,
     required this.onChanged,
+    this.showPalette = true,
     Key? key,
   }) : super(key: key);
 
   final HSVColor color;
   final ValueChanged<HSVColor> onChanged;
+  final bool showPalette;
 
   @override
   State<WheelPicker> createState() => _WheelPickerState();
@@ -67,7 +69,7 @@ class _WheelPickerState extends State<WheelPicker> {
         ),
       );
     }
-    if (this.isPalette) {
+    if (widget.showPalette && this.isPalette) {
       widget.onChanged(
         HSVColor.fromAHSV(
           color.alpha,
@@ -80,6 +82,7 @@ class _WheelPickerState extends State<WheelPicker> {
   }
 
   void onPanUpdate(Offset offset) {
+    if (!widget.showPalette && isPalette) return;
     final RenderBox? renderBox =
         paletteKey.currentContext?.findRenderObject() as RenderBox?;
     final Size size = renderBox?.size ?? Size.zero;
@@ -116,10 +119,12 @@ class _WheelPickerState extends State<WheelPicker> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onPanStart: (DragStartDetails details) =>
-          onPanStart(details.globalPosition),
-      onPanUpdate: (DragUpdateDetails details) =>
-          onPanUpdate(details.globalPosition),
+      onPanStart: (DragStartDetails details) {
+        onPanStart(details.globalPosition);
+      },
+      onPanUpdate: (DragUpdateDetails details) {
+        onPanUpdate(details.globalPosition);
+      },
       onPanDown: (DragDownDetails details) => onPanDown(details.globalPosition),
       child: Container(
         key: paletteKey,
@@ -127,7 +132,10 @@ class _WheelPickerState extends State<WheelPicker> {
         width: 240,
         height: 240,
         child: CustomPaint(
-          painter: _WheelPainter(color: color),
+          painter: _WheelPainter(
+            color: color,
+            showColorBox: widget.showPalette,
+          ),
         ),
       ),
     );
@@ -137,6 +145,7 @@ class _WheelPickerState extends State<WheelPicker> {
 class _WheelPainter extends CustomPainter {
   const _WheelPainter({
     required this.color,
+    required this.showColorBox,
   }) : super();
 
   static double strokeWidth = 8;
@@ -148,6 +157,7 @@ class _WheelPainter extends CustomPainter {
       (radio - _WheelPainter.strokeWidth) / 1.414213562373095;
 
   final HSVColor color;
+  final bool showColorBox;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -194,6 +204,22 @@ class _WheelPainter extends CustomPainter {
         ..color = Colors.grey,
     );
 
+    // Thumb on color wheel
+    final Paint paintWhite = Paint()
+      ..color = Colors.white
+      ..strokeWidth = 4
+      ..style = PaintingStyle.stroke;
+    final Paint paintBlack = Paint()
+      ..color = Colors.black
+      ..strokeWidth = 6
+      ..style = PaintingStyle.stroke;
+    final Offset wheel = _Wheel.hueToVector(
+        (color.hue + 360.0) * math.pi / 180.0, radio, center);
+    canvas.drawCircle(wheel, 12, paintBlack);
+    canvas.drawCircle(wheel, 12, paintWhite);
+
+    if (!showColorBox) return;
+
     // Palette
     final Rect rect = Rect.fromLTWH(center.dx - squareRadio,
         center.dy - squareRadio, squareRadio * 2, squareRadio * 2);
@@ -234,21 +260,7 @@ class _WheelPainter extends CustomPainter {
         ..color = Colors.grey,
     );
 
-    // Thumb
-    final Paint paintWhite = Paint()
-      ..color = Colors.white
-      ..strokeWidth = 4
-      ..style = PaintingStyle.stroke;
-    final Paint paintBlack = Paint()
-      ..color = Colors.black
-      ..strokeWidth = 6
-      ..style = PaintingStyle.stroke;
-    final Offset wheel = _Wheel.hueToVector(
-        (color.hue + 360.0) * math.pi / 180.0, radio, center);
-    canvas.drawCircle(wheel, 12, paintBlack);
-    canvas.drawCircle(wheel, 12, paintWhite);
-
-    // Thumb
+    // Thumb on color box
     final double paletteX =
         _Wheel.saturationToVector(color.saturation, squareRadio, center.dx);
     final double paletteY =
