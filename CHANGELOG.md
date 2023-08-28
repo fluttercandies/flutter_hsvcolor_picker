@@ -1,3 +1,8 @@
+## [1.5.0]
+
+* Add `showPalette` to `WheelPicker`.
+* Add `paletteHeight` to `ColorPicker`, `PaletteHuePicker`, `PaletteSaturationPicker`, and `PaletteValuePicker`.
+
 ## [1.4.0+1]
 
 * Update image paths in readme.
