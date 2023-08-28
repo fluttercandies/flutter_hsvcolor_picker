@@ -8,7 +8,7 @@ class PaletteHuePicker extends StatefulWidget {
   const PaletteHuePicker({
     required this.color,
     required this.onChanged,
-    this.paletteHeight = 280.0,
+    this.paletteHeight = 280,
     this.palettePadding = const EdgeInsets.symmetric(
       horizontal: 12,
       vertical: 20,
