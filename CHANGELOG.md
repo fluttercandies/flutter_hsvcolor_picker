@@ -1,3 +1,8 @@
+## [1.5.1]
+
+* Update example app.
+* Widen `flutter_lints` constraints.
+
 ## [1.5.0]
 
 * Add `showPalette` to `WheelPicker`.
