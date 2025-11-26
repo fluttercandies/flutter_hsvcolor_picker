@@ -169,13 +169,19 @@ class _WheelPainter extends CustomPainter {
     final Shader sweepShader = const SweepGradient(
       center: Alignment.bottomRight,
       colors: <Color>[
-        Color.fromARGB(255, 255, 0, 0),
-        Color.fromARGB(255, 255, 255, 0),
-        Color.fromARGB(255, 0, 255, 0),
-        Color.fromARGB(255, 0, 255, 255),
-        Color.fromARGB(255, 0, 0, 255),
-        Color.fromARGB(255, 255, 0, 255),
-        Color.fromARGB(255, 255, 0, 0),
+        Color.fromARGB(255, 255, 0, 0),      // 0° Red
+        Color.fromARGB(255, 255, 128, 0),    // 30° Orange
+        Color.fromARGB(255, 255, 255, 0),    // 60° Yellow
+        Color.fromARGB(255, 128, 255, 0),    // 90° Chartreuse
+        Color.fromARGB(255, 0, 255, 0),      // 120° Green
+        Color.fromARGB(255, 0, 255, 128),    // 150° Spring Green
+        Color.fromARGB(255, 0, 255, 255),    // 180° Cyan
+        Color.fromARGB(255, 0, 128, 255),    // 210° Azure
+        Color.fromARGB(255, 0, 0, 255),      // 240° Blue
+        Color.fromARGB(255, 128, 0, 255),    // 270° Violet
+        Color.fromARGB(255, 255, 0, 255),    // 300° Magenta
+        Color.fromARGB(255, 255, 0, 128),    // 330° Pink
+        Color.fromARGB(255, 255, 0, 0),      // 360° Red
       ],
     ).createShader(
       Rect.fromLTWH(0, 0, radio, radio),
