@@ -41,7 +41,7 @@ class _HSVPickerState extends State<HSVPicker> {
         color.withHue(270.0).toColor(),
         color.withHue(300.0).toColor(),
         color.withHue(330.0).toColor(),
-        color.withHue(360.0).toColor()
+        color.withHue(0.0).toColor()
       ];
 
   // Saturation
