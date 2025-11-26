@@ -30,12 +30,18 @@ class _HSVPickerState extends State<HSVPicker> {
       );
   List<Color> get hueColors => <Color>[
         color.withHue(0.0).toColor(),
+        color.withHue(30.0).toColor(),
         color.withHue(60.0).toColor(),
+        color.withHue(90.0).toColor(),
         color.withHue(120.0).toColor(),
+        color.withHue(150.0).toColor(),
         color.withHue(180.0).toColor(),
+        color.withHue(210.0).toColor(),
         color.withHue(240.0).toColor(),
+        color.withHue(270.0).toColor(),
         color.withHue(300.0).toColor(),
-        color.withHue(0.0).toColor()
+        color.withHue(330.0).toColor(),
+        color.withHue(360.0).toColor()
       ];
 
   // Saturation
