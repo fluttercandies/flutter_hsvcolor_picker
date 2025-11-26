@@ -42,14 +42,14 @@ class _PaletteHuePickerState extends State<PaletteHuePicker> {
   void hueOnChange(double value) => widget.onChanged(
         color.withHue(value),
       );
-  List<Color> get hueColors => <Color>[
-        color.withHue(0.0).toColor(),
-        color.withHue(60.0).toColor(),
-        color.withHue(120.0).toColor(),
-        color.withHue(180.0).toColor(),
-        color.withHue(240.0).toColor(),
-        color.withHue(300.0).toColor(),
-        color.withHue(0.0).toColor()
+  final List<Color> hueColors = const <Color>[
+        Color.fromARGB(255, 255, 0, 0),
+        Color.fromARGB(255, 255, 255, 0),
+        Color.fromARGB(255, 0, 255, 0),
+        Color.fromARGB(255, 0, 255, 255),
+        Color.fromARGB(255, 0, 0, 255),
+        Color.fromARGB(255, 255, 0, 255),
+        Color.fromARGB(255, 255, 0, 0)
       ];
 
   // Saturation Value
