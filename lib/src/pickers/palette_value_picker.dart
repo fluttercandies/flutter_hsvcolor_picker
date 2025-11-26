@@ -37,13 +37,19 @@ class _PaletteValuePickerState extends State<PaletteValuePicker> {
       );
   // Hue
   final List<Color> hueColors = <Color>[
-    const Color.fromARGB(255, 255, 0, 0),
-    const Color.fromARGB(255, 255, 255, 0),
-    const Color.fromARGB(255, 0, 255, 0),
-    const Color.fromARGB(255, 0, 255, 255),
-    const Color.fromARGB(255, 0, 0, 255),
-    const Color.fromARGB(255, 255, 0, 255),
-    const Color.fromARGB(255, 255, 0, 0)
+    const Color.fromARGB(255, 255, 0, 0),      // 0° Red
+    const Color.fromARGB(255, 255, 128, 0),    // 30° Orange
+    const Color.fromARGB(255, 255, 255, 0),    // 60° Yellow
+    const Color.fromARGB(255, 128, 255, 0),    // 90° Chartreuse
+    const Color.fromARGB(255, 0, 255, 0),      // 120° Green
+    const Color.fromARGB(255, 0, 255, 128),    // 150° Spring Green
+    const Color.fromARGB(255, 0, 255, 255),    // 180° Cyan
+    const Color.fromARGB(255, 0, 128, 255),    // 210° Azure
+    const Color.fromARGB(255, 0, 0, 255),      // 240° Blue
+    const Color.fromARGB(255, 128, 0, 255),    // 270° Violet
+    const Color.fromARGB(255, 255, 0, 255),    // 300° Magenta
+    const Color.fromARGB(255, 255, 0, 128),    // 330° Pink
+    const Color.fromARGB(255, 255, 0, 0)       // 360° Red
   ];
   // Saturation
   final List<Color> saturationColors = <Color>[
