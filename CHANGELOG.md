@@ -1,3 +1,7 @@
+## [1.5.2]
+
+* Fix `PaletteHuePicker` hue slider showing incorrect colors when dark or desaturated colors are selected in the palette.
+
 ## [1.5.1]
 
 * Update example app.
