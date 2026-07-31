@@ -22,9 +22,7 @@ class _PaletteSaturationPickerPageState
         width: 260,
         child: Card(
           shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(
-              Radius.circular(0.0),
-            ),
+            borderRadius: BorderRadius.all(Radius.circular(0.0)),
           ),
           elevation: 2.0,
           child: Padding(
@@ -41,10 +39,8 @@ class _PaletteSaturationPickerPageState
                 ///---------------------------------
                 PaletteSaturationPicker(
                   color: color,
-                  onChanged: (value) => super.setState(
-                    () => onChanged(value),
-                  ),
-                )
+                  onChanged: (value) => super.setState(() => onChanged(value)),
+                ),
 
                 ///---------------------------------
               ],

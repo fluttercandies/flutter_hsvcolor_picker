@@ -126,10 +126,14 @@ class _MainPageState extends State<MainPage> {
   // Theme
   bool isDark = false;
   ThemeData get theme => isDark ? themeDark : themeLight;
-  ThemeData themeLight =
-      ThemeData(brightness: Brightness.light, platform: TargetPlatform.iOS);
-  ThemeData themeDark =
-      ThemeData(brightness: Brightness.dark, platform: TargetPlatform.iOS);
+  ThemeData themeLight = ThemeData(
+    brightness: Brightness.light,
+    platform: TargetPlatform.iOS,
+  );
+  ThemeData themeDark = ThemeData(
+    brightness: Brightness.dark,
+    platform: TargetPlatform.iOS,
+  );
   void setTheme() => super.setState(() => isDark = !isDark);
 
   PreferredSizeWidget buildAppBar() {
@@ -149,10 +153,7 @@ class _MainPageState extends State<MainPage> {
       // Left
       leading: IconButton(
         onPressed: iconButtonOnPressed,
-        icon: IconTheme(
-          data: theme.iconTheme,
-          child: const Icon(Icons.dehaze),
-        ),
+        icon: IconTheme(data: theme.iconTheme, child: const Icon(Icons.dehaze)),
       ),
 
       // Right
@@ -163,7 +164,7 @@ class _MainPageState extends State<MainPage> {
             data: theme.iconTheme,
             child: const Icon(Icons.dehaze),
           ),
-        )
+        ),
       ],
     );
   }
@@ -179,10 +180,8 @@ class _MainPageState extends State<MainPage> {
 
             // List
             Expanded(
-              child: ListView(
-                children: items.map(buildListViewItem).toList(),
-              ),
-            )
+              child: ListView(children: items.map(buildListViewItem).toList()),
+            ),
           ],
         ),
       ),
@@ -213,7 +212,7 @@ class _MainPageState extends State<MainPage> {
                     '淹死的鱼ysdy44',
                     style: TextStyle(color: Colors.white, fontSize: 18.0),
                   ),
-                )
+                ),
               ],
             ),
           ),
@@ -232,7 +231,7 @@ class _MainPageState extends State<MainPage> {
                 style: const TextStyle(fontSize: 16.0, color: Colors.white),
               ),
             ),
-          )
+          ),
         ],
       ),
     );
@@ -252,9 +251,7 @@ class _MainPageState extends State<MainPage> {
           slivers: <Widget>[
             // Body
             SliverList(
-              delegate: SliverChildListDelegate(
-                <Widget>[buildDrawerHeader()],
-              ),
+              delegate: SliverChildListDelegate(<Widget>[buildDrawerHeader()]),
             ),
 
             // Body
@@ -262,7 +259,7 @@ class _MainPageState extends State<MainPage> {
               delegate: SliverChildListDelegate(
                 items.map(buildListViewItem).toList(),
               ),
-            )
+            ),
           ],
         ),
       ),
@@ -276,9 +273,7 @@ class _MainPageState extends State<MainPage> {
       selected: item.index == index,
       leading: Icon(item.icon),
       title: Text(item.text),
-      onTap: () => super.setState(
-        () => listTileOnTap(item),
-      ),
+      onTap: () => super.setState(() => listTileOnTap(item)),
     );
   }
 

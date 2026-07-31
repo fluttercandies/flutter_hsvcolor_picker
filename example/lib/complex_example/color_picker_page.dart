@@ -17,9 +17,7 @@ class _ColorPickerPageState extends State<ColorPickerPage> {
         width: 300,
         child: Card(
           shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(
-              Radius.circular(1.0),
-            ),
+            borderRadius: BorderRadius.all(Radius.circular(1.0)),
           ),
           elevation: 4.0,
           child: Padding(
@@ -29,10 +27,7 @@ class _ColorPickerPageState extends State<ColorPickerPage> {
             ),
 
             ///---------------------------------
-            child: ColorPicker(
-              color: Colors.blue,
-              onChanged: (value) {},
-            ),
+            child: ColorPicker(color: Colors.blue, onChanged: (value) {}),
 
             ///---------------------------------
           ),

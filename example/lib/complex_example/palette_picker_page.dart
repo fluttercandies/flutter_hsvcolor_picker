@@ -23,9 +23,7 @@ class _PalettePickerPageState extends State<PalettePickerPage> {
         height: 320,
         child: Card(
           shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(
-              Radius.circular(0.0),
-            ),
+            borderRadius: BorderRadius.all(Radius.circular(0.0)),
           ),
           elevation: 2.0,
           child: Padding(
@@ -39,21 +37,19 @@ class _PalettePickerPageState extends State<PalettePickerPage> {
                 ),
                 const Divider(),
                 Expanded(
+                  ///---------------------------------
+                  child: PalettePicker(
+                    topPosition: 1.0,
+                    bottomPosition: 0.0,
+                    position: value,
+                    onChanged: (value) =>
+                        super.setState(() => onChanged(value)),
+                    leftRightColors: widget.horizontalColors,
+                    topBottomColors: widget.verticalColors,
+                  ),
 
-                    ///---------------------------------
-                    child: PalettePicker(
-                        topPosition: 1.0,
-                        bottomPosition: 0.0,
-                        position: value,
-                        onChanged: (value) => super.setState(
-                              () => onChanged(value),
-                            ),
-                        leftRightColors: widget.horizontalColors,
-                        topBottomColors: widget.verticalColors)
-
-                    ///---------------------------------
-
-                    )
+                  ///---------------------------------
+                ),
               ],
             ),
           ),
