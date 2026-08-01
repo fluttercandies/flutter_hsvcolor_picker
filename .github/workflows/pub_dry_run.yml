@@ -10,14 +10,23 @@ on:
 
 jobs:
   publish:
+    name: Pub publish dry run
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v7
-      - name: Dry run
-        uses: k-paxian/dart-package-publisher@v1.6
+
+      - name: Install Flutter
+        uses: subosito/flutter-action@v2
         with:
-          credentialJson: 'MockCredentialJson'
-          flutter: true
-          dryRunOnly: true
-          skipTests: true
+          channel: stable
+          cache: true
+
+      - name: Disable analytics
+        run: flutter config --no-analytics
+
+      - name: Publish dry run
+        run: dart pub publish --dry-run
+
+      - name: Flutter test
+        run: flutter test
