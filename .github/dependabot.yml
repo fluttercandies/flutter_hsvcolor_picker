@@ -9,11 +9,15 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
+    cooldown:
+      default-days: 7
 
   - package-ecosystem: "pub"
     directory: "/"
     schedule:
       interval: "weekly"
+    cooldown:
+      default-days: 7
     ignore:
       - dependency-name: "*"
         update-types: ["version-update:semver-minor", "version-update:semver-patch"]
@@ -22,6 +26,8 @@ updates:
     directory: "example"
     schedule:
       interval: "weekly"
+    cooldown:
+      default-days: 7
     ignore:
       - dependency-name: "*"
         update-types: ["version-update:semver-minor", "version-update:semver-patch"]
@@ -30,3 +36,5 @@ updates:
     directory: "example/android"
     schedule:
       interval: "weekly"
+    cooldown:
+      default-days: 7
