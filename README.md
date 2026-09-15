@@ -37,8 +37,8 @@ For a more detailed example, head over to: https://github.com/fluttercandies/flu
 Use FVM for the repository toolchain. The canonical formatter width is 120 columns:
 
 ```sh
-fvm dart format --line-length 120 .
-fvm dart format --line-length 120 --output=none --set-exit-if-changed .
+fvm dart format --page-width 120 .
+fvm dart format --page-width 120 --output=none --set-exit-if-changed .
 fvm dart analyze
 fvm flutter test
 (cd example && fvm flutter build apk --debug)
