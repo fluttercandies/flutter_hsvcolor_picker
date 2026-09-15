@@ -8,8 +8,8 @@ class PaletteValuePicker extends StatefulWidget {
     required this.color,
     required this.onChanged,
     this.paletteHeight = 280,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final HSVColor color;
   final ValueChanged<HSVColor> onChanged;

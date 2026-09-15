@@ -18,8 +18,8 @@ class PaletteHuePicker extends StatefulWidget {
     this.hueHeight = 40,
     this.paletteBorder,
     this.paletteBorderRadius,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final HSVColor color;
   final ValueChanged<HSVColor> onChanged;

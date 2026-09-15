@@ -4,8 +4,8 @@ class SliderTitle extends StatelessWidget {
   const SliderTitle(
     this.title,
     this.text, {
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final String title;
   final String text;

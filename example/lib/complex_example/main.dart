@@ -16,7 +16,7 @@ import 'wheel_picker_page.dart';
 void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MainPage extends StatefulWidget {
-  const MainPage({Key? key}) : super(key: key);
+  const MainPage({super.key});
 
   @override
   State<MainPage> createState() => _MainPageState();
@@ -35,9 +35,7 @@ class _MainPageState extends State<MainPage> {
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
   int index = 0;
-  Widget? get page => items
-      .firstWhere((item) => item == null ? false : item.index == index)
-      ?.page;
+  Widget? get page => items.firstWhere((item) => item == null ? false : item.index == index)?.page;
   List<_MainItem?> items = [
     _MainItem(
       index: 0,
@@ -126,14 +124,8 @@ class _MainPageState extends State<MainPage> {
   // Theme
   bool isDark = false;
   ThemeData get theme => isDark ? themeDark : themeLight;
-  ThemeData themeLight = ThemeData(
-    brightness: Brightness.light,
-    platform: TargetPlatform.iOS,
-  );
-  ThemeData themeDark = ThemeData(
-    brightness: Brightness.dark,
-    platform: TargetPlatform.iOS,
-  );
+  ThemeData themeLight = ThemeData(brightness: Brightness.light, platform: TargetPlatform.iOS);
+  ThemeData themeDark = ThemeData(brightness: Brightness.dark, platform: TargetPlatform.iOS);
   void setTheme() => super.setState(() => isDark = !isDark);
 
   PreferredSizeWidget buildAppBar() {

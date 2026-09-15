@@ -5,11 +5,10 @@ class HexPicker extends StatefulWidget {
   HexPicker({
     required this.color,
     required this.onChanged,
-    Key? key,
-  })  : _controller = TextEditingController(
+    super.key,
+  }) : _controller = TextEditingController(
           text: _Hex.colorToString(color).toUpperCase(),
-        ),
-        super(key: key);
+        );
 
   final Color color;
   final ValueChanged<Color> onChanged;
@@ -44,18 +43,14 @@ class _HexPickerState extends State<HexPicker> {
           padding: const EdgeInsets.symmetric(horizontal: 4),
           child: Text(
             '#',
-            style:
-                Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 18),
+            style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 18),
           ),
         ),
 
         // TextField
         Expanded(
           child: TextField(
-            style: Theme.of(context)
-                .textTheme
-                .headlineSmall
-                ?.copyWith(fontSize: 20),
+            style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontSize: 20),
             focusNode: FocusNode()..addListener(() {}),
             controller: widget._controller,
             onSubmitted: textOnSubmitted,
@@ -80,18 +75,15 @@ class _Hex {
   static int stringToInt(String hex) => int.parse(hex, radix: 16);
 
   // String To Color
-  static String colorToString(Color color) =>
-      _colorToString(
-        color.red.toRadixString(16),
-      ) +
-      _colorToString(
-        color.green.toRadixString(16),
-      ) +
-      _colorToString(
-        color.blue.toRadixString(16),
-      );
-  static String _colorToString(String text) =>
-      text.length == 1 ? '0$text' : text;
+  static String colorToString(Color color) {
+    final value = color.toARGB32();
+
+    return _colorToString(((value >> 16) & 0xff).toRadixString(16)) +
+        _colorToString(((value >> 8) & 0xff).toRadixString(16)) +
+        _colorToString((value & 0xff).toRadixString(16));
+  }
+
+  static String _colorToString(String text) => text.length == 1 ? '0$text' : text;
 
   // Subste
   static String? textSubString(String? text) {

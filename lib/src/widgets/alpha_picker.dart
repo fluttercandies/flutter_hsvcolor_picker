@@ -8,8 +8,8 @@ class AlphaPicker extends StatefulWidget {
   const AlphaPicker({
     required this.alpha,
     required this.onChanged,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final int alpha;
   final ValueChanged<int> onChanged;

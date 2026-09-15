@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hsvcolor_picker/flutter_hsvcolor_picker.dart';
 
 class ColorPickerPage extends StatefulWidget {
-  const ColorPickerPage({Key? key}) : super(key: key);
+  const ColorPickerPage({super.key});
 
   @override
   State<ColorPickerPage> createState() => _ColorPickerPageState();

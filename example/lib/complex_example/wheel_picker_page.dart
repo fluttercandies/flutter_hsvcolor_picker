@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hsvcolor_picker/flutter_hsvcolor_picker.dart';
 
 class WheelPickerPage extends StatefulWidget {
-  const WheelPickerPage({Key? key}) : super(key: key);
+  const WheelPickerPage({super.key});
 
   @override
   State<WheelPickerPage> createState() => _WheelPickerPageState();

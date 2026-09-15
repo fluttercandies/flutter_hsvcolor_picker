@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hsvcolor_picker/flutter_hsvcolor_picker.dart';
 
 class AlphaPickerPage extends StatefulWidget {
-  const AlphaPickerPage({Key? key}) : super(key: key);
+  const AlphaPickerPage({super.key});
 
   @override
   State<AlphaPickerPage> createState() => _AlphaPickerPageState();

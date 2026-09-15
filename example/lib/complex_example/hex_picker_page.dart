@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hsvcolor_picker/flutter_hsvcolor_picker.dart';
 
 class HexPickerPage extends StatefulWidget {
-  const HexPickerPage({Key? key}) : super(key: key);
+  const HexPickerPage({super.key});
 
   @override
   State<HexPickerPage> createState() => _HexPickerPageState();

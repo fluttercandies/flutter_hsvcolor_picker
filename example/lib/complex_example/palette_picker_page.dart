@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hsvcolor_picker/flutter_hsvcolor_picker.dart';
 
 class PalettePickerPage extends StatefulWidget {
-  PalettePickerPage({Key? key}) : super(key: key);
+  PalettePickerPage({super.key});
 
   final List<Color> horizontalColors = [Colors.white, Colors.blue];
   final List<Color> verticalColors = [Colors.transparent, Colors.black];

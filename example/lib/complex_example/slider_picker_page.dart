@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hsvcolor_picker/flutter_hsvcolor_picker.dart';
 
 class SliderPickerPage extends StatefulWidget {
-  const SliderPickerPage({Key? key}) : super(key: key);
+  const SliderPickerPage({super.key});
 
   @override
   State<SliderPickerPage> createState() => _SliderPickerPageState();

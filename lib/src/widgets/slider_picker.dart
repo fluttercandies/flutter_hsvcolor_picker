@@ -12,9 +12,8 @@ class SliderPicker extends StatefulWidget {
     this.borderRadius = _SliderPickerState._defaultBorderRadius,
     this.border = const Border.fromBorderSide(BorderSide(color: Colors.grey)),
     this.height = 40,
-    Key? key,
-  })  : assert(value >= min && value <= max),
-        super(key: key);
+    super.key,
+  }) : assert(value >= min && value <= max);
   final Border? border;
   final double height;
   final BorderRadius? borderRadius;
@@ -43,8 +42,7 @@ class _SliderPickerState extends State<SliderPicker> {
 
   void onPanUpdate(DragUpdateDetails details, BoxConstraints box) {
     final RenderBox? renderBox = super.context.findRenderObject() as RenderBox?;
-    final Offset offset =
-        renderBox?.globalToLocal(details.globalPosition) ?? Offset.zero;
+    final Offset offset = renderBox?.globalToLocal(details.globalPosition) ?? Offset.zero;
     final double ratio = offset.dx / box.maxWidth;
     super.setState(() => setRatio(ratio));
   }
@@ -89,10 +87,11 @@ class _SliderPickerState extends State<SliderPicker> {
           LayoutId(
             id: _SliderLayout.thumb,
             child: Transform(
-              transform: Matrix4.identity()
-                ..translate(
-                  _ThumbPainter.getWidth(getRatio(), maxWidth),
-                ),
+              transform: Matrix4.translationValues(
+                _ThumbPainter.getWidth(getRatio(), maxWidth),
+                0,
+                0,
+              ),
               child: CustomPaint(
                 painter: _ThumbPainter(),
               ),
@@ -123,8 +122,7 @@ class _SliderPickerState extends State<SliderPicker> {
     return SizedBox(
       height: widget.height,
       child: LayoutBuilder(
-        builder: (BuildContext context, BoxConstraints box) =>
-            buildSlider(box.maxWidth),
+        builder: (BuildContext context, BoxConstraints box) => buildSlider(box.maxWidth),
       ),
     );
   }
@@ -141,8 +139,7 @@ class _SliderLayout extends MultiChildLayoutDelegate {
     // Track
     super.layoutChild(
       track,
-      BoxConstraints.tightFor(
-          width: size.width, height: _ThumbPainter.doubleTrackWidth),
+      BoxConstraints.tightFor(width: size.width, height: _ThumbPainter.doubleTrackWidth),
     );
     super.positionChild(
       track,
@@ -176,8 +173,7 @@ class _ThumbPainter extends CustomPainter {
   static double width = 12;
   static double trackWidth = 14;
   static double doubleTrackWidth = 28;
-  static double getWidth(double value, double maxWidth) =>
-      (maxWidth - trackWidth - trackWidth) * value + trackWidth;
+  static double getWidth(double value, double maxWidth) => (maxWidth - trackWidth - trackWidth) * value + trackWidth;
 
   @override
   void paint(Canvas canvas, Size size) {

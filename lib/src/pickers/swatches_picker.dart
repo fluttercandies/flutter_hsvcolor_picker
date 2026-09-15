@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 class SwatchesPicker extends StatefulWidget {
   const SwatchesPicker({
     required this.onChanged,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final ValueChanged<Color> onChanged;
 
@@ -13,8 +13,7 @@ class SwatchesPicker extends StatefulWidget {
   State<SwatchesPicker> createState() => _SwatchesPickerState();
 }
 
-class _SwatchesPickerState extends State<SwatchesPicker>
-    with SingleTickerProviderStateMixin {
+class _SwatchesPickerState extends State<SwatchesPicker> with SingleTickerProviderStateMixin {
   late TabController controller;
 
   void itemClick(Color item) => widget.onChanged(item);
