@@ -43,8 +43,8 @@ class ColorPicker extends StatefulWidget {
     this.initialPicker = Picker.paletteHue,
     this.pickerOrientation = PickerOrientation.inherit,
     this.paletteHeight = 280,
-    super.key,
-  });
+    Key? key,
+  }) : super(key: key);
 
   final ValueChanged<Color> onChanged;
   final Color color;

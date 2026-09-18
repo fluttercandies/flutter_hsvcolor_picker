@@ -5,10 +5,11 @@ class HexPicker extends StatefulWidget {
   HexPicker({
     required this.color,
     required this.onChanged,
-    super.key,
-  }) : _controller = TextEditingController(
+    Key? key,
+  })  : _controller = TextEditingController(
           text: _Hex.colorToString(color).toUpperCase(),
-        );
+        ),
+        super(key: key);
 
   final Color color;
   final ValueChanged<Color> onChanged;

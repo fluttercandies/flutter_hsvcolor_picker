@@ -19,30 +19,21 @@ class _WheelPickerPageState extends State<WheelPickerPage> {
       child: SizedBox(
         width: 260,
         child: Card(
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(0.0)),
-          ),
+          shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(0.0))),
           elevation: 2.0,
           child: Padding(
             padding: const EdgeInsets.all(10),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                FloatingActionButton(
-                  onPressed: () {},
-                  backgroundColor: color.toColor(),
-                ),
+                FloatingActionButton(onPressed: () {}, backgroundColor: color.toColor()),
                 const Divider(),
                 SizedBox(
                   width: 222,
                   height: 222,
 
                   ///---------------------------------
-                  child: WheelPicker(
-                    color: color,
-                    onChanged: (value) =>
-                        super.setState(() => onChanged(value)),
-                  ),
+                  child: WheelPicker(color: color, onChanged: (value) => super.setState(() => onChanged(value))),
                 ),
 
                 ///---------------------------------

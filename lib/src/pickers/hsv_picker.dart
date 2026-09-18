@@ -11,8 +11,8 @@ class HSVPicker extends StatefulWidget {
   const HSVPicker({
     required this.color,
     required this.onChanged,
-    super.key,
-  });
+    Key? key,
+  }) : super(key: key);
 
   final HSVColor color;
   final ValueChanged<HSVColor> onChanged;

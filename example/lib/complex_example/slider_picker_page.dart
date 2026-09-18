@@ -27,9 +27,7 @@ class _SliderPickerPageState extends State<SliderPickerPage> {
       child: SizedBox(
         width: 260,
         child: Card(
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(0.0)),
-          ),
+          shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(0.0))),
           elevation: 2.0,
           child: Padding(
             padding: const EdgeInsets.all(10),
@@ -49,9 +47,7 @@ class _SliderPickerPageState extends State<SliderPickerPage> {
                   value: value,
                   onChanged: (value) => super.setState(() => onChanged(value)),
                   child: DecoratedBox(
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(colors: hueColors),
-                    ),
+                    decoration: BoxDecoration(gradient: LinearGradient(colors: hueColors)),
                   ),
                 ),
 

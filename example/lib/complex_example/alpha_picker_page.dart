@@ -18,26 +18,18 @@ class _AlphaPickerPageState extends State<AlphaPickerPage> {
       child: SizedBox(
         width: 260,
         child: Card(
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(0.0)),
-          ),
+          shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(0.0))),
           elevation: 2.0,
           child: Padding(
             padding: const EdgeInsets.all(10),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                Text(
-                  value.toString(),
-                  style: Theme.of(context).textTheme.headlineMedium,
-                ),
+                Text(value.toString(), style: Theme.of(context).textTheme.headlineMedium),
                 const Divider(),
 
                 ///---------------------------------
-                AlphaPicker(
-                  alpha: value,
-                  onChanged: (value) => super.setState(() => onChanged(value)),
-                ),
+                AlphaPicker(alpha: value, onChanged: (value) => super.setState(() => onChanged(value))),
 
                 ///---------------------------------
               ],

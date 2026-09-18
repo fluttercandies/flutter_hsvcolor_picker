@@ -8,8 +8,8 @@ class WheelPicker extends StatefulWidget {
     required this.color,
     required this.onChanged,
     this.showPalette = true,
-    super.key,
-  });
+    Key? key,
+  }) : super(key: key);
 
   final HSVColor color;
   final ValueChanged<HSVColor> onChanged;

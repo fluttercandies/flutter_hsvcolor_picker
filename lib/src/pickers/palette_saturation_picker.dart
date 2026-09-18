@@ -8,8 +8,8 @@ class PaletteSaturationPicker extends StatefulWidget {
     required this.color,
     required this.onChanged,
     this.paletteHeight = 280,
-    super.key,
-  });
+    Key? key,
+  }) : super(key: key);
 
   final HSVColor color;
   final ValueChanged<HSVColor> onChanged;

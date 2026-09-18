@@ -10,8 +10,8 @@ class RGBPicker extends StatefulWidget {
   const RGBPicker({
     required this.color,
     required this.onChanged,
-    super.key,
-  });
+    Key? key,
+  }) : super(key: key);
 
   final Color color;
   final ValueChanged<Color> onChanged;

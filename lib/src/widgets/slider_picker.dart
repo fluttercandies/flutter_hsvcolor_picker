@@ -12,8 +12,9 @@ class SliderPicker extends StatefulWidget {
     this.borderRadius = _SliderPickerState._defaultBorderRadius,
     this.border = const Border.fromBorderSide(BorderSide(color: Colors.grey)),
     this.height = 40,
-    super.key,
-  }) : assert(value >= min && value <= max);
+    Key? key,
+  })  : assert(value >= min && value <= max),
+        super(key: key);
   final Border? border;
   final double height;
   final BorderRadius? borderRadius;

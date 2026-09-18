@@ -19,9 +19,7 @@ class _RGBPickerPageState extends State<RGBPickerPage> {
       child: SizedBox(
         width: 260,
         child: Card(
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(0.0)),
-          ),
+          shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(0.0))),
           elevation: 2.0,
           child: Padding(
             padding: const EdgeInsets.all(10),
@@ -32,10 +30,7 @@ class _RGBPickerPageState extends State<RGBPickerPage> {
                 const Divider(),
 
                 ///---------------------------------
-                RGBPicker(
-                  color: color,
-                  onChanged: (value) => super.setState(() => onChanged(value)),
-                ),
+                RGBPicker(color: color, onChanged: (value) => super.setState(() => onChanged(value))),
 
                 ///---------------------------------
               ],

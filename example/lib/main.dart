@@ -35,10 +35,7 @@ class _MyHomePageState extends State<MyHomePage> {
           child: ValueListenableBuilder<Color>(
             valueListenable: _colorNotifier,
             builder: (_, color, child) {
-              return ColorPicker(
-                color: color,
-                onChanged: (value) => color = value,
-              );
+              return ColorPicker(color: color, onChanged: (value) => color = value);
             },
           ),
         ),

@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 class SwatchesPicker extends StatefulWidget {
   const SwatchesPicker({
     required this.onChanged,
-    super.key,
-  });
+    Key? key,
+  }) : super(key: key);
 
   final ValueChanged<Color> onChanged;
 
