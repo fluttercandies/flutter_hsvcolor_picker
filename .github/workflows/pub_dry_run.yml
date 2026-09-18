@@ -25,5 +25,12 @@ jobs:
       - name: Disable analytics
         run: flutter config --no-analytics
 
+      - name: Dart pub get
+        run: dart pub get --no-example
+
+      - name: Test
+        if: ${{ hashFiles('test/**') != '' }}
+        run: flutter test --no-pub
+
       - name: Publish dry run
         run: dart pub publish --dry-run
