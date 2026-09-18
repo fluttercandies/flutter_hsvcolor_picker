@@ -2,7 +2,7 @@
 
 * Fix `PaletteHuePicker` hue slider showing incorrect colors when dark or desaturated colors are selected in the palette.
 * Allow Dart 3, remove the Android example's explicit Kotlin Gradle Plugin, and
-  update the example to Flutter 3.44, Android Gradle Plugin 9.2.1, and Gradle
+  update the example to Flutter 3.47, Android Gradle Plugin 9.2.1, and Gradle
   9.7.1.
 
 ## [1.5.1]

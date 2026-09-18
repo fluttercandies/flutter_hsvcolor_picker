@@ -10,6 +10,14 @@ analyzer:
     strict-raw-types: true
   errors:
     todo: info
+  exclude:
+    - build/**
+    - android/**
+    - ios/**
+    - web/**
+    - windows/**
+    - macos/**
+    - linux/**
 linter:
   rules:
     - always_put_required_named_parameters_first
