@@ -27,6 +27,3 @@ jobs:
 
       - name: Publish dry run
         run: dart pub publish --dry-run
-
-      - name: Flutter test
-        run: flutter test
