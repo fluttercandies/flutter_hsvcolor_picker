@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'color_compat.dart';
 import 'pickers/hsv_picker.dart';
 import 'pickers/palette_hue_picker.dart';
 import 'pickers/palette_saturation_picker.dart';
@@ -10,7 +11,7 @@ import 'pickers/wheel_picker.dart';
 import 'widgets/alpha_picker.dart';
 import 'widgets/hex_picker.dart';
 
-int _alphaChannel(Color color) => (color.toARGB32() >> 24) & 0xff;
+int _alphaChannel(Color color) => (colorToArgb32(color) >> 24) & 0xff;
 
 enum Picker {
   swatches,

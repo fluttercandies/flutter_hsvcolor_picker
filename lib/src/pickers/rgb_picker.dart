@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
+import '../color_compat.dart';
 import '../widgets/slider_picker.dart';
 import '../widgets/slider_title.dart';
 
-int _colorChannel(Color color, int shift) => (color.toARGB32() >> shift) & 0xff;
+int _colorChannel(Color color, int shift) => (colorToArgb32(color) >> shift) & 0xff;
 
 /// Three sliders for selecting a color based on RGB.
 class RGBPicker extends StatefulWidget {
