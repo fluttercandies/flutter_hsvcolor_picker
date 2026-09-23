@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'color_compat.dart';
 import 'pickers/hsv_picker.dart';
 import 'pickers/palette_hue_picker.dart';
 import 'pickers/palette_saturation_picker.dart';
@@ -9,6 +10,8 @@ import 'pickers/swatches_picker.dart';
 import 'pickers/wheel_picker.dart';
 import 'widgets/alpha_picker.dart';
 import 'widgets/hex_picker.dart';
+
+int _alphaChannel(Color color) => (colorToArgb32(color) >> 24) & 0xff;
 
 enum Picker {
   swatches,
@@ -77,11 +80,11 @@ class _ColorPickerState extends State<ColorPicker> {
   }
 
   void _colorOnChanged(Color value) {
-    _updateColor(value.withAlpha(_color.alpha));
+    _updateColor(value.withAlpha(_alphaChannel(_color)));
   }
 
   void _hSVColorOnChanged(HSVColor value) {
-    _updateColor(value.toColor().withAlpha(_color.alpha));
+    _updateColor(value.toColor().withAlpha(_alphaChannel(_color)));
   }
 
   void _colorWithAlphaOnChanged(Color value) {
@@ -89,7 +92,7 @@ class _ColorPickerState extends State<ColorPicker> {
   }
 
   void _updateColor(Color color) {
-    _alpha = color.alpha;
+    _alpha = _alphaChannel(color);
     _color = color;
     _hSVColor = HSVColor.fromColor(color);
     widget.onChanged(color);
@@ -108,7 +111,7 @@ class _ColorPickerState extends State<ColorPicker> {
     super.initState();
 
     _color = widget.color;
-    _alpha = _color.alpha;
+    _alpha = _alphaChannel(_color);
     _hSVColor = HSVColor.fromColor(_color);
 
     // Pickers
@@ -218,10 +221,7 @@ class _ColorPickerState extends State<ColorPicker> {
                     fontSize: 18,
                     color: Theme.of(context).colorScheme.secondary,
                   )
-              : Theme.of(context)
-                  .textTheme
-                  .headlineSmall
-                  ?.copyWith(fontSize: 18),
+              : Theme.of(context).textTheme.headlineSmall?.copyWith(fontSize: 18),
         ),
       ),
     );
@@ -285,8 +285,7 @@ class _ColorPickerState extends State<ColorPicker> {
           iconSize: 32.0,
           isExpanded: true,
           isDense: true,
-          style:
-              Theme.of(context).textTheme.headlineSmall?.copyWith(fontSize: 20),
+          style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontSize: 20),
           value: _pickers[_index],
           onChanged: (_IPicker? value) => super.setState(
             () => _pickerOnChanged(value),
@@ -309,8 +308,7 @@ class _ColorPickerState extends State<ColorPicker> {
         iconSize: 32.0,
         isExpanded: true,
         isDense: true,
-        style:
-            Theme.of(context).textTheme.headlineSmall?.copyWith(fontSize: 20),
+        style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontSize: 20),
         value: _pickers[_index],
         onChanged: (_IPicker? value) => super.setState(
           () => _pickerOnChanged(value),

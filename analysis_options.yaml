@@ -1,5 +1,8 @@
 include: package:flutter_lints/flutter.yaml
 
+formatter:
+  page_width: 120
+
 analyzer:
   language:
     strict-casts: true
@@ -7,10 +10,11 @@ analyzer:
     strict-raw-types: true
   errors:
     todo: info
+  exclude:
+    - build/**
 linter:
   rules:
     - always_put_required_named_parameters_first
-    - lines_longer_than_80_chars
     # - public_member_api_docs
     - prefer_single_quotes
     - sort_child_properties_last

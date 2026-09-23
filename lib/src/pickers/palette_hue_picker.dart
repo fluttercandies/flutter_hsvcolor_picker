@@ -43,14 +43,14 @@ class _PaletteHuePickerState extends State<PaletteHuePicker> {
         color.withHue(value),
       );
   final List<Color> hueColors = <Color>[
-        const Color.fromARGB(255, 255, 0, 0),
-        const Color.fromARGB(255, 255, 255, 0),
-        const Color.fromARGB(255, 0, 255, 0),
-        const Color.fromARGB(255, 0, 255, 255),
-        const Color.fromARGB(255, 0, 0, 255),
-        const Color.fromARGB(255, 255, 0, 255),
-        const Color.fromARGB(255, 255, 0, 0)
-      ];
+    const Color.fromARGB(255, 255, 0, 0),
+    const Color.fromARGB(255, 255, 255, 0),
+    const Color.fromARGB(255, 0, 255, 0),
+    const Color.fromARGB(255, 0, 255, 255),
+    const Color.fromARGB(255, 0, 0, 255),
+    const Color.fromARGB(255, 255, 0, 255),
+    const Color.fromARGB(255, 255, 0, 0)
+  ];
 
   // Saturation Value
   void saturationValueOnChange(Offset value) => widget.onChanged(
