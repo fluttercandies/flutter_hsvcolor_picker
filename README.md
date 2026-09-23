@@ -44,8 +44,8 @@ fvm flutter test
 (cd example && fvm flutter build apk --debug)
 ```
 
-The example also has native runner tests. Current Xcode versions require command-scoped iOS 17 and macOS 14 deployment targets
-for these tests; the checked-in platform minimums stay unchanged:
+The example also has native runner tests. Flutter 3.47 sets the checked-in example's iOS deployment target to 15.0.
+Current Xcode versions require command-scoped iOS 17 and macOS 14 deployment targets for these tests:
 
 ```sh
 xcodebuild test -project example/macos/Runner.xcodeproj -scheme Runner -destination 'platform=macOS,arch=arm64' \
