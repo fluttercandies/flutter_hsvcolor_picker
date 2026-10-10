@@ -69,18 +69,14 @@ class _HexPickerState extends State<HexPicker> {
           padding: const EdgeInsets.symmetric(horizontal: 4),
           child: Text(
             '#',
-            style:
-                Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 18),
+            style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 18),
           ),
         ),
 
         // TextField
         Expanded(
           child: TextField(
-            style: Theme.of(context)
-                .textTheme
-                .headlineSmall
-                ?.copyWith(fontSize: 20),
+            style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontSize: 20),
             focusNode: _focusNode,
             controller: _controller,
             onSubmitted: textOnSubmitted,
@@ -115,14 +111,11 @@ class _Hex {
       _colorToString(
         color.blue8.toRadixString(16),
       );
-  static String _colorToString(String text) =>
-      text.length == 1 ? '0$text' : text;
+  static String _colorToString(String text) => text.length == 1 ? '0$text' : text;
 
   // Accept RGB hex values with optional # or 0x prefixes.
   static String? textSubString(String? text) {
     if (text == null) return null;
-    return RegExp(r'^(?:#|0[xX])?([0-9a-fA-F]{6})$')
-        .firstMatch(text.trim())
-        ?.group(1);
+    return RegExp(r'^(?:#|0[xX])?([0-9a-fA-F]{6})$').firstMatch(text.trim())?.group(1);
   }
 }

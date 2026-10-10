@@ -16,8 +16,7 @@ class PaletteSaturationPicker extends StatefulWidget {
   final double paletteHeight;
 
   @override
-  State<PaletteSaturationPicker> createState() =>
-      _PaletteSaturationPickerState();
+  State<PaletteSaturationPicker> createState() => _PaletteSaturationPickerState();
 }
 
 class _PaletteSaturationPickerState extends State<PaletteSaturationPicker> {
@@ -27,10 +26,7 @@ class _PaletteSaturationPickerState extends State<PaletteSaturationPicker> {
   void saturationOnChange(double value) => widget.onChanged(
         color.withSaturation(value),
       );
-  List<Color> get saturationColors => <Color>[
-        color.withSaturation(0.0).toColor(),
-        color.withSaturation(1.0).toColor()
-      ];
+  List<Color> get saturationColors => <Color>[color.withSaturation(0.0).toColor(), color.withSaturation(1.0).toColor()];
 
   // Hue Value
   Offset get hueValueOffset => Offset(color.hue, color.value);

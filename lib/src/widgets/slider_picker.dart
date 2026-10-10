@@ -43,8 +43,7 @@ class _SliderPickerState extends State<SliderPicker> {
 
   void updatePosition(Offset globalPosition, BoxConstraints box) {
     final RenderBox? renderBox = super.context.findRenderObject() as RenderBox?;
-    final Offset offset =
-        renderBox?.globalToLocal(globalPosition) ?? Offset.zero;
+    final Offset offset = renderBox?.globalToLocal(globalPosition) ?? Offset.zero;
     final double ratio = offset.dx / box.maxWidth;
     super.setState(() => setRatio(ratio));
   }
@@ -112,10 +111,8 @@ class _SliderPickerState extends State<SliderPicker> {
 
   Widget buildGestureDetector(BuildContext context, BoxConstraints box) {
     return GestureDetector(
-      onPanDown: (DragDownDetails detail) =>
-          updatePosition(detail.globalPosition, box),
-      onPanUpdate: (DragUpdateDetails detail) =>
-          updatePosition(detail.globalPosition, box),
+      onPanDown: (DragDownDetails detail) => updatePosition(detail.globalPosition, box),
+      onPanUpdate: (DragUpdateDetails detail) => updatePosition(detail.globalPosition, box),
       child: Container(
         color: const Color(0x00000000),
       ),
@@ -127,8 +124,7 @@ class _SliderPickerState extends State<SliderPicker> {
     return SizedBox(
       height: widget.height,
       child: LayoutBuilder(
-        builder: (BuildContext context, BoxConstraints box) =>
-            buildSlider(box.maxWidth),
+        builder: (BuildContext context, BoxConstraints box) => buildSlider(box.maxWidth),
       ),
     );
   }
@@ -145,8 +141,7 @@ class _SliderLayout extends MultiChildLayoutDelegate {
     // Track
     super.layoutChild(
       track,
-      BoxConstraints.tightFor(
-          width: size.width, height: _ThumbPainter.doubleTrackWidth),
+      BoxConstraints.tightFor(width: size.width, height: _ThumbPainter.doubleTrackWidth),
     );
     super.positionChild(
       track,
@@ -180,8 +175,7 @@ class _ThumbPainter extends CustomPainter {
   static double width = 12;
   static double trackWidth = 14;
   static double doubleTrackWidth = 28;
-  static double getWidth(double value, double maxWidth) =>
-      (maxWidth - trackWidth - trackWidth) * value + trackWidth;
+  static double getWidth(double value, double maxWidth) => (maxWidth - trackWidth - trackWidth) * value + trackWidth;
 
   @override
   void paint(Canvas canvas, Size size) {

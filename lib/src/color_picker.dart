@@ -230,10 +230,7 @@ class _ColorPickerState extends State<ColorPicker> {
                     fontSize: 18,
                     color: Theme.of(context).colorScheme.secondary,
                   )
-              : Theme.of(context)
-                  .textTheme
-                  .headlineSmall
-                  ?.copyWith(fontSize: 18),
+              : Theme.of(context).textTheme.headlineSmall?.copyWith(fontSize: 18),
         ),
       ),
     );
@@ -297,8 +294,7 @@ class _ColorPickerState extends State<ColorPicker> {
           iconSize: 32.0,
           isExpanded: true,
           isDense: true,
-          style:
-              Theme.of(context).textTheme.headlineSmall?.copyWith(fontSize: 20),
+          style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontSize: 20),
           value: _pickers[_index],
           onChanged: (_IPicker? value) => super.setState(
             () => _pickerOnChanged(value),
@@ -321,8 +317,7 @@ class _ColorPickerState extends State<ColorPicker> {
         iconSize: 32.0,
         isExpanded: true,
         isDense: true,
-        style:
-            Theme.of(context).textTheme.headlineSmall?.copyWith(fontSize: 20),
+        style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontSize: 20),
         value: _pickers[_index],
         onChanged: (_IPicker? value) => super.setState(
           () => _pickerOnChanged(value),

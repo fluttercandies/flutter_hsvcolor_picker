@@ -3,8 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_hsvcolor_picker/flutter_hsvcolor_picker.dart';
 
 void main() {
-  testWidgets('the last swatch remains reachable and selects its color',
-      (tester) async {
+  testWidgets('the last swatch remains reachable and selects its color', (tester) async {
     Color? selected;
     await tester.pumpWidget(MaterialApp(
       home: Scaffold(
@@ -19,8 +18,7 @@ void main() {
     final lastSwatch = find.byWidgetPredicate((widget) =>
         widget is Container &&
         widget.decoration is BoxDecoration &&
-        (widget.decoration! as BoxDecoration).color ==
-            Colors.blueGrey.shade900);
+        (widget.decoration! as BoxDecoration).color == Colors.blueGrey.shade900);
     expect(lastSwatch, findsOneWidget);
     await tester.tap(lastSwatch);
     expect(selected, Colors.blueGrey.shade900);

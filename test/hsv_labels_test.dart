@@ -3,8 +3,7 @@ import 'package:flutter_hsvcolor_picker/flutter_hsvcolor_picker.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  testWidgets('HSV uses degrees for hue and percentages for saturation/value',
-      (tester) async {
+  testWidgets('HSV uses degrees for hue and percentages for saturation/value', (tester) async {
     await tester.pumpWidget(MaterialApp(
       home: Scaffold(
         body: HSVPicker(

@@ -23,8 +23,7 @@ class _SwatchesPickerPageState extends State<SwatchesPickerPage> {
           ),
           elevation: 4.0,
           child: Padding(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 14.0, vertical: 2.0),
+            padding: const EdgeInsets.symmetric(horizontal: 14.0, vertical: 2.0),
 
             ///---------------------------------
             child: SwatchesPicker(
