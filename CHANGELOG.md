@@ -5,6 +5,7 @@
 * Keep selected example colors and allow scrolling when the keyboard is visible.
 * Match example asset paths to their filename capitalization on all platforms.
 * Keep detailed example drawer ink visible and scroll picker pages above the keyboard.
+* Label HSV saturation and value as percentages and use V for value.
 * Clarify SDK compatibility and picker input behavior.
 
 ## [1.5.2]
