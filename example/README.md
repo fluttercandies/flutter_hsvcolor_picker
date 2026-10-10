@@ -1,16 +1,12 @@
 # flutter_hsvcolor_picker_example
 
-A new Flutter project.
+The default app lets you switch between RGB, HSV, wheel, palette and swatch pickers and preserves your selected color. The [detailed example](lib/complex_example/main.dart) demonstrates individual picker pages and appearance controls.
 
-## Getting Started
+Flutter 3.47 or newer for this checked-in native example.
 
-This project is a starting point for a Flutter application.
+From this directory, select a compatible Flutter SDK with FVM, then run:
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.io/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.io/docs/cookbook)
-
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.io/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+```sh
+fvm flutter pub get
+fvm flutter run -d <device-id>
+```

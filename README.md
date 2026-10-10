@@ -41,7 +41,7 @@ For a more detailed example, head over to: https://github.com/fluttercandies/flu
 
 The package declares Flutter 2.10 / Dart 2.16 or newer. The checked-in native example requires Flutter 3.47 or newer while retaining its Dart 2.12 language level.
 
-Use FVM for the repository toolchain. The canonical formatter width is 120 columns. The minimum-SDK CI job checks the package; the stable job also resolves and tests the native example:
+Use FVM for the repository toolchain. The canonical formatter width is 120 columns. The Flutter 3.10 CI job checks the package; the stable job also resolves and tests the native example:
 
 ```sh
 fvm dart format --page-width 120 .
