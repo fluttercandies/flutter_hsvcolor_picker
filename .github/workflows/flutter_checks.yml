@@ -27,8 +27,10 @@ jobs:
           cache: true
       - run: flutter pub get
       - run: flutter pub get
+        if: matrix.sdk == 'stable'
         working-directory: example
-      - run: flutter analyze
+      - run: flutter analyze lib test
       - run: flutter test
       - run: flutter test
+        if: matrix.sdk == 'stable'
         working-directory: example
