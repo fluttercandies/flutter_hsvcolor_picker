@@ -207,6 +207,16 @@ class _ColorPickerState extends State<ColorPicker> {
     );
   }
 
+  @override
+  void didUpdateWidget(covariant ColorPicker oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.color != widget.color) {
+      _color = widget.color;
+      _alpha = _color.alpha8;
+      _hSVColor = HSVColor.fromColor(_color);
+    }
+  }
+
   // Dropdown
   DropdownMenuItem<_IPicker> _buildDropdownMenuItems(_IPicker item) {
     return DropdownMenuItem<_IPicker>(
