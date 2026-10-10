@@ -1,20 +1,21 @@
-## [1.5.3]
+## [1.6.0]
 
+* Accept six-digit RGB HEX input with optional `#`, `0x`, or `0X` prefixes and
+  surrounding whitespace. Reject malformed input without changing the color.
+* Select colors on slider, palette, and wheel taps as well as drags, and align
+  wheel input coordinates with the painted hues.
+* Make the HEX picker constructor const, retain and dispose its editing
+  resources, and synchronize picker state when the parent changes the color.
 * Remove an unused swatches animation controller.
-* Retain HEX editing resources, accept optional RGB prefixes, and synchronize parent color changes.
-* Select colors on slider and wheel taps, and align wheel input and painted hues.
-* Keep selected example colors and allow scrolling when the keyboard is visible.
-* Match example asset paths to their filename capitalization on all platforms.
-* Keep detailed example drawer ink visible and scroll picker pages above the keyboard.
+* Fix `PaletteHuePicker` hue colors for dark or desaturated palette selections.
 * Label HSV saturation and value as percentages and use V for value.
-* Clarify SDK compatibility and picker input behavior.
-
-## [1.5.2]
-
-* Fix `PaletteHuePicker` hue slider showing incorrect colors when dark or desaturated colors are selected in the palette.
-* Allow Dart 3, remove the Android example's explicit Kotlin Gradle Plugin, and
-  update the example to Flutter 3.47, Android Gradle Plugin 9.2.1, and Gradle
-  9.7.1.
+* Preserve selected example colors, make picker pages scroll above the keyboard,
+  keep drawer ink visible, and correct asset filename capitalization.
+* Allow Dart 3 while retaining the package's Flutter 2.10 / Dart 2.16 minimum.
+  The native example requires Flutter 3.47 and uses AGP 9.2.1 with built-in Kotlin,
+  Gradle 9.7.1, and an iOS 15 deployment target.
+* Add picker interaction, lifecycle, input, and example layout regressions and
+  clarify compatibility and input behavior in the README.
 
 ## [1.5.1]
 
