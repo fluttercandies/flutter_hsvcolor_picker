@@ -31,7 +31,7 @@ ColorPicker(
 )
 ```
 
-`color` sets the initial selection and updates it when the parent passes a new color. `initialPicker` selects the first picker only. Sliders and the wheel accept taps and drags. The HEX field accepts six RGB digits, optionally prefixed with `#` or `0x`; use the alpha slider for transparency.
+`color` sets the initial selection and updates it when the parent passes a new color. `initialPicker` selects the first picker only. Sliders, palettes, and the wheel accept taps and drags. Color changes start after the gesture is accepted. The HEX field accepts six RGB digits, optionally prefixed with `#` or `0x`; use the alpha slider for transparency.
 
 For a more detailed example, head over to: https://github.com/fluttercandies/flutter_hsvcolor_picker/tree/main/example/lib/complex_example
 

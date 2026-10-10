@@ -111,7 +111,8 @@ class _SliderPickerState extends State<SliderPicker> {
 
   Widget buildGestureDetector(BuildContext context, BoxConstraints box) {
     return GestureDetector(
-      onPanDown: (DragDownDetails detail) => updatePosition(detail.globalPosition, box),
+      onTapUp: (TapUpDetails detail) => updatePosition(detail.globalPosition, box),
+      onPanStart: (DragStartDetails detail) => updatePosition(detail.globalPosition, box),
       onPanUpdate: (DragUpdateDetails detail) => updatePosition(detail.globalPosition, box),
       child: Container(
         color: const Color(0x00000000),

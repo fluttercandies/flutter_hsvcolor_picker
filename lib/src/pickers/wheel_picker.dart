@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 /// Color palette and color wheel.
@@ -109,13 +110,14 @@ class _WheelPickerState extends State<WheelPicker> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      dragStartBehavior: DragStartBehavior.down,
       onPanStart: (DragStartDetails details) {
         onPanStart(details.globalPosition);
       },
       onPanUpdate: (DragUpdateDetails details) {
         onPanUpdate(details.globalPosition);
       },
-      onPanDown: (DragDownDetails details) => onPanStart(details.globalPosition),
+      onTapUp: (TapUpDetails details) => onPanStart(details.globalPosition),
       child: Container(
         padding: const EdgeInsets.only(top: 12.0),
         width: 240,

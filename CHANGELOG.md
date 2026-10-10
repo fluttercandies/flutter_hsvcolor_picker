@@ -4,6 +4,9 @@
   surrounding whitespace. Reject malformed input without changing the color.
 * Select colors on slider, palette, and wheel taps as well as drags, and align
   wheel input coordinates with the painted hues.
+* Wait for slider, palette, and wheel gestures to be accepted before changing the color,
+  so cancelled touches do not select a value. Keep wheel drags tied to the
+  original touched region when crossing into the palette.
 * Make the HEX picker constructor const, retain and dispose its editing
   resources, and synchronize picker state when the parent changes the color.
 * Remove an unused swatches animation controller.
