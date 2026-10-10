@@ -1,0 +1,34 @@
+name: Flutter checks
+
+on:
+  pull_request:
+  push:
+    branches: [main, 'review/**']
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: Flutter ${{ matrix.sdk }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - sdk: '3.10.6'
+            version: '3.10.6'
+          - sdk: stable
+            version: ''
+    steps:
+      - uses: actions/checkout@v7
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version: ${{ matrix.version }}
+          cache: true
+      - run: flutter pub get
+      - run: flutter pub get
+        working-directory: example
+      - run: flutter analyze
+      - run: flutter test
+      - run: flutter test
+        working-directory: example
