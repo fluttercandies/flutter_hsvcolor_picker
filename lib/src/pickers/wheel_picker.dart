@@ -24,36 +24,30 @@ class _WheelPickerState extends State<WheelPicker> {
 
   final GlobalKey paletteKey = GlobalKey();
   Offset getOffset(Offset ratio) {
-    final RenderBox? renderBox =
-        paletteKey.currentContext?.findRenderObject() as RenderBox?;
-    final Offset startPosition =
-        renderBox?.localToGlobal(Offset.zero) ?? Offset.zero;
+    final RenderBox? renderBox = paletteKey.currentContext?.findRenderObject() as RenderBox?;
+    final Offset startPosition = renderBox?.localToGlobal(Offset.zero) ?? Offset.zero;
     return ratio - startPosition;
   }
 
   Size getSize() {
-    final RenderBox? renderBox =
-        paletteKey.currentContext?.findRenderObject() as RenderBox?;
+    final RenderBox? renderBox = paletteKey.currentContext?.findRenderObject() as RenderBox?;
     return renderBox?.size ?? Size.zero;
   }
 
   bool isWheel = false;
   bool isPalette = false;
   void onPanStart(Offset offset) {
-    final RenderBox? renderBox =
-        paletteKey.currentContext?.findRenderObject() as RenderBox?;
+    final RenderBox? renderBox = paletteKey.currentContext?.findRenderObject() as RenderBox?;
     final Size size = renderBox?.size ?? Size.zero;
 
     final double radio = _WheelPainter.radio(size);
     final double squareRadio = _WheelPainter.squareRadio(radio);
 
-    final Offset startPosition =
-        renderBox?.localToGlobal(Offset.zero) ?? Offset.zero;
+    final Offset startPosition = renderBox?.localToGlobal(Offset.zero) ?? Offset.zero;
     final Offset center = Offset(size.width / 2, size.height / 2);
     final Offset vector = offset - startPosition - center;
 
-    final bool isPalette =
-        vector.dx.abs() < squareRadio && vector.dy.abs() < squareRadio;
+    final bool isPalette = vector.dx.abs() < squareRadio && vector.dy.abs() < squareRadio;
     isWheel = !isPalette;
     this.isPalette = isPalette;
 
@@ -83,15 +77,13 @@ class _WheelPickerState extends State<WheelPicker> {
 
   void onPanUpdate(Offset offset) {
     if (!widget.showPalette && isPalette) return;
-    final RenderBox? renderBox =
-        paletteKey.currentContext?.findRenderObject() as RenderBox?;
+    final RenderBox? renderBox = paletteKey.currentContext?.findRenderObject() as RenderBox?;
     final Size size = renderBox?.size ?? Size.zero;
 
     final double radio = _WheelPainter.radio(size);
     final double squareRadio = _WheelPainter.squareRadio(radio);
 
-    final Offset startPosition =
-        renderBox?.localToGlobal(Offset.zero) ?? Offset.zero;
+    final Offset startPosition = renderBox?.localToGlobal(Offset.zero) ?? Offset.zero;
     final Offset center = Offset(size.width / 2, size.height / 2);
     final Offset vector = offset - startPosition - center;
 
@@ -150,11 +142,8 @@ class _WheelPainter extends CustomPainter {
 
   static double strokeWidth = 8;
   static double doubleStrokeWidth = 16;
-  static double radio(Size size) =>
-      math.min(size.width, size.height).toDouble() / 2 -
-      _WheelPainter.strokeWidth;
-  static double squareRadio(double radio) =>
-      (radio - _WheelPainter.strokeWidth) / 1.414213562373095;
+  static double radio(Size size) => math.min(size.width, size.height).toDouble() / 2 - _WheelPainter.strokeWidth;
+  static double squareRadio(double radio) => (radio - _WheelPainter.strokeWidth) / 1.414213562373095;
 
   final HSVColor color;
   final bool showColorBox;
@@ -213,26 +202,21 @@ class _WheelPainter extends CustomPainter {
       ..color = Colors.black
       ..strokeWidth = 6
       ..style = PaintingStyle.stroke;
-    final Offset wheel = _Wheel.hueToVector(
-        (color.hue + 360.0) * math.pi / 180.0, radio, center);
+    final Offset wheel = _Wheel.hueToVector((color.hue + 360.0) * math.pi / 180.0, radio, center);
     canvas.drawCircle(wheel, 12, paintBlack);
     canvas.drawCircle(wheel, 12, paintWhite);
 
     if (!showColorBox) return;
 
     // Palette
-    final Rect rect = Rect.fromLTWH(center.dx - squareRadio,
-        center.dy - squareRadio, squareRadio * 2, squareRadio * 2);
+    final Rect rect = Rect.fromLTWH(center.dx - squareRadio, center.dy - squareRadio, squareRadio * 2, squareRadio * 2);
     final RRect rRect = RRect.fromRectAndRadius(
       rect,
       const Radius.circular(4),
     );
 
     final Shader horizontal = LinearGradient(
-      colors: <Color>[
-        Colors.white,
-        HSVColor.fromAHSV(1.0, color.hue, 1.0, 1.0).toColor()
-      ],
+      colors: <Color>[Colors.white, HSVColor.fromAHSV(1.0, color.hue, 1.0, 1.0).toColor()],
     ).createShader(rect);
     canvas.drawRRect(
       rRect,
@@ -261,10 +245,8 @@ class _WheelPainter extends CustomPainter {
     );
 
     // Thumb on color box
-    final double paletteX =
-        _Wheel.saturationToVector(color.saturation, squareRadio, center.dx);
-    final double paletteY =
-        _Wheel.valueToVector(color.value, squareRadio, center.dy);
+    final double paletteX = _Wheel.saturationToVector(color.saturation, squareRadio, center.dx);
+    final double paletteY = _Wheel.valueToVector(color.value, squareRadio, center.dy);
     final Offset paletteVector = Offset(paletteX, paletteY);
     canvas.drawCircle(paletteVector, 12, paintBlack);
     canvas.drawCircle(paletteVector, 12, paintWhite);
@@ -275,18 +257,13 @@ class _WheelPainter extends CustomPainter {
 }
 
 class _Wheel {
-  static double vectorToHue(Offset vector) =>
-      (((math.atan2(vector.dy, vector.dx)) * 180.0 / math.pi) + 360.0) % 360.0;
-  static double vectorToSaturation(double vectorX, double squareRadio) =>
-      vectorX * 0.5 / squareRadio + 0.5;
-  static double vectorToValue(double vectorY, double squareRadio) =>
-      0.5 - vectorY * 0.5 / squareRadio;
+  static double vectorToHue(Offset vector) => (((math.atan2(vector.dy, vector.dx)) * 180.0 / math.pi) + 360.0) % 360.0;
+  static double vectorToSaturation(double vectorX, double squareRadio) => vectorX * 0.5 / squareRadio + 0.5;
+  static double vectorToValue(double vectorY, double squareRadio) => 0.5 - vectorY * 0.5 / squareRadio;
 
   static Offset hueToVector(double h, double radio, Offset center) =>
       Offset(math.cos(h) * radio + center.dx, math.sin(h) * radio + center.dy);
-  static double saturationToVector(
-          double s, double squareRadio, double centerX) =>
+  static double saturationToVector(double s, double squareRadio, double centerX) =>
       (s - 0.5) * squareRadio / 0.5 + centerX;
-  static double valueToVector(double l, double squareRadio, double centerY) =>
-      (0.5 - l) * squareRadio / 0.5 + centerY;
+  static double valueToVector(double l, double squareRadio, double centerY) => (0.5 - l) * squareRadio / 0.5 + centerY;
 }

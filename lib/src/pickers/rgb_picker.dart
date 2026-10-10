@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
+import '../color_compat.dart';
 import '../widgets/slider_picker.dart';
 import '../widgets/slider_title.dart';
+
+int _colorChannel(Color color, int shift) => (colorToArgb32(color) >> shift) & 0xff;
 
 /// Three sliders for selecting a color based on RGB.
 class RGBPicker extends StatefulWidget {
@@ -20,10 +23,14 @@ class RGBPicker extends StatefulWidget {
 
 class _RGBPickerState extends State<RGBPicker> {
   Color get color => widget.color;
+  int get alpha => _colorChannel(color, 24);
+  int get red => _colorChannel(color, 16);
+  int get green => _colorChannel(color, 8);
+  int get blue => _colorChannel(color, 0);
 
   // Red
   void redOnChange(double value) => widget.onChanged(
-        Color.fromARGB(color.alpha, value.toInt(), color.green, color.blue),
+        Color.fromARGB(alpha, value.toInt(), green, blue),
       );
   List<Color> get redColors => <Color>[
         color.withRed(0),
@@ -32,7 +39,7 @@ class _RGBPickerState extends State<RGBPicker> {
 
   // Green
   void greenOnChange(double value) => widget.onChanged(
-        Color.fromARGB(color.alpha, color.red, value.toInt(), color.blue),
+        Color.fromARGB(alpha, red, value.toInt(), blue),
       );
   List<Color> get greenColors => <Color>[
         color.withGreen(0),
@@ -42,9 +49,9 @@ class _RGBPickerState extends State<RGBPicker> {
   // Blue
   void blueOnChange(double value) => widget.onChanged(
         Color.fromARGB(
-          color.alpha,
-          color.red,
-          color.green,
+          alpha,
+          red,
+          green,
           value.toInt(),
         ),
       );
@@ -61,10 +68,10 @@ class _RGBPickerState extends State<RGBPicker> {
         // Red
         SliderTitle(
           'R',
-          color.red.toInt().toString(),
+          red.toString(),
         ),
         SliderPicker(
-          value: color.red.toDouble(),
+          value: red.toDouble(),
           max: 255.0,
           onChanged: redOnChange,
           colors: redColors,
@@ -73,10 +80,10 @@ class _RGBPickerState extends State<RGBPicker> {
         // Green
         SliderTitle(
           'G',
-          color.green.toInt().toString(),
+          green.toString(),
         ),
         SliderPicker(
-          value: color.green.toDouble(),
+          value: green.toDouble(),
           max: 255.0,
           onChanged: greenOnChange,
           colors: greenColors,
@@ -85,10 +92,10 @@ class _RGBPickerState extends State<RGBPicker> {
         // Blue
         SliderTitle(
           'B',
-          color.blue.toInt().toString(),
+          blue.toString(),
         ),
         SliderPicker(
-          value: color.blue.toDouble(),
+          value: blue.toDouble(),
           max: 255.0,
           onChanged: blueOnChange,
           colors: blueColors,

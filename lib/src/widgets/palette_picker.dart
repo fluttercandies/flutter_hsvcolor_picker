@@ -65,10 +65,8 @@ class _PalettePickerState extends State<PalettePicker> {
 
   /// Ratio(0, 1) > Position(min, max)
   void ratioToPosition(Offset ratio) {
-    final RenderBox? renderBox =
-        paletteKey.currentContext?.findRenderObject() as RenderBox?;
-    final Offset startposition =
-        renderBox?.localToGlobal(Offset.zero) ?? Offset.zero;
+    final RenderBox? renderBox = paletteKey.currentContext?.findRenderObject() as RenderBox?;
+    final Offset startposition = renderBox?.localToGlobal(Offset.zero) ?? Offset.zero;
     final Size size = renderBox?.size ?? Size.zero;
     final Offset updateOffset = ratio - startposition;
 
@@ -125,12 +123,9 @@ class _PalettePickerState extends State<PalettePicker> {
 
   Widget buildGestureDetector() {
     return GestureDetector(
-      onPanStart: (DragStartDetails details) =>
-          ratioToPosition(details.globalPosition),
-      onPanUpdate: (DragUpdateDetails details) =>
-          ratioToPosition(details.globalPosition),
-      onPanDown: (DragDownDetails details) =>
-          ratioToPosition(details.globalPosition),
+      onPanStart: (DragStartDetails details) => ratioToPosition(details.globalPosition),
+      onPanUpdate: (DragUpdateDetails details) => ratioToPosition(details.globalPosition),
+      onPanDown: (DragDownDetails details) => ratioToPosition(details.globalPosition),
       child: SizedBox(
         key: paletteKey,
         width: double.infinity,
