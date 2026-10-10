@@ -30,17 +30,23 @@ class _MyHomePageState extends State<MyHomePage> {
   final _colorNotifier = ValueNotifier<Color>(Colors.green);
 
   @override
+  void dispose() {
+    _colorNotifier.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(50),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(24),
           child: ValueListenableBuilder<Color>(
             valueListenable: _colorNotifier,
             builder: (_, color, __) {
               return ColorPicker(
                 color: color,
-                onChanged: (value) => color = value,
+                onChanged: (value) => _colorNotifier.value = value,
               );
             },
           ),
