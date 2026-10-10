@@ -1,19 +1,49 @@
 name: Pub Publish plugin
 
 on:
-  release:
-    types: [published]
-  workflow_dispatch:
+  push:
+    tags:
+      - '[0-9]+.[0-9]+.[0-9]+'
 
 jobs:
-  publish:
+  verify:
+    name: Verify package
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v7
-      - name: Publish
-        uses: k-paxian/dart-package-publisher@v1.6
+
+      - name: Install Flutter
+        uses: subosito/flutter-action@v2
         with:
-          credentialJson: ${{ secrets.CREDENTIAL_JSON }}
-          flutter: true
-          skipTests: true
+          channel: stable
+          cache: true
+
+      - name: Disable analytics
+        run: flutter config --no-analytics
+
+      - name: Dart pub get
+        run: dart pub get --no-example
+
+      - name: Verify release tag
+        run: |
+          package_version="$(dart pub deps --json | jq -er '.packages[] | select(.kind == "root") | .version')"
+          if [[ "$GITHUB_REF_NAME" != "$package_version" ]]; then
+            echo "::error title=Release tag mismatch::Tag $GITHUB_REF_NAME does not match package version $package_version."
+            exit 1
+          fi
+
+      - name: Test
+        if: ${{ hashFiles('test/**') != '' }}
+        run: flutter test --no-pub
+
+      - name: Publish dry run
+        run: dart pub publish --dry-run
+
+  publish:
+    name: Pub publish
+    needs: verify
+    permissions:
+      contents: read
+      id-token: write
+    uses: dart-lang/setup-dart/.github/workflows/publish.yml@v1
