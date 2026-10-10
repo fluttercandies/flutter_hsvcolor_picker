@@ -114,8 +114,6 @@ class _WheelPickerState extends State<WheelPicker> {
     }
   }
 
-  void onPanDown(Offset offset) => isWheel = isPalette = false;
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -125,13 +123,14 @@ class _WheelPickerState extends State<WheelPicker> {
       onPanUpdate: (DragUpdateDetails details) {
         onPanUpdate(details.globalPosition);
       },
-      onPanDown: (DragDownDetails details) => onPanDown(details.globalPosition),
+      onPanDown: (DragDownDetails details) =>
+          onPanStart(details.globalPosition),
       child: Container(
-        key: paletteKey,
         padding: const EdgeInsets.only(top: 12.0),
         width: 240,
         height: 240,
         child: CustomPaint(
+          key: paletteKey,
           painter: _WheelPainter(
             color: color,
             showColorBox: widget.showPalette,
@@ -167,7 +166,7 @@ class _WheelPainter extends CustomPainter {
 
     // Wheel
     final Shader sweepShader = const SweepGradient(
-      center: Alignment.bottomRight,
+      center: Alignment.center,
       colors: <Color>[
         Color.fromARGB(255, 255, 0, 0),
         Color.fromARGB(255, 255, 255, 0),
@@ -178,7 +177,7 @@ class _WheelPainter extends CustomPainter {
         Color.fromARGB(255, 255, 0, 0),
       ],
     ).createShader(
-      Rect.fromLTWH(0, 0, radio, radio),
+      Rect.fromCircle(center: center, radius: radio),
     );
     canvas.drawCircle(
       center,
