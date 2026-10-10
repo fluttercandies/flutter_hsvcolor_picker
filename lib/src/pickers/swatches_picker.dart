@@ -13,22 +13,8 @@ class SwatchesPicker extends StatefulWidget {
   State<SwatchesPicker> createState() => _SwatchesPickerState();
 }
 
-class _SwatchesPickerState extends State<SwatchesPicker>
-    with SingleTickerProviderStateMixin {
-  late TabController controller;
-
+class _SwatchesPickerState extends State<SwatchesPicker> {
   void itemClick(Color item) => widget.onChanged(item);
-
-  @override
-  void initState() {
-    super.initState();
-
-    controller = TabController(
-      initialIndex: 1,
-      length: _swatches.length,
-      vsync: this,
-    );
-  }
 
   Widget buildListView(Color item) {
     return Container(
