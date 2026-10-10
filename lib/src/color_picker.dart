@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'color_channels.dart';
+
 import 'pickers/hsv_picker.dart';
 import 'pickers/palette_hue_picker.dart';
 import 'pickers/palette_saturation_picker.dart';
@@ -77,11 +79,11 @@ class _ColorPickerState extends State<ColorPicker> {
   }
 
   void _colorOnChanged(Color value) {
-    _updateColor(value.withAlpha(_color.alpha));
+    _updateColor(value.withAlpha(_color.alpha8));
   }
 
   void _hSVColorOnChanged(HSVColor value) {
-    _updateColor(value.toColor().withAlpha(_color.alpha));
+    _updateColor(value.toColor().withAlpha(_color.alpha8));
   }
 
   void _colorWithAlphaOnChanged(Color value) {
@@ -89,7 +91,7 @@ class _ColorPickerState extends State<ColorPicker> {
   }
 
   void _updateColor(Color color) {
-    _alpha = color.alpha;
+    _alpha = color.alpha8;
     _color = color;
     _hSVColor = HSVColor.fromColor(color);
     widget.onChanged(color);
@@ -108,7 +110,7 @@ class _ColorPickerState extends State<ColorPicker> {
     super.initState();
 
     _color = widget.color;
-    _alpha = _color.alpha;
+    _alpha = _color.alpha8;
     _hSVColor = HSVColor.fromColor(_color);
 
     // Pickers

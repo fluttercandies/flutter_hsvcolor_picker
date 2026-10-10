@@ -89,10 +89,11 @@ class _SliderPickerState extends State<SliderPicker> {
           LayoutId(
             id: _SliderLayout.thumb,
             child: Transform(
-              transform: Matrix4.identity()
-                ..translate(
-                  _ThumbPainter.getWidth(getRatio(), maxWidth),
-                ),
+              transform: Matrix4.translationValues(
+                _ThumbPainter.getWidth(getRatio(), maxWidth),
+                0,
+                0,
+              ),
               child: CustomPaint(
                 painter: _ThumbPainter(),
               ),

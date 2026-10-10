@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../color_channels.dart';
+
 /// Textfield for entering the Hex color code (RRGGBB).
 class HexPicker extends StatefulWidget {
   HexPicker({
@@ -82,13 +84,13 @@ class _Hex {
   // String To Color
   static String colorToString(Color color) =>
       _colorToString(
-        color.red.toRadixString(16),
+        color.red8.toRadixString(16),
       ) +
       _colorToString(
-        color.green.toRadixString(16),
+        color.green8.toRadixString(16),
       ) +
       _colorToString(
-        color.blue.toRadixString(16),
+        color.blue8.toRadixString(16),
       );
   static String _colorToString(String text) =>
       text.length == 1 ? '0$text' : text;
