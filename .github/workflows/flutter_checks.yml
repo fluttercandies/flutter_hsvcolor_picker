@@ -25,12 +25,12 @@ jobs:
           channel: stable
           flutter-version: ${{ matrix.version }}
           cache: true
-      - run: flutter pub get
+      - run: dart pub get --no-example
       - run: flutter pub get
         if: matrix.sdk == 'stable'
         working-directory: example
-      - run: flutter analyze lib test
-      - run: flutter test
-      - run: flutter test
+      - run: flutter analyze --no-pub lib test
+      - run: flutter test --no-pub
+      - run: flutter test --no-pub
         if: matrix.sdk == 'stable'
         working-directory: example
