@@ -1,7 +1,6 @@
-## Unreleased
+## [1.5.3]
 
 * Remove an unused swatches animation controller.
-
 * Retain HEX editing resources, accept optional RGB prefixes, and synchronize parent color changes.
 * Select colors on slider and wheel taps, and align wheel input and painted hues.
 * Keep selected example colors and allow scrolling when the keyboard is visible.
