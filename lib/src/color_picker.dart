@@ -225,6 +225,8 @@ class _ColorPickerState extends State<ColorPicker> {
         padding: const EdgeInsets.fromLTRB(10.0, 8.0, 10.0, 0.0),
         child: Text(
           item.name,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
           style: _index == _pickers.indexOf(item)
               ? Theme.of(context).textTheme.headlineSmall?.copyWith(
                     fontSize: 18,

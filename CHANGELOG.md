@@ -7,6 +7,7 @@
 * Wait for slider, palette, and wheel gestures to be accepted before changing the color,
   so cancelled touches do not select a value. Keep wheel drags tied to the
   original touched region when crossing into the palette.
+* Keep selected picker labels inside narrow dropdown buttons instead of clipping wrapped text.
 * Make the HEX picker constructor const, retain and dispose its editing
   resources, and synchronize picker state when the parent changes the color.
 * Remove an unused swatches animation controller.
