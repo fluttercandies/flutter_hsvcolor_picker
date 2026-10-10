@@ -1,3 +1,10 @@
+## Unreleased
+
+* Retain HEX editing resources, accept optional RGB prefixes, and synchronize parent color changes.
+* Select colors on slider and wheel taps, and align wheel input and painted hues.
+* Keep selected example colors and allow scrolling when the keyboard is visible.
+* Clarify SDK compatibility and picker input behavior.
+
 ## [1.5.2]
 
 * Fix `PaletteHuePicker` hue slider showing incorrect colors when dark or desaturated colors are selected in the palette.
