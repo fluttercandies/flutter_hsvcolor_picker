@@ -204,7 +204,7 @@ class _MainPageState extends State<MainPage> {
                 CircleAvatar(
                   radius: 34.0,
                   backgroundColor: theme.cardColor,
-                  backgroundImage: const AssetImage('packages/avatar.jpg'),
+                  backgroundImage: const AssetImage('packages/Avatar.jpg'),
                 ),
                 const SizedBox(height: 10.0),
                 const Padding(

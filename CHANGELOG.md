@@ -3,6 +3,7 @@
 * Retain HEX editing resources, accept optional RGB prefixes, and synchronize parent color changes.
 * Select colors on slider and wheel taps, and align wheel input and painted hues.
 * Keep selected example colors and allow scrolling when the keyboard is visible.
+* Match example asset paths to their filename capitalization on all platforms.
 * Clarify SDK compatibility and picker input behavior.
 
 ## [1.5.2]
