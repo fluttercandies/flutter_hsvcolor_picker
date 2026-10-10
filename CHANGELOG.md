@@ -4,6 +4,7 @@
 * Select colors on slider and wheel taps, and align wheel input and painted hues.
 * Keep selected example colors and allow scrolling when the keyboard is visible.
 * Match example asset paths to their filename capitalization on all platforms.
+* Keep detailed example drawer ink visible and scroll picker pages above the keyboard.
 * Clarify SDK compatibility and picker input behavior.
 
 ## [1.5.2]

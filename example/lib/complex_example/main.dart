@@ -170,8 +170,8 @@ class _MainPageState extends State<MainPage> {
 
   Widget buildDrawer() {
     return Drawer(
-      child: DecoratedBox(
-        decoration: BoxDecoration(color: theme.cardColor),
+      child: Material(
+        color: theme.cardColor,
         child: Column(
           children: <Widget>[
             // Header
@@ -240,12 +240,11 @@ class _MainPageState extends State<MainPage> {
 
   Widget buildDrawer22() {
     return Drawer(
-      child: DecoratedBox(
-        decoration: BoxDecoration(color: theme.cardColor),
+      child: Material(
+        color: theme.cardColor,
         child: CustomScrollView(
           scrollDirection: Axis.vertical,
           reverse: false,
-          controller: ScrollController(),
           primary: false,
           physics: const ScrollPhysics(),
           shrinkWrap: false,
@@ -290,7 +289,16 @@ class _MainPageState extends State<MainPage> {
       home: Scaffold(
         key: scaffoldKey,
         backgroundColor: theme.scaffoldBackgroundColor,
-        body: page,
+        body: SafeArea(
+          child: LayoutBuilder(
+            builder: (context, constraints) => SingleChildScrollView(
+              child: ConstrainedBox(
+                constraints: BoxConstraints(minHeight: constraints.maxHeight),
+                child: page,
+              ),
+            ),
+          ),
+        ),
         appBar: buildAppBar(),
         drawer: buildDrawer22(),
       ),
