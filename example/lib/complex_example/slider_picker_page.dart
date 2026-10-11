@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hsvcolor_picker/flutter_hsvcolor_picker.dart';
 
 class SliderPickerPage extends StatefulWidget {
-  const SliderPickerPage({super.key});
+  const SliderPickerPage({Key? key}) : super(key: key);
 
   @override
   State<SliderPickerPage> createState() => _SliderPickerPageState();
@@ -15,7 +15,7 @@ class _SliderPickerPageState extends State<SliderPickerPage> {
     const Color.fromARGB(255, 0, 255, 0),
     const Color.fromARGB(255, 0, 255, 255),
     const Color.fromARGB(255, 0, 0, 255),
-    const Color.fromARGB(255, 255, 0, 255),
+    const Color.fromARGB(255, 255, 0, 255)
   ];
 
   double value = 0.0;
@@ -27,7 +27,11 @@ class _SliderPickerPageState extends State<SliderPickerPage> {
       child: SizedBox(
         width: 260,
         child: Card(
-          shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(0.0))),
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(
+              Radius.circular(0.0),
+            ),
+          ),
           elevation: 2.0,
           child: Padding(
             padding: const EdgeInsets.all(10),
@@ -45,11 +49,15 @@ class _SliderPickerPageState extends State<SliderPickerPage> {
                   min: 0.0,
                   max: 1.0,
                   value: value,
-                  onChanged: (value) => super.setState(() => onChanged(value)),
-                  child: DecoratedBox(
-                    decoration: BoxDecoration(gradient: LinearGradient(colors: hueColors)),
+                  onChanged: (value) => super.setState(
+                    () => onChanged(value),
                   ),
-                ),
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(colors: hueColors),
+                    ),
+                  ),
+                )
 
                 ///---------------------------------
               ],

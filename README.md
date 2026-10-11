@@ -19,14 +19,19 @@ https://pub.dev/packages/flutter_hsvcolor_picker/install
 
 ```dart
 
-import "package:flutter_hsvcolor_picker/flutter_hsvcolor_picker.dart";
+import 'package:flutter/material.dart';
+import 'package:flutter_hsvcolor_picker/flutter_hsvcolor_picker.dart';
 
 ColorPicker(
   color: Colors.blue,
-  onChanged: (value){ },
+  onChanged: (value) {
+    // Save the selected color in your app state.
+  },
   initialPicker: Picker.paletteHue,
 )
 ```
+
+`color` sets the initial selection and updates it when the parent passes a new color. `initialPicker` selects the first picker only. Sliders, palettes, and the wheel accept taps and drags. Color changes start after the gesture is accepted. The HEX field accepts six RGB digits, optionally prefixed with `#` or `0x`; use the alpha slider for transparency.
 
 For a more detailed example, head over to: https://github.com/fluttercandies/flutter_hsvcolor_picker/tree/main/example/lib/complex_example
 
@@ -34,12 +39,14 @@ For a more detailed example, head over to: https://github.com/fluttercandies/flu
 
 ## Development
 
-Use FVM for the repository toolchain. The canonical formatter width is 120 columns:
+The package requires Flutter 2.10 or newer. The checked-in native example requires Flutter 3.47 or newer.
+
+Use FVM for the repository toolchain. The canonical formatter width is 120 columns. The Flutter 3.10 CI job checks the package; the stable job also resolves and tests the native example:
 
 ```sh
 fvm dart format --page-width 120 .
 fvm dart format --page-width 120 --output=none --set-exit-if-changed .
-fvm dart analyze
+fvm dart analyze lib test
 fvm flutter test
 (cd example && fvm flutter build apk --debug)
 ```

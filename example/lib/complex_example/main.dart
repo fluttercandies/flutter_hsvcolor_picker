@@ -16,7 +16,7 @@ import 'wheel_picker_page.dart';
 void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MainPage extends StatefulWidget {
-  const MainPage({super.key});
+  const MainPage({Key? key}) : super(key: key);
 
   @override
   State<MainPage> createState() => _MainPageState();
@@ -37,27 +37,82 @@ class _MainPageState extends State<MainPage> {
   int index = 0;
   Widget? get page => items.firstWhere((item) => item == null ? false : item.index == index)?.page;
   List<_MainItem?> items = [
-    _MainItem(index: 0, icon: Icons.color_lens, text: 'Color Picker', page: const ColorPickerPage()),
+    _MainItem(
+      index: 0,
+      icon: Icons.color_lens,
+      text: 'Color Picker',
+      page: const ColorPickerPage(),
+    ),
     null,
-    _MainItem(index: 1, icon: Icons.tune, text: 'RGB Picker', page: const RGBPickerPage()),
-    _MainItem(index: 2, icon: Icons.tune, text: 'HSV Picker', page: const HSVPickerPage()),
-    _MainItem(index: 3, icon: Icons.tune, text: 'Wheel Picker', page: const WheelPickerPage()),
+    _MainItem(
+      index: 1,
+      icon: Icons.tune,
+      text: 'RGB Picker',
+      page: const RGBPickerPage(),
+    ),
+    _MainItem(
+      index: 2,
+      icon: Icons.tune,
+      text: 'HSV Picker',
+      page: const HSVPickerPage(),
+    ),
+    _MainItem(
+      index: 3,
+      icon: Icons.tune,
+      text: 'Wheel Picker',
+      page: const WheelPickerPage(),
+    ),
     null,
-    _MainItem(index: 4, icon: Icons.color_lens, text: 'Palette Hue Picker', page: const PaletteHuePickerPage()),
+    _MainItem(
+      index: 4,
+      icon: Icons.color_lens,
+      text: 'Palette Hue Picker',
+      page: const PaletteHuePickerPage(),
+    ),
     _MainItem(
       index: 5,
       icon: Icons.color_lens,
       text: 'Palette Saturation Picker',
       page: const PaletteSaturationPickerPage(),
     ),
-    _MainItem(index: 6, icon: Icons.color_lens, text: 'Palette Value Picker', page: const PaletteValuePickerPage()),
+    _MainItem(
+      index: 6,
+      icon: Icons.color_lens,
+      text: 'Palette Value Picker',
+      page: const PaletteValuePickerPage(),
+    ),
     null,
-    _MainItem(index: 7, icon: Icons.mode_edit, text: 'Swatches Picker', page: const SwatchesPickerPage()),
-    _MainItem(index: 8, icon: Icons.mode_edit, text: 'Hex Picker', page: const HexPickerPage()),
-    _MainItem(index: 9, icon: Icons.mode_edit, text: 'Alpha Picker', page: const AlphaPickerPage()),
+    _MainItem(
+      index: 7,
+      icon: Icons.mode_edit,
+      text: 'Swatches Picker',
+      page: const SwatchesPickerPage(),
+    ),
+    _MainItem(
+      index: 8,
+      icon: Icons.mode_edit,
+      text: 'Hex Picker',
+      page: const HexPickerPage(),
+    ),
+    _MainItem(
+      index: 9,
+      icon: Icons.mode_edit,
+      text: 'Alpha Picker',
+      page: const AlphaPickerPage(),
+    ),
     null,
-    _MainItem(index: 10, icon: Icons.linear_scale, text: 'Slider', page: const SliderPickerPage()),
-    _MainItem(index: 11, icon: Icons.gradient, text: 'Palette', page: PalettePickerPage()),
+    _MainItem(
+      index: 10,
+      icon: Icons.linear_scale,
+      text: 'Slider',
+      page: const SliderPickerPage(),
+    ),
+    _MainItem(
+      index: 11,
+      icon: Icons.gradient,
+      text: 'Palette',
+      page: PalettePickerPage(),
+    ),
   ];
 
   void iconButtonOnPressed() => scaffoldKey.currentState?.openDrawer();
@@ -80,36 +135,50 @@ class _MainPageState extends State<MainPage> {
 
       // Center
       title: Center(
-        child: Text('HSV Color', textAlign: TextAlign.center, style: theme.textTheme.headlineSmall),
+        child: Text(
+          'HSV Color',
+          textAlign: TextAlign.center,
+          style: theme.textTheme.headlineSmall,
+        ),
       ),
 
       // Left
       leading: IconButton(
         onPressed: iconButtonOnPressed,
-        icon: IconTheme(data: theme.iconTheme, child: const Icon(Icons.dehaze)),
+        icon: IconTheme(
+          data: theme.iconTheme,
+          child: const Icon(Icons.dehaze),
+        ),
       ),
 
       // Right
       actions: <Widget>[
         IconButton(
           onPressed: iconButtonOnPressed,
-          icon: IconTheme(data: theme.iconTheme, child: const Icon(Icons.dehaze)),
-        ),
+          icon: IconTheme(
+            data: theme.iconTheme,
+            child: const Icon(Icons.dehaze),
+          ),
+        )
       ],
     );
   }
 
   Widget buildDrawer() {
     return Drawer(
-      child: DecoratedBox(
-        decoration: BoxDecoration(color: theme.cardColor),
+      child: Material(
+        color: theme.cardColor,
         child: Column(
           children: <Widget>[
             // Header
             buildDrawerHeader(),
 
             // List
-            Expanded(child: ListView(children: items.map(buildListViewItem).toList())),
+            Expanded(
+              child: ListView(
+                children: items.map(buildListViewItem).toList(),
+              ),
+            )
           ],
         ),
       ),
@@ -131,13 +200,16 @@ class _MainPageState extends State<MainPage> {
                 CircleAvatar(
                   radius: 34.0,
                   backgroundColor: theme.cardColor,
-                  backgroundImage: const AssetImage('packages/avatar.jpg'),
+                  backgroundImage: const AssetImage('packages/Avatar.jpg'),
                 ),
                 const SizedBox(height: 10.0),
                 const Padding(
                   padding: EdgeInsets.only(bottom: 8),
-                  child: Text('淹死的鱼ysdy44', style: TextStyle(color: Colors.white, fontSize: 18.0)),
-                ),
+                  child: Text(
+                    '淹死的鱼ysdy44',
+                    style: TextStyle(color: Colors.white, fontSize: 18.0),
+                  ),
+                )
               ],
             ),
           ),
@@ -147,13 +219,16 @@ class _MainPageState extends State<MainPage> {
             alignment: Alignment.bottomRight,
             child: ElevatedButton(
               onPressed: setTheme,
-              style: ElevatedButton.styleFrom(backgroundColor: Colors.blue.shade400, shape: const StadiumBorder()),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blue.shade400,
+                shape: const StadiumBorder(),
+              ),
               child: Text(
                 theme.brightness == Brightness.dark ? 'Dark' : 'Light',
                 style: const TextStyle(fontSize: 16.0, color: Colors.white),
               ),
             ),
-          ),
+          )
         ],
       ),
     );
@@ -161,21 +236,28 @@ class _MainPageState extends State<MainPage> {
 
   Widget buildDrawer22() {
     return Drawer(
-      child: DecoratedBox(
-        decoration: BoxDecoration(color: theme.cardColor),
+      child: Material(
+        color: theme.cardColor,
         child: CustomScrollView(
           scrollDirection: Axis.vertical,
           reverse: false,
-          controller: ScrollController(),
           primary: false,
           physics: const ScrollPhysics(),
           shrinkWrap: false,
           slivers: <Widget>[
             // Body
-            SliverList(delegate: SliverChildListDelegate(<Widget>[buildDrawerHeader()])),
+            SliverList(
+              delegate: SliverChildListDelegate(
+                <Widget>[buildDrawerHeader()],
+              ),
+            ),
 
             // Body
-            SliverList(delegate: SliverChildListDelegate(items.map(buildListViewItem).toList())),
+            SliverList(
+              delegate: SliverChildListDelegate(
+                items.map(buildListViewItem).toList(),
+              ),
+            )
           ],
         ),
       ),
@@ -189,7 +271,9 @@ class _MainPageState extends State<MainPage> {
       selected: item.index == index,
       leading: Icon(item.icon),
       title: Text(item.text),
-      onTap: () => super.setState(() => listTileOnTap(item)),
+      onTap: () => super.setState(
+        () => listTileOnTap(item),
+      ),
     );
   }
 
@@ -201,7 +285,16 @@ class _MainPageState extends State<MainPage> {
       home: Scaffold(
         key: scaffoldKey,
         backgroundColor: theme.scaffoldBackgroundColor,
-        body: page,
+        body: SafeArea(
+          child: LayoutBuilder(
+            builder: (context, constraints) => SingleChildScrollView(
+              child: ConstrainedBox(
+                constraints: BoxConstraints(minHeight: constraints.maxHeight),
+                child: page,
+              ),
+            ),
+          ),
+        ),
         appBar: buildAppBar(),
         drawer: buildDrawer22(),
       ),
@@ -210,7 +303,12 @@ class _MainPageState extends State<MainPage> {
 }
 
 class _MainItem {
-  _MainItem({required this.index, required this.icon, required this.text, required this.page});
+  _MainItem({
+    required this.index,
+    required this.icon,
+    required this.text,
+    required this.page,
+  });
 
   final int index;
   final IconData icon;

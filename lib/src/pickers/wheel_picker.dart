@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 /// Color palette and color wheel.
@@ -106,24 +107,23 @@ class _WheelPickerState extends State<WheelPicker> {
     }
   }
 
-  void onPanDown(Offset offset) => isWheel = isPalette = false;
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      dragStartBehavior: DragStartBehavior.down,
       onPanStart: (DragStartDetails details) {
         onPanStart(details.globalPosition);
       },
       onPanUpdate: (DragUpdateDetails details) {
         onPanUpdate(details.globalPosition);
       },
-      onPanDown: (DragDownDetails details) => onPanDown(details.globalPosition),
+      onTapUp: (TapUpDetails details) => onPanStart(details.globalPosition),
       child: Container(
-        key: paletteKey,
         padding: const EdgeInsets.only(top: 12.0),
         width: 240,
         height: 240,
         child: CustomPaint(
+          key: paletteKey,
           painter: _WheelPainter(
             color: color,
             showColorBox: widget.showPalette,
@@ -156,7 +156,7 @@ class _WheelPainter extends CustomPainter {
 
     // Wheel
     final Shader sweepShader = const SweepGradient(
-      center: Alignment.bottomRight,
+      center: Alignment.center,
       colors: <Color>[
         Color.fromARGB(255, 255, 0, 0),
         Color.fromARGB(255, 255, 255, 0),
@@ -167,7 +167,7 @@ class _WheelPainter extends CustomPainter {
         Color.fromARGB(255, 255, 0, 0),
       ],
     ).createShader(
-      Rect.fromLTWH(0, 0, radio, radio),
+      Rect.fromCircle(center: center, radius: radio),
     );
     canvas.drawCircle(
       center,

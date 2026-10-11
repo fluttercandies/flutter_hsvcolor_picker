@@ -8,16 +8,19 @@ import 'package:flutter_hsvcolor_picker/flutter_hsvcolor_picker.dart';
 void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(darkTheme: ThemeData.dark(), home: const MyHomePage());
+    return MaterialApp(
+      darkTheme: ThemeData.dark(),
+      home: const MyHomePage(),
+    );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
+  const MyHomePage({Key? key}) : super(key: key);
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -27,15 +30,24 @@ class _MyHomePageState extends State<MyHomePage> {
   final _colorNotifier = ValueNotifier<Color>(Colors.green);
 
   @override
+  void dispose() {
+    _colorNotifier.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(50),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(24),
           child: ValueListenableBuilder<Color>(
             valueListenable: _colorNotifier,
-            builder: (_, color, child) {
-              return ColorPicker(color: color, onChanged: (value) => color = value);
+            builder: (_, color, __) {
+              return ColorPicker(
+                color: color,
+                onChanged: (value) => _colorNotifier.value = value,
+              );
             },
           ),
         ),

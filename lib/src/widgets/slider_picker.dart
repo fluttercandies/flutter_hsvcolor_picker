@@ -41,9 +41,9 @@ class _SliderPickerState extends State<SliderPicker> {
         (ratio * (max - min) + min).clamp(min, max),
       );
 
-  void onPanUpdate(DragUpdateDetails details, BoxConstraints box) {
+  void updatePosition(Offset globalPosition, BoxConstraints box) {
     final RenderBox? renderBox = super.context.findRenderObject() as RenderBox?;
-    final Offset offset = renderBox?.globalToLocal(details.globalPosition) ?? Offset.zero;
+    final Offset offset = renderBox?.globalToLocal(globalPosition) ?? Offset.zero;
     final double ratio = offset.dx / box.maxWidth;
     super.setState(() => setRatio(ratio));
   }
@@ -111,7 +111,9 @@ class _SliderPickerState extends State<SliderPicker> {
 
   Widget buildGestureDetector(BuildContext context, BoxConstraints box) {
     return GestureDetector(
-      onPanUpdate: (DragUpdateDetails detail) => onPanUpdate(detail, box),
+      onTapUp: (TapUpDetails detail) => updatePosition(detail.globalPosition, box),
+      onPanStart: (DragStartDetails detail) => updatePosition(detail.globalPosition, box),
+      onPanUpdate: (DragUpdateDetails detail) => updatePosition(detail.globalPosition, box),
       child: Container(
         color: const Color(0x00000000),
       ),
