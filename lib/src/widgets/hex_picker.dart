@@ -33,7 +33,9 @@ class _HexPickerState extends State<HexPicker> {
   @override
   void didUpdateWidget(covariant HexPicker oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (oldWidget.color != widget.color) {
+    final isRgbChanged = _Hex.colorToString(oldWidget.color) != _Hex.colorToString(widget.color);
+
+    if (isRgbChanged) {
       final text = _Hex.colorToString(widget.color).toUpperCase();
       _controller.value = TextEditingValue(
         text: text,
