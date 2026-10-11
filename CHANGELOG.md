@@ -3,10 +3,16 @@
 * Accept RGB HEX input with optional `#`, `0x` or `0X` prefixes and surrounding whitespace; reject invalid values.
 * Preserve HEX editing state and sync parent color changes.
 * Fix tap and drag selection; ignore cancelled gestures and keep wheel drags in their starting region.
-* Match wheel selection to painted colors and fix hue colors for dark or desaturated palette selections.
+* Match wheel selection to painted colors.
 * Correct HSV labels and prevent selected labels from clipping in narrow layouts.
 * Preserve example color selections and let pages scroll above the keyboard.
-* Support newer Flutter releases while retaining Flutter 2.10+. The native example requires Flutter 3.47+.
+
+## [1.5.2]
+
+* Fix `PaletteHuePicker` hue slider showing incorrect colors when dark or desaturated colors are selected in the palette.
+* Allow Dart 3, remove the Android example's explicit Kotlin Gradle Plugin, and
+  update the example to Flutter 3.47, Android Gradle Plugin 9.2.1, and Gradle
+  9.7.1.
 
 ## [1.5.1]
 
