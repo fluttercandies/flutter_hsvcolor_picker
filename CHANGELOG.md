@@ -1,25 +1,12 @@
 ## [1.6.0]
 
-* Accept six-digit RGB HEX input with optional `#`, `0x`, or `0X` prefixes and
-  surrounding whitespace. Reject malformed input without changing the color.
-* Select colors on slider, palette, and wheel taps as well as drags, and align
-  wheel input coordinates with the painted hues.
-* Wait for slider, palette, and wheel gestures to be accepted before changing the color,
-  so cancelled touches do not select a value. Keep wheel drags tied to the
-  original touched region when crossing into the palette.
-* Keep selected picker labels inside narrow dropdown buttons instead of clipping wrapped text.
-* Make the HEX picker constructor const, retain and dispose its editing
-  resources, and synchronize picker state when the parent changes the color.
-* Remove an unused swatches animation controller.
-* Fix `PaletteHuePicker` hue colors for dark or desaturated palette selections.
-* Label HSV saturation and value as percentages and use V for value.
-* Preserve selected example colors, make picker pages scroll above the keyboard,
-  keep drawer ink visible, and correct asset filename capitalization.
-* Allow Dart 3 while retaining the package's Flutter 2.10 / Dart 2.16 minimum.
-  The native example requires Flutter 3.47 and uses AGP 9.2.1 with built-in Kotlin,
-  Gradle 9.7.1, and an iOS 15 deployment target.
-* Add picker interaction, lifecycle, input, and example layout regressions and
-  clarify compatibility and input behavior in the README.
+* Accept RGB HEX input with optional `#`, `0x` or `0X` prefixes and surrounding whitespace; reject invalid values.
+* Preserve HEX editing state and sync parent color changes.
+* Fix tap and drag selection; ignore cancelled gestures and keep wheel drags in their starting region.
+* Match wheel selection to painted colors and fix hue colors for dark or desaturated palette selections.
+* Correct HSV labels and prevent selected labels from clipping in narrow layouts.
+* Preserve example color selections and let pages scroll above the keyboard.
+* Support newer Flutter releases while retaining Flutter 2.10+. The native example requires Flutter 3.47+.
 
 ## [1.5.1]
 
