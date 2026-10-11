@@ -67,6 +67,8 @@ class ColorPicker extends StatefulWidget {
 class _ColorPickerState extends State<ColorPicker> {
   _ColorPickerState();
 
+  final _hexKey = GlobalKey();
+
   // Color
   late int _alpha;
   late Color _color;
@@ -270,6 +272,7 @@ class _ColorPickerState extends State<ColorPicker> {
           // HexPicker
           Expanded(
             child: HexPicker(
+              key: _hexKey,
               color: _color,
               onChanged: (Color value) => super.setState(
                 () => _colorOnChanged(value),
