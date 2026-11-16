@@ -1,6 +1,6 @@
 import 'dart:ui' as ui;
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_hsvcolor_picker/flutter_hsvcolor_picker.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -8,12 +8,16 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   testWidgets('the painted wheel east point matches its red hue selection', (tester) async {
     final key = GlobalKey();
-    await tester.pumpWidget(MaterialApp(
+    await tester.pumpWidget(
+      MaterialApp(
         home: Center(
-            child: RepaintBoundary(
-      key: key,
-      child: WheelPicker(color: const HSVColor.fromAHSV(1, 180, 1, 1), onChanged: (_) {}),
-    ))));
+          child: RepaintBoundary(
+            key: key,
+            child: WheelPicker(color: const HSVColor.fromAHSV(1, 180, 1, 1), onChanged: (_) {}),
+          ),
+        ),
+      ),
+    );
     final boundary = key.currentContext!.findRenderObject()! as RenderRepaintBoundary;
     final paint = find.descendant(of: find.byType(WheelPicker), matching: find.byType(CustomPaint));
     final rect = tester.getRect(paint);

@@ -4,6 +4,8 @@ The default app lets you switch between RGB, HSV, wheel, palette and swatch pick
 
 Flutter 3.47 or newer for this checked-in native example.
 
+Both example entry points use `package:material_ui/material_ui.dart`, including its `MaterialApp` and themes, to match the picker's Material UI widgets.
+
 From this directory, select a compatible Flutter SDK with FVM, then run:
 
 ```sh

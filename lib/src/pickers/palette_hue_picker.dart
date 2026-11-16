@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../widgets/palette_picker.dart';
 import '../widgets/slider_picker.dart';
@@ -9,17 +9,14 @@ class PaletteHuePicker extends StatefulWidget {
     required this.color,
     required this.onChanged,
     this.paletteHeight = 280,
-    this.palettePadding = const EdgeInsets.symmetric(
-      horizontal: 12,
-      vertical: 20,
-    ),
+    this.palettePadding = const EdgeInsets.symmetric(horizontal: 12, vertical: 20),
     this.hueBorder,
     this.hueBorderRadius,
     this.hueHeight = 40,
     this.paletteBorder,
     this.paletteBorderRadius,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final HSVColor color;
   final ValueChanged<HSVColor> onChanged;
@@ -39,9 +36,7 @@ class _PaletteHuePickerState extends State<PaletteHuePicker> {
   HSVColor get color => widget.color;
 
   // Hue
-  void hueOnChange(double value) => widget.onChanged(
-        color.withHue(value),
-      );
+  void hueOnChange(double value) => widget.onChanged(color.withHue(value));
   final List<Color> hueColors = <Color>[
     const Color.fromARGB(255, 255, 0, 0),
     const Color.fromARGB(255, 255, 255, 0),
@@ -49,23 +44,16 @@ class _PaletteHuePickerState extends State<PaletteHuePicker> {
     const Color.fromARGB(255, 0, 255, 255),
     const Color.fromARGB(255, 0, 0, 255),
     const Color.fromARGB(255, 255, 0, 255),
-    const Color.fromARGB(255, 255, 0, 0)
+    const Color.fromARGB(255, 255, 0, 0),
   ];
 
   // Saturation Value
-  void saturationValueOnChange(Offset value) => widget.onChanged(
-        HSVColor.fromAHSV(color.alpha, color.hue, value.dx, value.dy),
-      );
+  void saturationValueOnChange(Offset value) =>
+      widget.onChanged(HSVColor.fromAHSV(color.alpha, color.hue, value.dx, value.dy));
   // Saturation
-  List<Color> get saturationColors => <Color>[
-        Colors.white,
-        HSVColor.fromAHSV(1.0, color.hue, 1.0, 1.0).toColor(),
-      ];
+  List<Color> get saturationColors => <Color>[Colors.white, HSVColor.fromAHSV(1.0, color.hue, 1.0, 1.0).toColor()];
   // Value
-  final List<Color> valueColors = <Color>[
-    Colors.transparent,
-    Colors.black,
-  ];
+  final List<Color> valueColors = <Color>[Colors.transparent, Colors.black];
 
   @override
   Widget build(BuildContext context) {
@@ -99,7 +87,7 @@ class _PaletteHuePickerState extends State<PaletteHuePicker> {
           value: color.hue,
           onChanged: hueOnChange,
           colors: hueColors,
-        )
+        ),
       ],
     );
   }

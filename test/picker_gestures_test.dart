@@ -1,24 +1,24 @@
 import 'dart:math' as math;
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_hsvcolor_picker/flutter_hsvcolor_picker.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   Widget palette(List<Offset> values) => MaterialApp(
-        home: Center(
-          child: SizedBox(
-            width: 200,
-            height: 200,
-            child: PalettePicker(
-              position: Offset.zero,
-              onChanged: values.add,
-              leftRightColors: const [Colors.black, Colors.white],
-              topBottomColors: const [Colors.transparent, Colors.black],
-            ),
-          ),
+    home: Center(
+      child: SizedBox(
+        width: 200,
+        height: 200,
+        child: PalettePicker(
+          position: Offset.zero,
+          onChanged: values.add,
+          leftRightColors: const [Colors.black, Colors.white],
+          topBottomColors: const [Colors.transparent, Colors.black],
         ),
-      );
+      ),
+    ),
+  );
 
   testWidgets('cancelled palette press does not select a color', (tester) async {
     final values = <Offset>[];
@@ -54,14 +54,13 @@ void main() {
 
   testWidgets('cancelled slider press does not select a color', (tester) async {
     final values = <double>[];
-    await tester.pumpWidget(MaterialApp(
-      home: Center(
-        child: SizedBox(
-          width: 200,
-          child: SliderPicker(value: 0, onChanged: values.add),
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Center(
+          child: SizedBox(width: 200, child: SliderPicker(value: 0, onChanged: values.add)),
         ),
       ),
-    ));
+    );
     final rect = tester.getRect(find.byType(SliderPicker));
     final gesture = await tester.startGesture(Offset(rect.left + 150, rect.center.dy));
     await gesture.cancel();
@@ -71,18 +70,14 @@ void main() {
 
   testWidgets('cancelled wheel press does not select a color', (tester) async {
     final values = <HSVColor>[];
-    await tester.pumpWidget(MaterialApp(
-      home: Center(
-        child: WheelPicker(
-          color: const HSVColor.fromAHSV(1, 180, 1, 1),
-          onChanged: values.add,
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Center(
+          child: WheelPicker(color: const HSVColor.fromAHSV(1, 180, 1, 1), onChanged: values.add),
         ),
       ),
-    ));
-    final paint = find.descendant(
-      of: find.byType(WheelPicker),
-      matching: find.byType(CustomPaint),
     );
+    final paint = find.descendant(of: find.byType(WheelPicker), matching: find.byType(CustomPaint));
     final rect = tester.getRect(paint);
     final gesture = await tester.startGesture(Offset(rect.right - 8, rect.center.dy));
     await gesture.cancel();
@@ -93,7 +88,12 @@ void main() {
   testWidgets('slider tap selects the position without dragging', (tester) async {
     final values = <double>[];
     await tester.pumpWidget(
-        MaterialApp(home: Center(child: SizedBox(width: 200, child: SliderPicker(value: 0, onChanged: values.add)))));
+      MaterialApp(
+        home: Center(
+          child: SizedBox(width: 200, child: SliderPicker(value: 0, onChanged: values.add)),
+        ),
+      ),
+    );
     final rect = tester.getRect(find.byType(SliderPicker));
     await tester.tapAt(Offset(rect.left + 150, rect.center.dy));
     expect(values, isNotEmpty);
@@ -101,8 +101,13 @@ void main() {
   });
   testWidgets('wheel tap uses the painted wheel center', (tester) async {
     final values = <HSVColor>[];
-    await tester.pumpWidget(MaterialApp(
-        home: Center(child: WheelPicker(color: const HSVColor.fromAHSV(1, 180, 1, 1), onChanged: values.add))));
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Center(
+          child: WheelPicker(color: const HSVColor.fromAHSV(1, 180, 1, 1), onChanged: values.add),
+        ),
+      ),
+    );
     final paint = find.descendant(of: find.byType(WheelPicker), matching: find.byType(CustomPaint));
     final rect = tester.getRect(paint);
     await tester.tapAt(Offset(rect.right - 8, rect.center.dy));
@@ -112,14 +117,13 @@ void main() {
 
   testWidgets('slider drag still selects the final position', (tester) async {
     final values = <double>[];
-    await tester.pumpWidget(MaterialApp(
-      home: Center(
-        child: SizedBox(
-          width: 200,
-          child: SliderPicker(value: 0, onChanged: values.add),
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Center(
+          child: SizedBox(width: 200, child: SliderPicker(value: 0, onChanged: values.add)),
         ),
       ),
-    ));
+    );
     final rect = tester.getRect(find.byType(SliderPicker));
     final gesture = await tester.startGesture(Offset(rect.left + 50, rect.center.dy));
     await gesture.moveTo(Offset(rect.left + 100, rect.center.dy));
@@ -132,18 +136,14 @@ void main() {
 
   testWidgets('wheel drag still follows the painted hue', (tester) async {
     final values = <HSVColor>[];
-    await tester.pumpWidget(MaterialApp(
-      home: Center(
-        child: WheelPicker(
-          color: const HSVColor.fromAHSV(1, 180, 1, 1),
-          onChanged: values.add,
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Center(
+          child: WheelPicker(color: const HSVColor.fromAHSV(1, 180, 1, 1), onChanged: values.add),
         ),
       ),
-    ));
-    final paint = find.descendant(
-      of: find.byType(WheelPicker),
-      matching: find.byType(CustomPaint),
     );
+    final paint = find.descendant(of: find.byType(WheelPicker), matching: find.byType(CustomPaint));
     final rect = tester.getRect(paint);
     final gesture = await tester.startGesture(Offset(rect.right - 8, rect.center.dy));
     await gesture.moveTo(Offset(rect.center.dx + 60, rect.center.dy + 60));
@@ -160,16 +160,15 @@ void main() {
     double hue = 180,
     double saturation = 1,
     double value = 1,
-  }) =>
-      MaterialApp(
-        home: Center(
-          child: WheelPicker(
-            color: HSVColor.fromAHSV(1, hue, saturation, value),
-            showPalette: showPalette,
-            onChanged: values.add,
-          ),
-        ),
-      );
+  }) => MaterialApp(
+    home: Center(
+      child: WheelPicker(
+        color: HSVColor.fromAHSV(1, hue, saturation, value),
+        showPalette: showPalette,
+        onChanged: values.add,
+      ),
+    ),
+  );
 
   // Mirrors _WheelPainter: ring painted within radio ± 8, square half-side (radio - 8) / sqrt2, thumbs reach 12 + 6 / 2 = 15
   void expectUnpainted(Rect rect, Offset vector) {
