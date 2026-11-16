@@ -69,25 +69,26 @@ class _ColorPickerState extends State<ColorPicker> {
   late int _index;
 
   void _alphaOnChanged(int value) {
-    _updateColor(_color.withAlpha(value));
+    _updateColor(_color.withAlpha(value), _hSVColor.withAlpha(value / 0xff));
   }
 
   void _colorOnChanged(Color value) {
     _updateColor(value.withAlpha(_color.alpha8));
   }
 
+  // Keep the exact HSV selection, because eight-bit RGB loses the hue of grays and blacks and rounds the rest
   void _hSVColorOnChanged(HSVColor value) {
-    _updateColor(value.toColor().withAlpha(_color.alpha8));
+    _updateColor(value.toColor().withAlpha(_color.alpha8), value.withAlpha(_color.alpha8 / 0xff));
   }
 
   void _colorWithAlphaOnChanged(Color value) {
     _updateColor(value);
   }
 
-  void _updateColor(Color color) {
+  void _updateColor(Color color, [HSVColor? hSVColor]) {
     _alpha = color.alpha8;
     _color = color;
-    _hSVColor = HSVColor.fromColor(color);
+    _hSVColor = hSVColor ?? HSVColor.fromColor(color);
     widget.onChanged(color);
   }
 
@@ -183,7 +184,10 @@ class _ColorPickerState extends State<ColorPicker> {
   @override
   void didUpdateWidget(covariant ColorPicker oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (oldWidget.color != widget.color) {
+    // A parent passing back the reported color keeps the HSV selection
+    final bool isNewColor = oldWidget.color != widget.color && widget.color != _color;
+
+    if (isNewColor) {
       _color = widget.color;
       _alpha = _color.alpha8;
       _hSVColor = HSVColor.fromColor(_color);
