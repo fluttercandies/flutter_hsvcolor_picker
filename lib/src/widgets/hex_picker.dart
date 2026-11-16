@@ -1,14 +1,10 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../color_channels.dart';
 
 /// Textfield for entering the Hex color code (RRGGBB).
 class HexPicker extends StatefulWidget {
-  const HexPicker({
-    required this.color,
-    required this.onChanged,
-    Key? key,
-  }) : super(key: key);
+  const HexPicker({required this.color, required this.onChanged, super.key});
 
   final Color color;
   final ValueChanged<Color> onChanged;
@@ -24,9 +20,7 @@ class _HexPickerState extends State<HexPicker> {
   @override
   void initState() {
     super.initState();
-    _controller = TextEditingController(
-      text: _Hex.colorToString(widget.color).toUpperCase(),
-    );
+    _controller = TextEditingController(text: _Hex.colorToString(widget.color).toUpperCase());
     _focusNode = FocusNode();
   }
 
@@ -51,9 +45,7 @@ class _HexPickerState extends State<HexPicker> {
     super.dispose();
   }
 
-  void textOnSubmitted(String value) => widget.onChanged(
-        textOnChenged(value),
-      );
+  void textOnSubmitted(String value) => widget.onChanged(textOnChenged(value));
   Color textOnChenged(String text) {
     final String? hex = _Hex.textSubString(text);
     if (hex == null) return widget.color;
@@ -69,10 +61,7 @@ class _HexPickerState extends State<HexPicker> {
         // Text
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 4),
-          child: Text(
-            '#',
-            style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 18),
-          ),
+          child: Text('#', style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 18)),
         ),
 
         // TextField
@@ -84,7 +73,7 @@ class _HexPickerState extends State<HexPicker> {
             onSubmitted: textOnSubmitted,
             decoration: const InputDecoration.collapsed(hintText: 'hex code'),
           ),
-        )
+        ),
       ],
     );
   }
@@ -92,27 +81,17 @@ class _HexPickerState extends State<HexPicker> {
 
 class _Hex {
   // Hex Number To Color
-  static Color intToColor(int hexNumber) => Color.fromARGB(
-        255,
-        (hexNumber >> 16) & 0xFF,
-        (hexNumber >> 8) & 0xFF,
-        (hexNumber >> 0) & 0xFF,
-      );
+  static Color intToColor(int hexNumber) =>
+      Color.fromARGB(255, (hexNumber >> 16) & 0xFF, (hexNumber >> 8) & 0xFF, (hexNumber >> 0) & 0xFF);
 
   // String To Hex Number
   static int stringToInt(String hex) => int.parse(hex, radix: 16);
 
   // String To Color
   static String colorToString(Color color) =>
-      _colorToString(
-        color.red8.toRadixString(16),
-      ) +
-      _colorToString(
-        color.green8.toRadixString(16),
-      ) +
-      _colorToString(
-        color.blue8.toRadixString(16),
-      );
+      _colorToString(color.red8.toRadixString(16)) +
+      _colorToString(color.green8.toRadixString(16)) +
+      _colorToString(color.blue8.toRadixString(16));
   static String _colorToString(String text) => text.length == 1 ? '0$text' : text;
 
   // Accept RGB hex values with optional # or 0x prefixes.

@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_hsvcolor_picker/flutter_hsvcolor_picker.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -10,20 +10,24 @@ void main() {
       addTearDown(tester.view.resetDevicePixelRatio);
       addTearDown(tester.view.resetPhysicalSize);
       final colors = <Color>[];
-      await tester.pumpWidget(MaterialApp(
-        home: Scaffold(
-          body: SingleChildScrollView(
-            child: ColorPicker(color: Colors.blue, initialPicker: picker, onChanged: colors.add),
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: SingleChildScrollView(
+              child: ColorPicker(color: Colors.blue, initialPicker: picker, onChanged: colors.add),
+            ),
           ),
         ),
-      ));
+      );
       final field = find.byType(TextField);
       await tester.enterText(field, '12');
-      tester.testTextInput.updateEditingValue(const TextEditingValue(
-        text: '12',
-        selection: TextSelection(baseOffset: 0, extentOffset: 2),
-        composing: TextRange(start: 0, end: 2),
-      ));
+      tester.testTextInput.updateEditingValue(
+        const TextEditingValue(
+          text: '12',
+          selection: TextSelection(baseOffset: 0, extentOffset: 2),
+          composing: TextRange(start: 0, end: 2),
+        ),
+      );
       await tester.pump();
       final before = tester.widget<TextField>(field);
       final draft = before.controller!.value;

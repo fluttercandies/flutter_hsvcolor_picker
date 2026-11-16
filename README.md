@@ -14,12 +14,30 @@ Pickers: RGB, HSV, Color Wheel, Palette Hue, Palette Saturation, Palette Value, 
 
 https://pub.dev/packages/flutter_hsvcolor_picker/install
 
+Version 2.0.0 requires Flutter 3.47 or newer.
+
+```yaml
+dependencies:
+  flutter_hsvcolor_picker: ^2.0.0
+  material_ui: ^1.11.0
+```
+
+### Migrating to 2.0.0
+
+Replace `import 'package:flutter/material.dart';` with `import 'package:material_ui/material_ui.dart';` in the app that hosts the picker. Use Material UI's `MaterialApp`, `Theme`, and `ThemeData` together so the picker inherits your app's colors and text styles. Flutter's deprecated Material themes and Material UI's themes are separate types.
+
+For Flutter 2.10 or newer with Dart 2.x, the published 1.5.1 release remains available:
+
+```yaml
+dependencies:
+  flutter_hsvcolor_picker: ^1.5.1
+```
 
 ### Example
 
 ```dart
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_hsvcolor_picker/flutter_hsvcolor_picker.dart';
 
 ColorPicker(
@@ -39,9 +57,9 @@ For a more detailed example, head over to: https://github.com/fluttercandies/flu
 
 ## Development
 
-The package requires Flutter 2.10 or newer. The checked-in native example requires Flutter 3.47 or newer.
+The package and checked-in native example require Flutter 3.47 or newer.
 
-Use FVM for the repository toolchain. The canonical formatter width is 120 columns. The Flutter 3.10 CI job checks the package; the stable job also resolves and tests the native example:
+Use FVM for the repository toolchain. The canonical formatter width is 120 columns. The Flutter 3.47 CI job checks the package; the stable job also resolves and tests the native example:
 
 ```sh
 fvm dart format --page-width 120 .
