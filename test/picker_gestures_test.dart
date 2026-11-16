@@ -160,6 +160,20 @@ void main() {
     ),
   );
 
+  // Mirrors _WheelPainter: ring painted within radio ± 8, square half-side (radio - 8) / sqrt2, thumbs reach 12 + 6 / 2 = 15
+  void expectUnpainted(Rect rect, Offset vector) {
+    expect(rect.size, const Size(240, 228));
+    final radio = math.min(rect.width, rect.height) / 2 - 8;
+    final innerEdge = radio - 8;
+    final squareRadio = (radio - 8) / 1.414213562373095;
+    final wheelThumb = Offset.fromDirection(math.pi, radio); // hue 180
+    final paletteThumb = Offset(squareRadio, -squareRadio); // s = 1, v = 1
+    expect(vector.dx.abs() > squareRadio + 10 || vector.dy.abs() > squareRadio + 10, isTrue, reason: 'outside square');
+    expect(vector.distance, lessThan(innerEdge - 10), reason: 'inside inner ring edge');
+    expect((vector - wheelThumb).distance, greaterThan(15 + 10), reason: 'away from wheel thumb');
+    expect((vector - paletteThumb).distance, greaterThan(15 + 10), reason: 'away from palette thumb');
+  }
+
   for (final showPalette in [true, false]) {
     testWidgets('wheel central palette tap respects showPalette: $showPalette', (tester) async {
       final values = <HSVColor>[];
@@ -219,6 +233,34 @@ void main() {
       expect(values.first.hue, closeTo(45, .001));
       expect(values[1].hue, closeTo(0, .001));
       expect(values.last.hue, closeTo(270, .001));
+    });
+
+    testWidgets('wheel inner-gap tap does not change color (showPalette: $showPalette)', (tester) async {
+      final values = <HSVColor>[];
+      await tester.pumpWidget(wheel(values, showPalette: showPalette));
+      final paint = find.descendant(of: find.byType(WheelPicker), matching: find.byType(CustomPaint));
+      final rect = tester.getRect(paint);
+      const vector = Offset(84, 0);
+      expectUnpainted(rect, vector);
+      await tester.tapAt(rect.center + vector);
+      await tester.pump();
+      expect(values, isEmpty, reason: 'tap at ${rect.center + vector} (center + $vector)');
+    });
+
+    testWidgets('wheel inner-gap drag start does not change color (showPalette: $showPalette)', (tester) async {
+      final values = <HSVColor>[];
+      await tester.pumpWidget(wheel(values, showPalette: showPalette));
+      final paint = find.descendant(of: find.byType(WheelPicker), matching: find.byType(CustomPaint));
+      final rect = tester.getRect(paint);
+      const vector = Offset(0, 84);
+      expectUnpainted(rect, vector);
+      final gesture = await tester.startGesture(rect.center + vector);
+      await gesture.moveTo(rect.center + const Offset(60, 60));
+      await tester.pump();
+      await gesture.moveTo(rect.center + const Offset(84, 0));
+      await tester.pump();
+      await gesture.up();
+      expect(values, isEmpty, reason: 'drag start at ${rect.center + vector} (center + $vector)');
     });
   }
 }
