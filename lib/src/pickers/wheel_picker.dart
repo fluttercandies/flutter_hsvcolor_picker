@@ -44,7 +44,9 @@ class _WheelPickerState extends State<WheelPicker> {
     final Offset vector = offset - startPosition - center;
 
     final bool isPalette = vector.dx.abs() < squareRadio && vector.dy.abs() < squareRadio;
-    isWheel = !isPalette;
+    // Ignore the transparent corners outside the ring, except where the thumb (radius 12 + stroke 3) is painted
+    final Offset thumb = _Wheel.hueToVector(color.hue * math.pi / 180.0, radio, Offset.zero);
+    isWheel = !isPalette && (vector.distance <= radio + _WheelPainter.strokeWidth || (vector - thumb).distance <= 15);
     this.isPalette = isPalette;
 
     // isWheel = vector.distance + _WheelPainter.strokeWidth > radio &&

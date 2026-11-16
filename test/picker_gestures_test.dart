@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter_hsvcolor_picker/flutter_hsvcolor_picker.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -151,4 +153,72 @@ void main() {
     expect(values, isNotEmpty);
     expect(values.last.hue, closeTo(90, .001));
   });
+
+  Widget wheel(List<HSVColor> values, {required bool showPalette, double hue = 180}) => MaterialApp(
+    home: Center(
+      child: WheelPicker(color: HSVColor.fromAHSV(1, hue, 1, 1), showPalette: showPalette, onChanged: values.add),
+    ),
+  );
+
+  for (final showPalette in [true, false]) {
+    testWidgets('wheel central palette tap respects showPalette: $showPalette', (tester) async {
+      final values = <HSVColor>[];
+      await tester.pumpWidget(wheel(values, showPalette: showPalette));
+      final paint = find.descendant(of: find.byType(WheelPicker), matching: find.byType(CustomPaint));
+      await tester.tapAt(tester.getCenter(paint));
+
+      expect(values, hasLength(showPalette ? 1 : 0));
+      if (showPalette) {
+        expect(values.single, const HSVColor.fromAHSV(1, 180, .5, .5));
+      }
+    });
+
+    testWidgets('wheel transparent corner taps are ignored (showPalette: $showPalette)', (tester) async {
+      final values = <HSVColor>[];
+      await tester.pumpWidget(wheel(values, showPalette: showPalette));
+      final paint = find.descendant(of: find.byType(WheelPicker), matching: find.byType(CustomPaint));
+      final rect = tester.getRect(paint);
+      for (final corner in [
+        rect.topLeft + const Offset(4, 4),
+        rect.topRight + const Offset(-4, 4),
+        rect.bottomLeft + const Offset(4, -4),
+        rect.bottomRight + const Offset(-4, -4),
+      ]) {
+        await tester.tapAt(corner);
+        await tester.pump();
+      }
+      expect(values, isEmpty);
+    });
+
+    testWidgets('wheel drag from a transparent corner is ignored (showPalette: $showPalette)', (tester) async {
+      final values = <HSVColor>[];
+      await tester.pumpWidget(wheel(values, showPalette: showPalette));
+      final paint = find.descendant(of: find.byType(WheelPicker), matching: find.byType(CustomPaint));
+      final rect = tester.getRect(paint);
+      final gesture = await tester.startGesture(rect.topLeft + const Offset(4, 4));
+      await gesture.moveTo(rect.center + const Offset(-75, -75));
+      await tester.pump();
+      await gesture.moveTo(Offset(rect.left + 8, rect.center.dy));
+      await tester.pump();
+      await gesture.up();
+      expect(values, isEmpty);
+    });
+
+    testWidgets('wheel thumb outside the ring still starts a wheel drag (showPalette: $showPalette)', (tester) async {
+      final values = <HSVColor>[];
+      await tester.pumpWidget(wheel(values, showPalette: showPalette, hue: 45));
+      final paint = find.descendant(of: find.byType(WheelPicker), matching: find.byType(CustomPaint));
+      final rect = tester.getRect(paint);
+      // 118 from the center: outside the ring (114) but on the thumb (106 + 15)
+      final gesture = await tester.startGesture(rect.center + Offset.fromDirection(math.pi / 4, 118));
+      await gesture.moveTo(rect.center);
+      await tester.pump();
+      await gesture.moveTo(Offset(rect.center.dx, rect.top + 8));
+      await gesture.up();
+      expect(values, hasLength(3));
+      expect(values.first.hue, closeTo(45, .001));
+      expect(values[1].hue, closeTo(0, .001));
+      expect(values.last.hue, closeTo(270, .001));
+    });
+  }
 }
