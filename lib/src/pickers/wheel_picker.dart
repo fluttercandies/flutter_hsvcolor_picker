@@ -49,7 +49,7 @@ class _WheelPickerState extends State<WheelPicker> {
     final Offset vector = offset - startPosition - center;
 
     // Follow the paint order: the palette and its thumb (radius 12 + stroke 3) cover the ring and the wheel thumb
-    final bool isInSquare = vector.dx.abs() < squareRadio && vector.dy.abs() < squareRadio;
+    final bool isInSquare = _WheelPainter.paletteRRect(Offset.zero, squareRadio).contains(vector);
     final Offset paletteThumb = Offset(
       _Wheel.saturationToVector(color.saturation, squareRadio, 0),
       _Wheel.valueToVector(color.value, squareRadio, 0),
@@ -153,6 +153,10 @@ class _WheelPainter extends CustomPainter {
   static double doubleStrokeWidth = 16;
   static double radio(Size size) => math.min(size.width, size.height).toDouble() / 2 - _WheelPainter.strokeWidth;
   static double squareRadio(double radio) => (radio - _WheelPainter.strokeWidth) / 1.414213562373095;
+  static RRect paletteRRect(Offset center, double squareRadio) => RRect.fromRectAndRadius(
+        Rect.fromCenter(center: center, width: squareRadio * 2, height: squareRadio * 2),
+        const Radius.circular(4),
+      );
 
   final HSVColor color;
   final bool showColorBox;
@@ -218,11 +222,8 @@ class _WheelPainter extends CustomPainter {
     if (!showColorBox) return;
 
     // Palette
-    final Rect rect = Rect.fromLTWH(center.dx - squareRadio, center.dy - squareRadio, squareRadio * 2, squareRadio * 2);
-    final RRect rRect = RRect.fromRectAndRadius(
-      rect,
-      const Radius.circular(4),
-    );
+    final RRect rRect = _WheelPainter.paletteRRect(center, squareRadio);
+    final Rect rect = rRect.outerRect;
 
     final Shader horizontal = LinearGradient(
       colors: <Color>[Colors.white, HSVColor.fromAHSV(1.0, color.hue, 1.0, 1.0).toColor()],

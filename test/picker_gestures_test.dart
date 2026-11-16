@@ -332,4 +332,20 @@ void main() {
     await tester.tapAt(rect.center + const Offset(-squareRadio - 8, 0));
     expect(values, [const HSVColor.fromAHSV(1, 0, 0, .5)]);
   });
+
+  testWidgets('wheel palette rounded corners only accept painted taps', (tester) async {
+    final values = <HSVColor>[];
+    await tester.pumpWidget(wheel(values, showPalette: true, hue: 180, saturation: .5, value: .5));
+    final paint = find.descendant(of: find.byType(WheelPicker), matching: find.byType(CustomPaint));
+    final rect = tester.getRect(paint);
+    const squareRadio = (106 - 8) / 1.414213562373095;
+    // Inside the square but outside the 4 px corner arc, 97.3 from the center in the inner gap
+    await tester.tapAt(rect.center + const Offset(squareRadio - .5, -squareRadio + .5));
+    await tester.pump();
+    expect(values, isEmpty);
+    // Inside the corner arc
+    await tester.tapAt(rect.center + const Offset(squareRadio - 2, -squareRadio + 2));
+    expect(values, hasLength(1));
+    expect(values.single.hue, 180);
+  });
 }
