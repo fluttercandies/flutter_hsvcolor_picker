@@ -1,8 +1,11 @@
-import 'package:material_ui/material_ui.dart';
+import 'package:flutter/material.dart';
 
 /// Color swatches.
 class SwatchesPicker extends StatefulWidget {
-  const SwatchesPicker({required this.onChanged, super.key});
+  const SwatchesPicker({
+    required this.onChanged,
+    Key? key,
+  }) : super(key: key);
 
   final ValueChanged<Color> onChanged;
 
@@ -21,10 +24,14 @@ class _SwatchesPickerState extends State<SwatchesPicker> {
       decoration: BoxDecoration(
         color: item,
         shape: BoxShape.circle,
-        border: const Border.fromBorderSide(BorderSide(color: Colors.grey)),
+        border: const Border.fromBorderSide(
+          BorderSide(color: Colors.grey),
+        ),
       ),
       child: InkWell(
-        borderRadius: const BorderRadius.all(Radius.circular(20)),
+        borderRadius: const BorderRadius.all(
+          Radius.circular(20),
+        ),
         onTap: () => itemClick(item),
         splashColor: item,
       ),

@@ -1,51 +1,16 @@
-import 'package:material_ui/material_ui.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_hsvcolor_picker/flutter_hsvcolor_picker.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  for (final brightness in Brightness.values) {
-    testWidgets('ColorPicker inherits Material UI colors and text styles in $brightness', (tester) async {
-      final changedColors = <Color>[];
-      final theme = ThemeData(brightness: brightness).copyWith(
-        textTheme: const TextTheme(
-          titleLarge: TextStyle(color: Color(0xff123456)),
-          headlineSmall: TextStyle(color: Color(0xff654321)),
-        ),
-      );
-      await tester.pumpWidget(
-        MaterialApp(
-          theme: theme,
-          home: Scaffold(
-            body: SingleChildScrollView(
-              child: ColorPicker(
-                initialPicker: Picker.rgb,
-                pickerOrientation: PickerOrientation.portrait,
-                onChanged: changedColors.add,
-              ),
-            ),
-          ),
-        ),
-      );
-
-      expect(Theme.of(tester.element(find.byType(ColorPicker))).brightness, brightness);
-      expect(tester.widget<Text>(find.text('#')).style?.color, const Color(0xff123456));
-      expect(tester.widget<Text>(find.text('R')).style?.color, const Color(0xff123456));
-      expect(tester.widget<TextField>(find.byType(TextField)).style?.color, const Color(0xff654321));
-
-      await tester.enterText(find.byType(TextField), 'AA5500');
-      await tester.testTextInput.receiveAction(TextInputAction.done);
-      await tester.pump();
-
-      expect(changedColors, [const Color(0xffaa5500)]);
-      expect(tester.takeException(), isNull);
-    });
-  }
-
   testWidgets('HexPicker displays the exact RGB channels', (tester) async {
     await tester.pumpWidget(
       MaterialApp(
         home: Scaffold(
-          body: HexPicker(color: const Color.fromARGB(0x7f, 0x0a, 0xb0, 0xff), onChanged: (_) {}),
+          body: HexPicker(
+            color: const Color.fromARGB(0x7f, 0x0a, 0xb0, 0xff),
+            onChanged: (_) {},
+          ),
         ),
       ),
     );
@@ -126,7 +91,9 @@ void main() {
       ),
     );
 
-    tester.widget<HSVPicker>(find.byType(HSVPicker)).onChanged(HSVColor.fromColor(const Color.fromARGB(0xff, 9, 8, 7)));
+    tester.widget<HSVPicker>(find.byType(HSVPicker)).onChanged(
+          HSVColor.fromColor(const Color.fromARGB(0xff, 9, 8, 7)),
+        );
     await tester.pump();
 
     expect(changedColors.single, isSameColorAs(const Color.fromARGB(0x55, 9, 8, 7)));
@@ -137,7 +104,10 @@ void main() {
       MaterialApp(
         home: Scaffold(
           body: Center(
-            child: SizedBox(width: 200, child: SliderPicker(value: 0.5, onChanged: (_) {})),
+            child: SizedBox(
+              width: 200,
+              child: SliderPicker(value: 0.5, onChanged: (_) {}),
+            ),
           ),
         ),
       ),

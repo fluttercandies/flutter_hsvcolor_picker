@@ -1,4 +1,4 @@
-import 'package:material_ui/material_ui.dart';
+import 'package:flutter/material.dart';
 
 /// Palette for selecting two values between 0 and 1.
 class PalettePicker extends StatefulWidget {
@@ -13,8 +13,8 @@ class PalettePicker extends StatefulWidget {
     this.bottomPosition = 1.0,
     this.border = const Border.fromBorderSide(BorderSide(color: Colors.grey)),
     this.borderRadius = const BorderRadius.all(Radius.circular(6)),
-    super.key,
-  });
+    Key? key,
+  }) : super(key: key);
 
   final Border? border;
   final BorderRadius? borderRadius;
@@ -53,7 +53,11 @@ class _PalettePickerState extends State<PalettePicker> {
     return Offset(ratioX, ratioY);
   }
 
-  double positionToRatio2(double postiton, double minPostition, double maxPostition) {
+  double positionToRatio2(
+    double postiton,
+    double minPostition,
+    double maxPostition,
+  ) {
     if (postiton < minPostition) return 0.0;
     if (postiton > maxPostition) return 1.0;
     return (postiton - minPostition) / (maxPostition - minPostition);
@@ -81,7 +85,11 @@ class _PalettePickerState extends State<PalettePicker> {
     widget.onChanged(position);
   }
 
-  double ratioToPosition2(double ratio, double minposition, double maxposition) {
+  double ratioToPosition2(
+    double ratio,
+    double minposition,
+    double maxposition,
+  ) {
     if (ratio < 0.0) return minposition;
     if (ratio > 1.0) return maxposition;
     return ratio * maxposition + (1.0 - ratio) * minposition;
@@ -92,7 +100,9 @@ class _PalettePickerState extends State<PalettePicker> {
       decoration: BoxDecoration(
         border: widget.border,
         borderRadius: widget.borderRadius,
-        gradient: LinearGradient(colors: widget.leftRightColors),
+        gradient: LinearGradient(
+          colors: widget.leftRightColors,
+        ),
       ),
     );
   }
@@ -120,7 +130,11 @@ class _PalettePickerState extends State<PalettePicker> {
         key: paletteKey,
         width: double.infinity,
         height: double.infinity,
-        child: CustomPaint(painter: _PalettePainter(ratio: positionToRatio())),
+        child: CustomPaint(
+          painter: _PalettePainter(
+            ratio: positionToRatio(),
+          ),
+        ),
       ),
     );
   }
@@ -143,7 +157,9 @@ class _PalettePickerState extends State<PalettePicker> {
 }
 
 class _PalettePainter extends CustomPainter {
-  _PalettePainter({required this.ratio}) : super();
+  _PalettePainter({
+    required this.ratio,
+  }) : super();
 
   final Offset ratio;
 

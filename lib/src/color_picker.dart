@@ -1,4 +1,4 @@
-import 'package:material_ui/material_ui.dart';
+import 'package:flutter/material.dart';
 
 import 'color_channels.dart';
 
@@ -12,7 +12,15 @@ import 'pickers/wheel_picker.dart';
 import 'widgets/alpha_picker.dart';
 import 'widgets/hex_picker.dart';
 
-enum Picker { swatches, rgb, hsv, wheel, paletteHue, paletteSaturation, paletteValue }
+enum Picker {
+  swatches,
+  rgb,
+  hsv,
+  wheel,
+  paletteHue,
+  paletteSaturation,
+  paletteValue,
+}
 
 /// The orientation of the ColorPicker.
 enum PickerOrientation {
@@ -35,8 +43,8 @@ class ColorPicker extends StatefulWidget {
     this.initialPicker = Picker.paletteHue,
     this.pickerOrientation = PickerOrientation.inherit,
     this.paletteHeight = 280,
-    super.key,
-  });
+    Key? key,
+  }) : super(key: key);
 
   final ValueChanged<Color> onChanged;
   final Color color;
@@ -113,24 +121,35 @@ class _ColorPickerState extends State<ColorPicker> {
       _IPicker(
         name: 'Swatches',
         picker: Picker.swatches,
-        builder: (BuildContext context) =>
-            SwatchesPicker(onChanged: (Color value) => super.setState(() => _colorWithAlphaOnChanged(value))),
+        builder: (BuildContext context) => SwatchesPicker(
+          onChanged: (Color value) => super.setState(
+            () => _colorWithAlphaOnChanged(value),
+          ),
+        ),
       ),
 
       // RGBPicker
       _IPicker(
         name: 'RGB',
         picker: Picker.rgb,
-        builder: (BuildContext context) =>
-            RGBPicker(color: _color, onChanged: (Color value) => super.setState(() => _colorOnChanged(value))),
+        builder: (BuildContext context) => RGBPicker(
+          color: _color,
+          onChanged: (Color value) => super.setState(
+            () => _colorOnChanged(value),
+          ),
+        ),
       ),
 
       // HSVPicker
       _IPicker(
         name: 'HSV',
         picker: Picker.hsv,
-        builder: (BuildContext context) =>
-            HSVPicker(color: _hSVColor, onChanged: (HSVColor value) => super.setState(() => _hSVColorOnChanged(value))),
+        builder: (BuildContext context) => HSVPicker(
+          color: _hSVColor,
+          onChanged: (HSVColor value) => super.setState(
+            () => _hSVColorOnChanged(value),
+          ),
+        ),
       ),
 
       // WheelPicker
@@ -139,7 +158,9 @@ class _ColorPickerState extends State<ColorPicker> {
         picker: Picker.wheel,
         builder: (BuildContext context) => WheelPicker(
           color: _hSVColor,
-          onChanged: (HSVColor value) => super.setState(() => _hSVColorOnChanged(value)),
+          onChanged: (HSVColor value) => super.setState(
+            () => _hSVColorOnChanged(value),
+          ),
         ),
       ),
 
@@ -150,7 +171,9 @@ class _ColorPickerState extends State<ColorPicker> {
         builder: (BuildContext context) => PaletteHuePicker(
           color: _hSVColor,
           paletteHeight: widget.paletteHeight,
-          onChanged: (HSVColor value) => super.setState(() => _hSVColorOnChanged(value)),
+          onChanged: (HSVColor value) => super.setState(
+            () => _hSVColorOnChanged(value),
+          ),
         ),
       ),
 
@@ -161,7 +184,9 @@ class _ColorPickerState extends State<ColorPicker> {
         builder: (BuildContext context) => PaletteSaturationPicker(
           color: _hSVColor,
           paletteHeight: widget.paletteHeight,
-          onChanged: (HSVColor value) => super.setState(() => _hSVColorOnChanged(value)),
+          onChanged: (HSVColor value) => super.setState(
+            () => _hSVColorOnChanged(value),
+          ),
         ),
       ),
 
@@ -172,12 +197,16 @@ class _ColorPickerState extends State<ColorPicker> {
         builder: (BuildContext context) => PaletteValuePicker(
           color: _hSVColor,
           paletteHeight: widget.paletteHeight,
-          onChanged: (HSVColor value) => super.setState(() => _hSVColorOnChanged(value)),
+          onChanged: (HSVColor value) => super.setState(
+            () => _hSVColorOnChanged(value),
+          ),
         ),
       ),
     ];
 
-    _index = _pickers.indexOf(_pickers.firstWhere((element) => element.picker == widget.initialPicker));
+    _index = _pickers.indexOf(
+      _pickers.firstWhere((element) => element.picker == widget.initialPicker),
+    );
   }
 
   @override
@@ -201,8 +230,10 @@ class _ColorPickerState extends State<ColorPicker> {
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
           style: _index == _pickers.indexOf(item)
-              ? Theme.of(context).textTheme.headlineSmall
-                    ?.copyWith(fontSize: 18, color: Theme.of(context).colorScheme.secondary)
+              ? Theme.of(context).textTheme.headlineSmall?.copyWith(
+                    fontSize: 18,
+                    color: Theme.of(context).colorScheme.secondary,
+                  )
               : Theme.of(context).textTheme.headlineSmall?.copyWith(fontSize: 18),
         ),
       ),
@@ -221,12 +252,16 @@ class _ColorPickerState extends State<ColorPicker> {
             height: 32,
             decoration: const BoxDecoration(
               shape: BoxShape.circle,
-              border: Border.fromBorderSide(BorderSide(color: Colors.black26)),
+              border: Border.fromBorderSide(
+                BorderSide(color: Colors.black26),
+              ),
             ),
             child: DecoratedBox(
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                border: const Border.fromBorderSide(BorderSide(color: Colors.white, width: 3)),
+                border: const Border.fromBorderSide(
+                  BorderSide(color: Colors.white, width: 3),
+                ),
                 color: _color,
               ),
             ),
@@ -239,9 +274,11 @@ class _ColorPickerState extends State<ColorPicker> {
             child: HexPicker(
               key: _hexKey,
               color: _color,
-              onChanged: (Color value) => super.setState(() => _colorOnChanged(value)),
+              onChanged: (Color value) => super.setState(
+                () => _colorOnChanged(value),
+              ),
             ),
-          ),
+          )
         ],
       ),
     );
@@ -255,14 +292,18 @@ class _ColorPickerState extends State<ColorPicker> {
         color: Theme.of(context).cardColor,
         shadowColor: Colors.black26,
         elevation: 4.0,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(2.0)),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(2.0),
+        ),
         child: DropdownButton<_IPicker>(
           iconSize: 32.0,
           isExpanded: true,
           isDense: true,
           style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontSize: 20),
           value: _pickers[_index],
-          onChanged: (_IPicker? value) => super.setState(() => _pickerOnChanged(value)),
+          onChanged: (_IPicker? value) => super.setState(
+            () => _pickerOnChanged(value),
+          ),
           items: _pickers.map(_buildDropdownMenuItems).toList(),
         ),
       ),
@@ -283,7 +324,9 @@ class _ColorPickerState extends State<ColorPicker> {
         isDense: true,
         style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontSize: 20),
         value: _pickers[_index],
-        onChanged: (_IPicker? value) => super.setState(() => _pickerOnChanged(value)),
+        onChanged: (_IPicker? value) => super.setState(
+          () => _pickerOnChanged(value),
+        ),
         items: _pickers.map(_buildDropdownMenuItems).toList(),
         underline: const SizedBox(),
       ),
@@ -291,11 +334,18 @@ class _ColorPickerState extends State<ColorPicker> {
   }
 
   Widget _buildBody() {
-    return SizedBox(child: _pickers[_index].builder(context));
+    return SizedBox(
+      child: _pickers[_index].builder(context),
+    );
   }
 
   Widget _buildAlphaPicker() {
-    return AlphaPicker(alpha: _alpha, onChanged: (int value) => super.setState(() => _alphaOnChanged(value)));
+    return AlphaPicker(
+      alpha: _alpha,
+      onChanged: (int value) => super.setState(
+        () => _alphaOnChanged(value),
+      ),
+    );
   }
 
   Orientation _getOrientation(PickerOrientation pickerOrientation) {
@@ -317,7 +367,12 @@ class _ColorPickerState extends State<ColorPicker> {
       case Orientation.portrait:
         return Column(
           mainAxisSize: MainAxisSize.min,
-          children: <Widget>[_buildHead(), _buildDropdownPortraitMode(), _buildBody(), _buildAlphaPicker()],
+          children: <Widget>[
+            _buildHead(),
+            _buildDropdownPortraitMode(),
+            _buildBody(),
+            _buildAlphaPicker(),
+          ],
         );
 
       case Orientation.landscape:
@@ -327,10 +382,16 @@ class _ColorPickerState extends State<ColorPicker> {
             Flexible(
               child: Column(
                 mainAxisSize: MainAxisSize.min,
-                children: <Widget>[_buildHead(), _buildDropdownLandscapeMode(), _buildAlphaPicker()],
+                children: <Widget>[
+                  _buildHead(),
+                  _buildDropdownLandscapeMode(),
+                  _buildAlphaPicker(),
+                ],
               ),
             ),
-            Expanded(child: _buildBody()),
+            Expanded(
+              child: _buildBody(),
+            )
           ],
         );
     }
@@ -338,7 +399,11 @@ class _ColorPickerState extends State<ColorPicker> {
 }
 
 class _IPicker {
-  _IPicker({required this.name, required this.picker, required this.builder});
+  _IPicker({
+    required this.name,
+    required this.picker,
+    required this.builder,
+  });
 
   String name;
   Picker picker;

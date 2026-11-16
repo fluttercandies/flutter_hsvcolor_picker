@@ -1,4 +1,4 @@
-import 'package:material_ui/material_ui.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hsvcolor_picker/flutter_hsvcolor_picker.dart';
 import 'package:flutter_hsvcolor_picker_example/complex_example/main.dart' as example;
@@ -40,11 +40,8 @@ void main() {
     for (final destination in destinations.entries) {
       await tester.tap(find.byIcon(Icons.dehaze).first);
       await tester.pumpAndSettle();
-      await tester.scrollUntilVisible(
-        find.text(destination.key),
-        80,
-        scrollable: find.descendant(of: find.byType(Drawer), matching: find.byType(Scrollable)).first,
-      );
+      await tester.scrollUntilVisible(find.text(destination.key), 80,
+          scrollable: find.descendant(of: find.byType(Drawer), matching: find.byType(Scrollable)).first);
       await tester.pumpAndSettle();
       await tester.tap(find.text(destination.key));
       await tester.pumpAndSettle();

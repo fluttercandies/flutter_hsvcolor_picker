@@ -1,11 +1,16 @@
 import 'dart:math' as math;
 
 import 'package:flutter/gestures.dart';
-import 'package:material_ui/material_ui.dart';
+import 'package:flutter/material.dart';
 
 /// Color palette and color wheel.
 class WheelPicker extends StatefulWidget {
-  const WheelPicker({required this.color, required this.onChanged, this.showPalette = true, super.key});
+  const WheelPicker({
+    required this.color,
+    required this.onChanged,
+    this.showPalette = true,
+    Key? key,
+  }) : super(key: key);
 
   final HSVColor color;
   final ValueChanged<HSVColor> onChanged;
@@ -62,7 +67,11 @@ class _WheelPickerState extends State<WheelPicker> {
     //     vector.dx.abs() < squareRadio && vector.dy.abs() < squareRadio;
 
     if (isWheel) {
-      widget.onChanged(color.withHue(_Wheel.vectorToHue(vector)));
+      widget.onChanged(
+        color.withHue(
+          _Wheel.vectorToHue(vector),
+        ),
+      );
     }
     if (widget.showPalette && this.isPalette) {
       widget.onChanged(
@@ -89,7 +98,11 @@ class _WheelPickerState extends State<WheelPicker> {
     final Offset vector = offset - startPosition - center;
 
     if (isWheel) {
-      widget.onChanged(color.withHue(_Wheel.vectorToHue(vector)));
+      widget.onChanged(
+        color.withHue(
+          _Wheel.vectorToHue(vector),
+        ),
+      );
     }
     if (isPalette) {
       widget.onChanged(
@@ -120,7 +133,10 @@ class _WheelPickerState extends State<WheelPicker> {
         height: 240,
         child: CustomPaint(
           key: paletteKey,
-          painter: _WheelPainter(color: color, showColorBox: widget.showPalette),
+          painter: _WheelPainter(
+            color: color,
+            showColorBox: widget.showPalette,
+          ),
         ),
       ),
     );
@@ -128,7 +144,10 @@ class _WheelPickerState extends State<WheelPicker> {
 }
 
 class _WheelPainter extends CustomPainter {
-  const _WheelPainter({required this.color, required this.showColorBox}) : super();
+  const _WheelPainter({
+    required this.color,
+    required this.showColorBox,
+  }) : super();
 
   static double strokeWidth = 8;
   static double doubleStrokeWidth = 16;
@@ -156,7 +175,9 @@ class _WheelPainter extends CustomPainter {
         Color.fromARGB(255, 255, 0, 255),
         Color.fromARGB(255, 255, 0, 0),
       ],
-    ).createShader(Rect.fromCircle(center: center, radius: radio));
+    ).createShader(
+      Rect.fromCircle(center: center, radius: radio),
+    );
     canvas.drawCircle(
       center,
       radio,
@@ -198,7 +219,10 @@ class _WheelPainter extends CustomPainter {
 
     // Palette
     final Rect rect = Rect.fromLTWH(center.dx - squareRadio, center.dy - squareRadio, squareRadio * 2, squareRadio * 2);
-    final RRect rRect = RRect.fromRectAndRadius(rect, const Radius.circular(4));
+    final RRect rRect = RRect.fromRectAndRadius(
+      rect,
+      const Radius.circular(4),
+    );
 
     final Shader horizontal = LinearGradient(
       colors: <Color>[Colors.white, HSVColor.fromAHSV(1.0, color.hue, 1.0, 1.0).toColor()],
