@@ -26,11 +26,11 @@ dependencies:
 
 Replace `import 'package:flutter/material.dart';` with `import 'package:material_ui/material_ui.dart';` in the app that hosts the picker. Use Material UI's `MaterialApp`, `Theme`, and `ThemeData` together so the picker inherits your app's colors and text styles. Flutter's deprecated Material themes and Material UI's themes are separate types.
 
-For Flutter 2.10 or newer with Dart 2.x, the published 1.5.1 release remains available:
+For Flutter versions below 3.47, use 1.6.0:
 
 ```yaml
 dependencies:
-  flutter_hsvcolor_picker: ^1.5.1
+  flutter_hsvcolor_picker: ^1.6.0
 ```
 
 ### Example

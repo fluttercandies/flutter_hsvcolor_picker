@@ -1,6 +1,9 @@
 ## [2.0.0]
 
 * **Breaking:** Require Flutter 3.47 or newer and replace deprecated Flutter Material imports with `package:material_ui/material_ui.dart`. Use Material UI's `MaterialApp` and themes in consuming apps.
+
+## [1.6.0]
+
 * Accept RGB HEX input with optional `#`, `0x` or `0X` prefixes and surrounding whitespace; reject invalid values.
 * Keep unfinished HEX edits when transparency or layout changes; update the field when RGB changes.
 * Fix tap and drag selection; ignore cancelled gestures and keep wheel drags in their starting region.
