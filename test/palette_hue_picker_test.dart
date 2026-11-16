@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_hsvcolor_picker/flutter_hsvcolor_picker.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -9,18 +9,13 @@ void main() {
     await tester.pumpWidget(
       MaterialApp(
         home: StatefulBuilder(
-          builder: (context, setState) => PaletteHuePicker(
-            color: selected,
-            onChanged: (color) => setState(() => selected = color),
-          ),
+          builder: (context, setState) =>
+              PaletteHuePicker(color: selected, onChanged: (color) => setState(() => selected = color)),
         ),
       ),
     );
 
-    final sliderFinder = find.descendant(
-      of: find.byType(PaletteHuePicker),
-      matching: find.byType(SliderPicker),
-    );
+    final sliderFinder = find.descendant(of: find.byType(PaletteHuePicker), matching: find.byType(SliderPicker));
     final slider = tester.widget<SliderPicker>(sliderFinder);
     final pink = Color.lerp(slider.colors![5], slider.colors![6], 0.5);
     final pinkHsv = HSVColor.fromColor(pink!);
@@ -30,12 +25,7 @@ void main() {
 
     final sliderRect = tester.getRect(sliderFinder);
     final gesture = await tester.startGesture(sliderRect.center);
-    await gesture.moveTo(
-      Offset(
-        sliderRect.left + sliderRect.width * 330 / 360,
-        sliderRect.center.dy,
-      ),
-    );
+    await gesture.moveTo(Offset(sliderRect.left + sliderRect.width * 330 / 360, sliderRect.center.dy));
     await gesture.up();
     await tester.pump();
 

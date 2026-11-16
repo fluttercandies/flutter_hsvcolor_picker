@@ -1,11 +1,7 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class SliderTitle extends StatelessWidget {
-  const SliderTitle(
-    this.title,
-    this.text, {
-    Key? key,
-  }) : super(key: key);
+  const SliderTitle(this.title, this.text, {super.key});
 
   final String title;
   final String text;
@@ -19,20 +15,10 @@ class SliderTitle extends StatelessWidget {
         children: <Widget>[
           Opacity(
             opacity: 0.7,
-            child: Text(
-              title,
-              style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                    fontSize: 18,
-                  ),
-            ),
+            child: Text(title, style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 18)),
           ),
           const Spacer(),
-          Text(
-            text,
-            style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                  fontSize: 18,
-                ),
-          ),
+          Text(text, style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontSize: 18)),
         ],
       ),
     );

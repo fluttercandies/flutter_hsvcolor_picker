@@ -1,3 +1,17 @@
+## [2.0.0]
+
+* **Breaking:** Require Flutter 3.47 or newer and replace deprecated Flutter Material imports with `package:material_ui/material_ui.dart`. Use Material UI's `MaterialApp` and themes in consuming apps.
+
+## [1.6.0]
+
+* Accept RGB HEX input with optional `#`, `0x` or `0X` prefixes and surrounding whitespace; reject invalid values.
+* Keep unfinished HEX edits when transparency or layout changes; update the field when RGB changes.
+* Fix tap and drag selection; ignore cancelled gestures and keep wheel drags in their starting region.
+* Match wheel selection to painted colors.
+* Keep the selected hue and saturation in `ColorPicker` when a color reaches gray or black, and stop HSV values from drifting while dragging.
+* Correct HSV labels and prevent selected labels from clipping in narrow layouts.
+* Preserve example color selections and let pages scroll above the keyboard.
+
 ## [1.5.2]
 
 * Fix `PaletteHuePicker` hue slider showing incorrect colors when dark or desaturated colors are selected in the palette.

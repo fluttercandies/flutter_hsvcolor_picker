@@ -1,15 +1,16 @@
 name: flutter_hsvcolor_picker
 description: A HSV color picker inspired by chrome devtools and a material color picker for your flutter app.
-version: 1.5.2
+version: 2.0.0
 homepage: https://github.com/fluttercandies/flutter_hsvcolor_picker
 
 dependencies:
   flutter:
     sdk: flutter
+  material_ui: ^1.11.0
 
 environment:
-  sdk: '>=2.16.0 <4.0.0'
-  flutter: '>=2.10.0'
+  sdk: ^3.13.0
+  flutter: '>=3.47.0'
 
 dev_dependencies:
   flutter_lints: '>=2.0.0 <5.0.0'

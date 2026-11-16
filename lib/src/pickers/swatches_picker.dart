@@ -1,11 +1,8 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Color swatches.
 class SwatchesPicker extends StatefulWidget {
-  const SwatchesPicker({
-    required this.onChanged,
-    Key? key,
-  }) : super(key: key);
+  const SwatchesPicker({required this.onChanged, super.key});
 
   final ValueChanged<Color> onChanged;
 
@@ -13,21 +10,8 @@ class SwatchesPicker extends StatefulWidget {
   State<SwatchesPicker> createState() => _SwatchesPickerState();
 }
 
-class _SwatchesPickerState extends State<SwatchesPicker> with SingleTickerProviderStateMixin {
-  late TabController controller;
-
+class _SwatchesPickerState extends State<SwatchesPicker> {
   void itemClick(Color item) => widget.onChanged(item);
-
-  @override
-  void initState() {
-    super.initState();
-
-    controller = TabController(
-      initialIndex: 1,
-      length: _swatches.length,
-      vsync: this,
-    );
-  }
 
   Widget buildListView(Color item) {
     return Container(
@@ -37,14 +21,10 @@ class _SwatchesPickerState extends State<SwatchesPicker> with SingleTickerProvid
       decoration: BoxDecoration(
         color: item,
         shape: BoxShape.circle,
-        border: const Border.fromBorderSide(
-          BorderSide(color: Colors.grey),
-        ),
+        border: const Border.fromBorderSide(BorderSide(color: Colors.grey)),
       ),
       child: InkWell(
-        borderRadius: const BorderRadius.all(
-          Radius.circular(20),
-        ),
+        borderRadius: const BorderRadius.all(Radius.circular(20)),
         onTap: () => itemClick(item),
         splashColor: item,
       ),

@@ -1,18 +1,13 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
-import '../color_compat.dart';
+import '../color_channels.dart';
+
 import '../widgets/slider_picker.dart';
 import '../widgets/slider_title.dart';
 
-int _colorChannel(Color color, int shift) => (colorToArgb32(color) >> shift) & 0xff;
-
 /// Three sliders for selecting a color based on RGB.
 class RGBPicker extends StatefulWidget {
-  const RGBPicker({
-    required this.color,
-    required this.onChanged,
-    Key? key,
-  }) : super(key: key);
+  const RGBPicker({required this.color, required this.onChanged, super.key});
 
   final Color color;
   final ValueChanged<Color> onChanged;
@@ -23,42 +18,21 @@ class RGBPicker extends StatefulWidget {
 
 class _RGBPickerState extends State<RGBPicker> {
   Color get color => widget.color;
-  int get alpha => _colorChannel(color, 24);
-  int get red => _colorChannel(color, 16);
-  int get green => _colorChannel(color, 8);
-  int get blue => _colorChannel(color, 0);
 
   // Red
-  void redOnChange(double value) => widget.onChanged(
-        Color.fromARGB(alpha, value.toInt(), green, blue),
-      );
-  List<Color> get redColors => <Color>[
-        color.withRed(0),
-        color.withRed(255),
-      ];
+  void redOnChange(double value) =>
+      widget.onChanged(Color.fromARGB(color.alpha8, value.toInt(), color.green8, color.blue8));
+  List<Color> get redColors => <Color>[color.withRed(0), color.withRed(255)];
 
   // Green
-  void greenOnChange(double value) => widget.onChanged(
-        Color.fromARGB(alpha, red, value.toInt(), blue),
-      );
-  List<Color> get greenColors => <Color>[
-        color.withGreen(0),
-        color.withGreen(255),
-      ];
+  void greenOnChange(double value) =>
+      widget.onChanged(Color.fromARGB(color.alpha8, color.red8, value.toInt(), color.blue8));
+  List<Color> get greenColors => <Color>[color.withGreen(0), color.withGreen(255)];
 
   // Blue
-  void blueOnChange(double value) => widget.onChanged(
-        Color.fromARGB(
-          alpha,
-          red,
-          green,
-          value.toInt(),
-        ),
-      );
-  List<Color> get blueColors => <Color>[
-        color.withBlue(0),
-        color.withBlue(255),
-      ];
+  void blueOnChange(double value) =>
+      widget.onChanged(Color.fromARGB(color.alpha8, color.red8, color.green8, value.toInt()));
+  List<Color> get blueColors => <Color>[color.withBlue(0), color.withBlue(255)];
 
   @override
   Widget build(BuildContext context) {
@@ -66,40 +40,16 @@ class _RGBPickerState extends State<RGBPicker> {
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         // Red
-        SliderTitle(
-          'R',
-          red.toString(),
-        ),
-        SliderPicker(
-          value: red.toDouble(),
-          max: 255.0,
-          onChanged: redOnChange,
-          colors: redColors,
-        ),
+        SliderTitle('R', color.red8.toInt().toString()),
+        SliderPicker(value: color.red8.toDouble(), max: 255.0, onChanged: redOnChange, colors: redColors),
 
         // Green
-        SliderTitle(
-          'G',
-          green.toString(),
-        ),
-        SliderPicker(
-          value: green.toDouble(),
-          max: 255.0,
-          onChanged: greenOnChange,
-          colors: greenColors,
-        ),
+        SliderTitle('G', color.green8.toInt().toString()),
+        SliderPicker(value: color.green8.toDouble(), max: 255.0, onChanged: greenOnChange, colors: greenColors),
 
         // Blue
-        SliderTitle(
-          'B',
-          blue.toString(),
-        ),
-        SliderPicker(
-          value: blue.toDouble(),
-          max: 255.0,
-          onChanged: blueOnChange,
-          colors: blueColors,
-        )
+        SliderTitle('B', color.blue8.toInt().toString()),
+        SliderPicker(value: color.blue8.toDouble(), max: 255.0, onChanged: blueOnChange, colors: blueColors),
       ],
     );
   }

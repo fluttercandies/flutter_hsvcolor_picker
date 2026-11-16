@@ -1,15 +1,11 @@
 import 'dart:math' as math;
 
-import 'package:flutter/material.dart';
+import 'package:flutter/gestures.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Color palette and color wheel.
 class WheelPicker extends StatefulWidget {
-  const WheelPicker({
-    required this.color,
-    required this.onChanged,
-    this.showPalette = true,
-    Key? key,
-  }) : super(key: key);
+  const WheelPicker({required this.color, required this.onChanged, this.showPalette = true, super.key});
 
   final HSVColor color;
   final ValueChanged<HSVColor> onChanged;
@@ -47,8 +43,17 @@ class _WheelPickerState extends State<WheelPicker> {
     final Offset center = Offset(size.width / 2, size.height / 2);
     final Offset vector = offset - startPosition - center;
 
-    final bool isPalette = vector.dx.abs() < squareRadio && vector.dy.abs() < squareRadio;
-    isWheel = !isPalette;
+    // Follow the paint order: the palette and its thumb (radius 12 + stroke 3) cover the ring and the wheel thumb
+    final bool isInSquare = _WheelPainter.paletteRRect(Offset.zero, squareRadio).contains(vector);
+    final Offset paletteThumb = Offset(
+      _Wheel.saturationToVector(color.saturation, squareRadio, 0),
+      _Wheel.valueToVector(color.value, squareRadio, 0),
+    );
+    final bool isPalette = widget.showPalette && (isInSquare || (vector - paletteThumb).distance <= 15);
+    // Start a wheel drag only on the painted ring or the painted thumb, ignoring the inner gap and outer corners
+    final Offset thumb = _Wheel.hueToVector(color.hue * math.pi / 180.0, radio, Offset.zero);
+    isWheel =
+        !isPalette && ((vector.distance - radio).abs() <= _WheelPainter.strokeWidth || (vector - thumb).distance <= 15);
     this.isPalette = isPalette;
 
     // isWheel = vector.distance + _WheelPainter.strokeWidth > radio &&
@@ -57,11 +62,7 @@ class _WheelPickerState extends State<WheelPicker> {
     //     vector.dx.abs() < squareRadio && vector.dy.abs() < squareRadio;
 
     if (isWheel) {
-      widget.onChanged(
-        color.withHue(
-          _Wheel.vectorToHue(vector),
-        ),
-      );
+      widget.onChanged(color.withHue(_Wheel.vectorToHue(vector)));
     }
     if (widget.showPalette && this.isPalette) {
       widget.onChanged(
@@ -88,11 +89,7 @@ class _WheelPickerState extends State<WheelPicker> {
     final Offset vector = offset - startPosition - center;
 
     if (isWheel) {
-      widget.onChanged(
-        color.withHue(
-          _Wheel.vectorToHue(vector),
-        ),
-      );
+      widget.onChanged(color.withHue(_Wheel.vectorToHue(vector)));
     }
     if (isPalette) {
       widget.onChanged(
@@ -106,28 +103,24 @@ class _WheelPickerState extends State<WheelPicker> {
     }
   }
 
-  void onPanDown(Offset offset) => isWheel = isPalette = false;
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      dragStartBehavior: DragStartBehavior.down,
       onPanStart: (DragStartDetails details) {
         onPanStart(details.globalPosition);
       },
       onPanUpdate: (DragUpdateDetails details) {
         onPanUpdate(details.globalPosition);
       },
-      onPanDown: (DragDownDetails details) => onPanDown(details.globalPosition),
+      onTapUp: (TapUpDetails details) => onPanStart(details.globalPosition),
       child: Container(
-        key: paletteKey,
         padding: const EdgeInsets.only(top: 12.0),
         width: 240,
         height: 240,
         child: CustomPaint(
-          painter: _WheelPainter(
-            color: color,
-            showColorBox: widget.showPalette,
-          ),
+          key: paletteKey,
+          painter: _WheelPainter(color: color, showColorBox: widget.showPalette),
         ),
       ),
     );
@@ -135,15 +128,16 @@ class _WheelPickerState extends State<WheelPicker> {
 }
 
 class _WheelPainter extends CustomPainter {
-  const _WheelPainter({
-    required this.color,
-    required this.showColorBox,
-  }) : super();
+  const _WheelPainter({required this.color, required this.showColorBox}) : super();
 
   static double strokeWidth = 8;
   static double doubleStrokeWidth = 16;
   static double radio(Size size) => math.min(size.width, size.height).toDouble() / 2 - _WheelPainter.strokeWidth;
   static double squareRadio(double radio) => (radio - _WheelPainter.strokeWidth) / 1.414213562373095;
+  static RRect paletteRRect(Offset center, double squareRadio) => RRect.fromRectAndRadius(
+    Rect.fromCenter(center: center, width: squareRadio * 2, height: squareRadio * 2),
+    const Radius.circular(4),
+  );
 
   final HSVColor color;
   final bool showColorBox;
@@ -156,7 +150,7 @@ class _WheelPainter extends CustomPainter {
 
     // Wheel
     final Shader sweepShader = const SweepGradient(
-      center: Alignment.bottomRight,
+      center: Alignment.center,
       colors: <Color>[
         Color.fromARGB(255, 255, 0, 0),
         Color.fromARGB(255, 255, 255, 0),
@@ -166,9 +160,7 @@ class _WheelPainter extends CustomPainter {
         Color.fromARGB(255, 255, 0, 255),
         Color.fromARGB(255, 255, 0, 0),
       ],
-    ).createShader(
-      Rect.fromLTWH(0, 0, radio, radio),
-    );
+    ).createShader(Rect.fromCircle(center: center, radius: radio));
     canvas.drawCircle(
       center,
       radio,
@@ -209,11 +201,8 @@ class _WheelPainter extends CustomPainter {
     if (!showColorBox) return;
 
     // Palette
-    final Rect rect = Rect.fromLTWH(center.dx - squareRadio, center.dy - squareRadio, squareRadio * 2, squareRadio * 2);
-    final RRect rRect = RRect.fromRectAndRadius(
-      rect,
-      const Radius.circular(4),
-    );
+    final RRect rRect = _WheelPainter.paletteRRect(center, squareRadio);
+    final Rect rect = rRect.outerRect;
 
     final Shader horizontal = LinearGradient(
       colors: <Color>[Colors.white, HSVColor.fromAHSV(1.0, color.hue, 1.0, 1.0).toColor()],
