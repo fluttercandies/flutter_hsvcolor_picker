@@ -125,7 +125,7 @@ class _PalettePickerState extends State<PalettePicker> {
     return GestureDetector(
       onPanStart: (DragStartDetails details) => ratioToPosition(details.globalPosition),
       onPanUpdate: (DragUpdateDetails details) => ratioToPosition(details.globalPosition),
-      onPanDown: (DragDownDetails details) => ratioToPosition(details.globalPosition),
+      onTapUp: (TapUpDetails details) => ratioToPosition(details.globalPosition),
       child: SizedBox(
         key: paletteKey,
         width: double.infinity,

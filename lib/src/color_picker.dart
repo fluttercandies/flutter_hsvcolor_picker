@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'color_compat.dart';
+import 'color_channels.dart';
+
 import 'pickers/hsv_picker.dart';
 import 'pickers/palette_hue_picker.dart';
 import 'pickers/palette_saturation_picker.dart';
@@ -10,8 +11,6 @@ import 'pickers/swatches_picker.dart';
 import 'pickers/wheel_picker.dart';
 import 'widgets/alpha_picker.dart';
 import 'widgets/hex_picker.dart';
-
-int _alphaChannel(Color color) => (colorToArgb32(color) >> 24) & 0xff;
 
 enum Picker {
   swatches,
@@ -68,6 +67,8 @@ class ColorPicker extends StatefulWidget {
 class _ColorPickerState extends State<ColorPicker> {
   _ColorPickerState();
 
+  final _hexKey = GlobalKey();
+
   // Color
   late int _alpha;
   late Color _color;
@@ -76,25 +77,26 @@ class _ColorPickerState extends State<ColorPicker> {
   late int _index;
 
   void _alphaOnChanged(int value) {
-    _updateColor(_color.withAlpha(value));
+    _updateColor(_color.withAlpha(value), _hSVColor.withAlpha(value / 0xff));
   }
 
   void _colorOnChanged(Color value) {
-    _updateColor(value.withAlpha(_alphaChannel(_color)));
+    _updateColor(value.withAlpha(_color.alpha8));
   }
 
+  // Keep the exact HSV selection, because eight-bit RGB loses the hue of grays and blacks and rounds the rest
   void _hSVColorOnChanged(HSVColor value) {
-    _updateColor(value.toColor().withAlpha(_alphaChannel(_color)));
+    _updateColor(value.toColor().withAlpha(_color.alpha8), value.withAlpha(_color.alpha8 / 0xff));
   }
 
   void _colorWithAlphaOnChanged(Color value) {
     _updateColor(value);
   }
 
-  void _updateColor(Color color) {
-    _alpha = _alphaChannel(color);
+  void _updateColor(Color color, [HSVColor? hSVColor]) {
+    _alpha = color.alpha8;
     _color = color;
-    _hSVColor = HSVColor.fromColor(color);
+    _hSVColor = hSVColor ?? HSVColor.fromColor(color);
     widget.onChanged(color);
   }
 
@@ -111,7 +113,7 @@ class _ColorPickerState extends State<ColorPicker> {
     super.initState();
 
     _color = widget.color;
-    _alpha = _alphaChannel(_color);
+    _alpha = _color.alpha8;
     _hSVColor = HSVColor.fromColor(_color);
 
     // Pickers
@@ -208,6 +210,19 @@ class _ColorPickerState extends State<ColorPicker> {
     );
   }
 
+  @override
+  void didUpdateWidget(covariant ColorPicker oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    // A parent passing back the reported color keeps the HSV selection
+    final bool isNewColor = oldWidget.color != widget.color && widget.color != _color;
+
+    if (isNewColor) {
+      _color = widget.color;
+      _alpha = _color.alpha8;
+      _hSVColor = HSVColor.fromColor(_color);
+    }
+  }
+
   // Dropdown
   DropdownMenuItem<_IPicker> _buildDropdownMenuItems(_IPicker item) {
     return DropdownMenuItem<_IPicker>(
@@ -216,6 +231,8 @@ class _ColorPickerState extends State<ColorPicker> {
         padding: const EdgeInsets.fromLTRB(10.0, 8.0, 10.0, 0.0),
         child: Text(
           item.name,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
           style: _index == _pickers.indexOf(item)
               ? Theme.of(context).textTheme.headlineSmall?.copyWith(
                     fontSize: 18,
@@ -259,6 +276,7 @@ class _ColorPickerState extends State<ColorPicker> {
           // HexPicker
           Expanded(
             child: HexPicker(
+              key: _hexKey,
               color: _color,
               onChanged: (Color value) => super.setState(
                 () => _colorOnChanged(value),
