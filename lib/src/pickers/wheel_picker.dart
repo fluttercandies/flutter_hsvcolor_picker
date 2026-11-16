@@ -43,8 +43,14 @@ class _WheelPickerState extends State<WheelPicker> {
     final Offset center = Offset(size.width / 2, size.height / 2);
     final Offset vector = offset - startPosition - center;
 
-    final bool isPalette = vector.dx.abs() < squareRadio && vector.dy.abs() < squareRadio;
-    // Start a wheel drag only on the painted ring or the painted thumb (radius 12 + stroke 3), ignoring the inner gap and outer corners
+    // Follow the paint order: the palette and its thumb (radius 12 + stroke 3) cover the ring and the wheel thumb
+    final bool isInSquare = vector.dx.abs() < squareRadio && vector.dy.abs() < squareRadio;
+    final Offset paletteThumb = Offset(
+      _Wheel.saturationToVector(color.saturation, squareRadio, 0),
+      _Wheel.valueToVector(color.value, squareRadio, 0),
+    );
+    final bool isPalette = widget.showPalette && (isInSquare || (vector - paletteThumb).distance <= 15);
+    // Start a wheel drag only on the painted ring or the painted thumb, ignoring the inner gap and outer corners
     final Offset thumb = _Wheel.hueToVector(color.hue * math.pi / 180.0, radio, Offset.zero);
     isWheel =
         !isPalette && ((vector.distance - radio).abs() <= _WheelPainter.strokeWidth || (vector - thumb).distance <= 15);

@@ -154,9 +154,19 @@ void main() {
     expect(values.last.hue, closeTo(90, .001));
   });
 
-  Widget wheel(List<HSVColor> values, {required bool showPalette, double hue = 180}) => MaterialApp(
+  Widget wheel(
+    List<HSVColor> values, {
+    required bool showPalette,
+    double hue = 180,
+    double saturation = 1,
+    double value = 1,
+  }) => MaterialApp(
     home: Center(
-      child: WheelPicker(color: HSVColor.fromAHSV(1, hue, 1, 1), showPalette: showPalette, onChanged: values.add),
+      child: WheelPicker(
+        color: HSVColor.fromAHSV(1, hue, saturation, value),
+        showPalette: showPalette,
+        onChanged: values.add,
+      ),
     ),
   );
 
@@ -262,5 +272,63 @@ void main() {
       await gesture.up();
       expect(values, isEmpty, reason: 'drag start at ${rect.center + vector} (center + $vector)');
     });
+
+    testWidgets('wheel touch over the palette thumb edge on the ring (showPalette: $showPalette)', (tester) async {
+      final values = <HSVColor>[];
+      await tester.pumpWidget(wheel(values, showPalette: showPalette, hue: 0));
+      final paint = find.descendant(of: find.byType(WheelPicker), matching: find.byType(CustomPaint));
+      final rect = tester.getRect(paint);
+      const squareRadio = (106 - 8) / 1.414213562373095;
+      // 8.5 from the palette thumb (s = 1, v = 1) and 106.5 from the center, on the ring
+      await tester.tapAt(rect.center + const Offset(squareRadio + 6, -squareRadio - 6));
+      expect(values, hasLength(1));
+      // The painted palette thumb covers the ring here; without the palette, the ring is on top
+      expect(values.single, showPalette ? const HSVColor.fromAHSV(1, 0, 1, 1) : const HSVColor.fromAHSV(1, 315, 1, 1));
+    });
+
+    testWidgets('wheel thumb inside the palette square area (showPalette: $showPalette)', (tester) async {
+      final values = <HSVColor>[];
+      await tester.pumpWidget(wheel(values, showPalette: showPalette, hue: 45, saturation: .5, value: .5));
+      final paint = find.descendant(of: find.byType(WheelPicker), matching: find.byType(CustomPaint));
+      final rect = tester.getRect(paint);
+      // 93 from the center at 45 degrees: inside the square (69.3 per axis) and 13 from the wheel thumb
+      await tester.tapAt(rect.center + Offset.fromDirection(math.pi / 4, 93));
+      expect(values, hasLength(1));
+      // The painted palette covers the wheel thumb here; without the palette, the wheel thumb is on top
+      if (showPalette) {
+        expect(values.single.hue, 45);
+        expect(values.single.saturation, closeTo(.5 + 65.76 * .5 / 69.3, .001));
+      } else {
+        expect(values.single.hue, closeTo(45, .001));
+        expect(values.single.saturation, .5);
+      }
+    });
   }
+
+  testWidgets('wheel drag from the palette thumb edge moves the palette', (tester) async {
+    final values = <HSVColor>[];
+    await tester.pumpWidget(wheel(values, showPalette: true, hue: 0));
+    final paint = find.descendant(of: find.byType(WheelPicker), matching: find.byType(CustomPaint));
+    final rect = tester.getRect(paint);
+    const squareRadio = (106 - 8) / 1.414213562373095;
+    final gesture = await tester.startGesture(rect.center + const Offset(squareRadio + 6, -squareRadio - 6));
+    await gesture.moveTo(rect.center + const Offset(30, 0));
+    await tester.pump();
+    await gesture.moveTo(rect.center);
+    await gesture.up();
+    expect(values, isNotEmpty);
+    expect(values.map((color) => color.hue), everyElement(0));
+    expect(values.last, const HSVColor.fromAHSV(1, 0, .5, .5));
+  });
+
+  testWidgets('wheel palette thumb edge over the inner gap selects the palette', (tester) async {
+    final values = <HSVColor>[];
+    await tester.pumpWidget(wheel(values, showPalette: true, hue: 0, saturation: 0, value: .5));
+    final paint = find.descendant(of: find.byType(WheelPicker), matching: find.byType(CustomPaint));
+    final rect = tester.getRect(paint);
+    const squareRadio = (106 - 8) / 1.414213562373095;
+    // 8 left of the palette thumb (s = 0, v = 0.5), in the inner gap
+    await tester.tapAt(rect.center + const Offset(-squareRadio - 8, 0));
+    expect(values, [const HSVColor.fromAHSV(1, 0, 0, .5)]);
+  });
 }
