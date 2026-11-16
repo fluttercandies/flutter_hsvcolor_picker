@@ -4,6 +4,7 @@
 * Keep unfinished HEX edits when transparency or layout changes; update the field when RGB changes.
 * Fix tap and drag selection; ignore cancelled gestures and keep wheel drags in their starting region.
 * Match wheel selection to painted colors.
+* Keep the selected hue and saturation in `ColorPicker` when a color reaches gray or black, and stop HSV values from drifting while dragging.
 * Correct HSV labels and prevent selected labels from clipping in narrow layouts.
 * Preserve example color selections and let pages scroll above the keyboard.
 
