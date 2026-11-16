@@ -160,15 +160,16 @@ void main() {
     double hue = 180,
     double saturation = 1,
     double value = 1,
-  }) => MaterialApp(
-    home: Center(
-      child: WheelPicker(
-        color: HSVColor.fromAHSV(1, hue, saturation, value),
-        showPalette: showPalette,
-        onChanged: values.add,
-      ),
-    ),
-  );
+  }) =>
+      MaterialApp(
+        home: Center(
+          child: WheelPicker(
+            color: HSVColor.fromAHSV(1, hue, saturation, value),
+            showPalette: showPalette,
+            onChanged: values.add,
+          ),
+        ),
+      );
 
   // Mirrors _WheelPainter: ring painted within radio ± 8, square half-side (radio - 8) / sqrt2, thumbs reach 12 + 6 / 2 = 15
   void expectUnpainted(Rect rect, Offset vector) {

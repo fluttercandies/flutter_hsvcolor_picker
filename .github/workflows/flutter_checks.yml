@@ -16,8 +16,8 @@ jobs:
         include:
           - sdk: '3.10.6'
             version: '3.10.6'
-          - sdk: stable
-            version: ''
+          - sdk: '3.47.9'
+            version: '3.47.9'
     steps:
       - uses: actions/checkout@v7
       - uses: subosito/flutter-action@v2
@@ -27,10 +27,10 @@ jobs:
           cache: true
       - run: dart pub get --no-example
       - run: flutter pub get
-        if: matrix.sdk == 'stable'
+        if: matrix.sdk == '3.47.9'
         working-directory: example
       - run: flutter analyze --no-pub lib test
       - run: flutter test --no-pub
       - run: flutter test --no-pub
-        if: matrix.sdk == 'stable'
+        if: matrix.sdk == '3.47.9'
         working-directory: example
